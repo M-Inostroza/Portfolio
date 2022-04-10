@@ -202,6 +202,14 @@ main {
     height: 25rem;
 }
 
+.moon-third {
+    padding: 30rem 20rem 0 0;
+}
+
+.moon-second {
+    padding: 30rem 0 0 20rem;
+}
+
 .left-arrow {
     padding: 2.5rem;
     width: 25.5px;
@@ -226,6 +234,10 @@ main {
 
 /* Skills */
 
+.section-skills-container {
+    position: relative;
+}
+
 .UI-skills {
     display: grid;
     position: relative;
@@ -241,8 +253,53 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
 }
 
 .frame-skills-img {
-    height: 80%;
+    height: 75%;
+}
+
+.skills-title {
+    position: absolute;
+    width: 286px;
+    height: 68px;
+    left: 16rem;
+    top: 5rem;
+    color: #FFFFFF;
+    z-index: 2;
+}
+
+.title-skills-base {
+    position: absolute;
+    background-image: url(/images/name\ base.png);
+    height: 5rem;
+    width: 20rem;
+    z-index: 1;
+    top: 7%;
+    left: 10%;
+    opacity: 70%;
+}
+
+.planet-skills-BG {
+    position: absolute;
+    width: 66rem;
+    height: 66rem;
+    bottom: 0%;
+    left: -4%;
+    background-repeat: no-repeat;
+    background-image: url(/images/Planet_skills_BG.png);
+    z-index: 1;
+}
+
+.progress-bar {
+    background-image: url(/images/progress_bar.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 30%;
+    left: 24%;
+    background-color: #1A1A40;
+    width: 98rem;
+    height: 1.5rem;
+    z-index: 2;
 }
