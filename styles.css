@@ -7,6 +7,7 @@
 h1 {
     font-size: 4.8rem;
     font-family: 'nulshockbold', Arial, sans-serif;
+    color: white;
 }
 
 h2 {
@@ -14,8 +15,17 @@ h2 {
     font-family: 'nulshockbold', Arial, sans-serif;
 }
 
+h3 {
+    font-size: 4rem;
+    font-family: 'nulshockbold', Arial, sans-serif;
+}
+
 * {
     margin: 0;
+}
+
+p {
+    font-family: 'nulshockbold', Arial, sans-serif;
 }
 
 
@@ -239,25 +249,55 @@ main {
 }
 
 .UI-skills {
-    display: grid;
     position: relative;
+    display: flex;
     background-image: url(/images/BG-space-skills.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     height: 1024px;
+    
 }
 
 .skill-frame-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
     z-index: 2;
 }
 
 .frame-skills-img {
     height: 75%;
+}
+
+.rookie {
+    top: 23%;
+    bottom: 77%;
+    left: 25%;
+    right: 75%;
+    position: absolute;
+    color: white;
+}
+
+.pro {
+    top: 23%;
+    bottom: 77%;
+    left: 73%;
+    right: 27%;
+    position: absolute;
+    color: white;
+}
+
+.progress-bar {
+    position: absolute;
+    background-image: url(/images/progress_bar.png);
+    background-repeat: no-repeat;
+    width: 98rem;
+    height: 1.5rem;
+    z-index: 2;
+    top: 25%;
 }
 
 .skills-title {
@@ -285,21 +325,67 @@ main {
     position: absolute;
     width: 66rem;
     height: 66rem;
-    bottom: 0%;
+    top: 30%;
     left: -4%;
     background-repeat: no-repeat;
     background-image: url(/images/Planet_skills_BG.png);
     z-index: 1;
 }
 
-.progress-bar {
-    background-image: url(/images/progress_bar.png);
-    background-repeat: no-repeat;
+/* Progress bars */
+
+.bar-container {
     position: absolute;
+    width: 100rem;
+    height: 50rem;
     top: 30%;
-    left: 24%;
-    background-color: #1A1A40;
-    width: 98rem;
-    height: 1.5rem;
-    z-index: 2;
+    display: grid;
+    align-items: center;
+    justify-content: center;
 }
+
+/* Contact */
+
+.section-contact-container {
+    position: relative;
+    display: flex;
+    background-image: url(/images/BG_contact.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 1024px;
+}
+
+.title-contact {
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    left: 10%;
+}
+
+.title-contact-base {
+    position: absolute;
+    background-image: url(/images/name\ base.png);
+    height: 5rem;
+    width: 40rem;
+    z-index: 0;
+    top: 12%;
+    left: 12%;
+    opacity: 70%;
+}
+
+.form-container {
+    background-image: url(/images/contact_frame.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 45rem;
+    height: 60rem;
+    margin: 0 auto;
+    margin-top: 30rem;
+    /*display: grid;*/
+}
+
+/* Form */
+
+
