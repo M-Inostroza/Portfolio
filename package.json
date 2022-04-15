@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/M-Inostroza/portfolio/issues"
   },
-  "homepage": "https://github.com/M-Inostroza/portfolio#readme"
+  "homepage": "https://github.com/M-Inostroza/portfolio#readme",
+  "dependencies": {
+    "lottie-web": "^5.9.2"
+  }
 }

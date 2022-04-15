@@ -90,13 +90,17 @@ main {
 
 /* Planets */
 
-.planet-works {
+#planet-works {
     position: absolute;
-    left: 8.27%;
-    right: 75.97%;
-    top: 30.99%;
-    bottom: 46.48%;
-    transform: rotate(29.01deg);
+    top: 33%;
+    left: 10%;
+    width: 25rem;
+    height: 25rem;
+}
+
+.video-planet {
+    width: 25rem;
+    height: 25rem;
 }
 
 .planet-skills {
