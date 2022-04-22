@@ -125,17 +125,26 @@ main {
     transition: opacity 0.2s;
 }
 
-.video-planet {
-    width: 25rem;
-    height: 25rem;
-}
-
-.planet-skills {
+#planet-skills {
     position: absolute;
+    width: 35rem;
+    height: 35rem;
     left: 75%;
     right: 25%;
     top: 15%;
     bottom: 95%;
+}
+
+#frame-planet-skills {
+    position: absolute;
+    z-index: 1;
+    right: -3%;
+    bottom: -3%;
+    height: 37rem;
+    width: 37rem;
+    cursor: pointer;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .planet-contact {

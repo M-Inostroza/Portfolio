@@ -10,10 +10,10 @@ var planet_works = bodymovin.loadAnimation({
     path: '/anims/planet_works.json'
 })
 
-// Container element
+// Container frame element
 const frame_quad_element = document.getElementById("frame-planet-works");
 
-// Frame quad animation
+// Frame animation
 var frame_quad_anim = bodymovin.loadAnimation({
     container: frame_quad_element,
     renderer: 'svg',
@@ -22,14 +22,16 @@ var frame_quad_anim = bodymovin.loadAnimation({
     path: '/anims/frame_quad_works_in.json'
 })
 
+// Adjust frame speed
+frame_quad_anim.setSpeed(2.5)
+
 // PLAY IN
 frame_quad_element.addEventListener('mouseenter', (e) => {
     frame_quad_anim.setDirection(1)
     frame_quad_anim.play()
-    setTimeout(() => {
-        window_works.style.opacity = 1;
-        window_works_anim.play()
-    }, 350);
+    window_works.style.opacity = 1;
+    window_works_anim.play()
+    
 })
 
 // PLAY OUT
@@ -56,3 +58,36 @@ window_works_anim.setSpeed(0.7);
 
 
 //-----PLANET SKILLS-----//
+
+// Planet animation
+var planet_skills = bodymovin.loadAnimation({
+    container: document.getElementById("planet-skills"),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/planet_skills.json'
+})
+
+// Container frame element
+const skills_element = document.getElementById("frame-planet-skills");
+
+// Frame animation
+const frame_skills = bodymovin.loadAnimation({
+    container: skills_element,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: '/anims/frame_skills.json'
+})
+
+// PLAY IN
+skills_element.addEventListener('mouseenter', (e) => {
+    frame_skills.play();
+    frame_skills.setDirection(1);
+})
+
+// PLAY OUT
+skills_element.addEventListener('mouseleave', (e) => {
+    frame_skills.setDirection(-1);
+    frame_skills.play();
+})
