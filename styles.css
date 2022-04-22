@@ -114,7 +114,7 @@ main {
     cursor: pointer;
 }
 
-#frame-floating-window {
+#work-floating-window {
     pointer-events: none;
     position: absolute;
     left: 70%;
@@ -145,6 +145,17 @@ main {
     cursor: pointer;
     border-radius: 50%;
     cursor: pointer;
+}
+
+#skill-floating-window {
+    pointer-events: none;
+    position: absolute;
+    right: 65%;
+    top: 20%;
+    height: 20rem;
+    width: 30rem;
+    opacity: 0;
+    transition: opacity 0.25s;
 }
 
 .planet-contact {

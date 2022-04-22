@@ -42,7 +42,7 @@ frame_quad_element.addEventListener('mouseleave', (e) => {
 })
 
 // Floating window element
-const window_works = document.getElementById("frame-floating-window");
+const window_works = document.getElementById("work-floating-window");
 
 // Floating window animation
 var window_works_anim = bodymovin.loadAnimation({
@@ -53,7 +53,9 @@ var window_works_anim = bodymovin.loadAnimation({
     path: '/anims/frame_floating_window.json'
 })
 
+// Reduces anim speed
 window_works_anim.setSpeed(0.7);
+
 
 
 
@@ -84,10 +86,28 @@ const frame_skills = bodymovin.loadAnimation({
 skills_element.addEventListener('mouseenter', (e) => {
     frame_skills.play();
     frame_skills.setDirection(1);
+    window_skills.style.opacity = 1;
+    window_skills_anim.play()
 })
 
 // PLAY OUT
 skills_element.addEventListener('mouseleave', (e) => {
     frame_skills.setDirection(-1);
     frame_skills.play();
+    window_skills.style.opacity = 0;
 })
+
+// Floating window element
+const window_skills = document.getElementById("skill-floating-window");
+
+// Floating window animation
+var window_skills_anim = bodymovin.loadAnimation({
+    container: window_skills,
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    path: '/anims/skills_frame_antena.json'
+})
+
+// Reduces anim speed
+window_skills_anim.setSpeed(0.7);
