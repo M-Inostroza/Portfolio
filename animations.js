@@ -1,4 +1,5 @@
 
+
 //-----PLANET WORKS-----//
 
 // Planet animation
@@ -111,42 +112,3 @@ var window_skills_anim = bodymovin.loadAnimation({
 
 // Reduces anim speed
 window_skills_anim.setSpeed(0.7);
-
-
-//-----Shifting text-----//
-
-const jumpWords = ["make", "design", "prototype", "build", "imagine"];
-
-const jumpElement = document.getElementById("description-jumper");
-
-//Changes the text every 2 seconds
-
-setInterval(() => {
-    let counter = 0;
-    jumpElement.innerText = jumpWords[counter];
-
-    counter++
-    //Fix switch for colors
-    switch (counter) {
-        case 0:
-            jumpElement.style.color = "#B1B1BC";
-            break;
-        case 1:
-            jumpElement.style.color = "#EEC6DD";
-            break;
-        case 2:
-            jumpElement.style.color = "#CEB3E0";
-            break;
-        case 3:
-            jumpElement.style.color = "#FFFFFF";
-            break;
-        case 4:
-            jumpElement.style.color = "#7A0BC0";
-            break;
-    }
-    //Add anim translate
-    if (counter == 5) {
-        counter = 0;
-    }
-    
-}, 2000);

@@ -185,6 +185,10 @@ main {
     top: 70%;
 }
 
+.description-jumper {
+    display: inline-block;
+}
+
 /* Works */
 
 .UI-works {
