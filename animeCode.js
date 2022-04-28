@@ -8,47 +8,94 @@ let textIndex = 0;
 
 const textTimeline = anime.timeline({
   easing: 'easeOutQuad',
+  targets: textElement,
   loop: true
 });
 
 textTimeline.add({
-  targets: textElement,
-  begin: function() {textElement.innerText = jumpWords[textIndex]},
-  translateY: [0, -40],
-  duration: 1500,
-  opacity: 0,
-  complete: function() {textIndex++}
+  //Make
+  translateY: [
+    {value: 40 , duration: 0.01},
+    {value: 0,  duration: 500},
+    {value: 0,  duration: 2000}, 
+    {value: -40, duration: 500}
+  ],
+  opacity: [
+    {value: 0, duration: 0.01}, 
+    {value: 1, duration: 500}, 
+    {value: 1, duration: 2000}, 
+    {value: 0, duration: 500}
+  ],
+  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
+
 }).add({
-  targets: textElement,
-  begin: function() {textElement.innerText = jumpWords[textIndex];},
-  translateY: [0, -40],
-  duration: 1500,
-  opacity: [1, 0],
-  complete: function() {textIndex++}
+  //Design
+  translateY: [
+    {value: 40 , duration: 0.01},
+    {value: 0,  duration: 500},
+    {value: 0,  duration: 2000}, 
+    {value: -40, duration: 500}
+  ],
+  opacity: [
+    {value: 0, duration: 0.01}, 
+    {value: 1, duration: 500}, 
+    {value: 1, duration: 2000}, 
+    {value: 0, duration: 500}
+  ],
+  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
+
 }).add({
-  targets: textElement,
-  begin: function() {textElement.innerText = jumpWords[textIndex]},
-  translateY: [0, -40],
-  duration: 1500,
-  opacity: [1, 0],
-  complete: function() {textIndex++}
+  //Prototype
+  translateY: [
+    {value: 40 , duration: 0.01},
+    {value: 0,  duration: 500},
+    {value: 0,  duration: 2000}, 
+    {value: -40, duration: 500}
+  ],
+  opacity: [
+    {value: 0, duration: 0.01}, 
+    {value: 1, duration: 500}, 
+    {value: 1, duration: 2000}, 
+    {value: 0, duration: 500}
+  ],
+  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
+
 }).add({
-  targets: textElement,
-  begin: function() {textElement.innerText = jumpWords[textIndex]},
-  translateY: [0, -40],
-  duration: 1500,
-  opacity: [1, 0],
-  complete: function() {textIndex++}
+  //Build
+  translateY: [
+    {value: 40 , duration: 0.01},
+    {value: 0,  duration: 500},
+    {value: 0,  duration: 2000}, 
+    {value: -40, duration: 500}
+  ],
+  opacity: [
+    {value: 0, duration: 0.01}, 
+    {value: 1, duration: 500}, 
+    {value: 1, duration: 2000}, 
+    {value: 0, duration: 500}
+  ],
+  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
+
 }).add({
-  targets: textElement,
-  begin: function() {textElement.innerText = jumpWords[textIndex]},
-  translateY: [0, -40],
-  duration: 1500,
-  opacity: [1, 0],
-  complete: function() {textIndex = 0}
+  //Imagine
+  translateY: [
+    {value: 40},
+    {value: 0,  duration: 400},
+    {value: 0,  duration: 2000}, 
+    {value: -40, duration: 400},
+  ],
+  opacity: [
+    {value: 0}, 
+    {value: 1, duration: 300}, 
+    {value: 1, duration: 2000}, 
+    {value: 0, duration: 300},
+  ],
+  complete: function() {
+    textIndex = 0
+    textElement.innerText = jumpWords[textIndex]
+    textTimeline.restart()
+  }
 })
-
-
 
 
 

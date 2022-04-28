@@ -187,6 +187,7 @@ main {
 
 .description-jumper {
     display: inline-block;
+    opacity: 0;
 }
 
 /* Works */
