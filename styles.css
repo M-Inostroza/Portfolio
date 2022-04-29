@@ -159,10 +159,24 @@ main {
     transition: opacity 0.25s;
 }
 
-.planet-contact {
+#planet-contact {
     position: absolute;
-    left: 63%;
-    top: 73%;
+    bottom: 10%;
+    right: 25%;
+    height: 30rem;
+    width: 30rem;
+}
+
+#frame-planet-contact {
+    position: absolute;
+    z-index: 1;
+    right: 7%;
+    bottom: 7%;
+    height: 26rem;
+    width: 26rem;
+    cursor: pointer;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 /* Text & Frame */
@@ -183,7 +197,6 @@ main {
     line-height: 43px;
     left: 18%;
     top: 70%;
-    transition: position 1s;
 }
 
 .description-jumper {

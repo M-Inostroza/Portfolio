@@ -112,3 +112,41 @@ var window_skills_anim = bodymovin.loadAnimation({
 
 // Reduces anim speed
 window_skills_anim.setSpeed(0.7);
+
+
+
+//-----PLANET HIRE-----//
+
+// Planet animation
+var planet_hire = bodymovin.loadAnimation({
+    container: document.getElementById("planet-contact"),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/planet_contact.json'
+})
+
+// Frame container
+const contact_element = document.getElementById("frame-planet-contact");
+
+// Frame animation
+const frame_contact = bodymovin.loadAnimation({
+    container: contact_element,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: '/anims/frame_skills.json'
+})
+
+// PLAY IN
+contact_element.addEventListener('mouseenter', (e) => {
+    frame_contact.play();
+    frame_contact.setDirection(1);
+})
+
+// PLAY OUT
+contact_element.addEventListener('mouseleave', (e) => {
+    frame_contact.setDirection(-1);
+    frame_contact.play();
+    window_contact.style.opacity = 0;
+})
