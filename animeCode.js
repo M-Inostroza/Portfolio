@@ -26,6 +26,7 @@ textTimeline.add({
     {value: 1, duration: 2000}, 
     {value: 0, duration: 500}
   ],
+  color: '#EAC1D8',
   complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
 
 }).add({
@@ -42,6 +43,7 @@ textTimeline.add({
     {value: 1, duration: 2000}, 
     {value: 0, duration: 500}
   ],
+  color: '#CAAFDC',
   complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
 
 }).add({
@@ -58,6 +60,7 @@ textTimeline.add({
     {value: 1, duration: 2000}, 
     {value: 0, duration: 500}
   ],
+  color: '#B5ACCC',
   complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
 
 }).add({
@@ -74,6 +77,7 @@ textTimeline.add({
     {value: 1, duration: 2000}, 
     {value: 0, duration: 500}
   ],
+  color: '#B1B1BC',
   complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
 
 }).add({
@@ -90,6 +94,7 @@ textTimeline.add({
     {value: 1, duration: 2000}, 
     {value: 0, duration: 300},
   ],
+  color: '#fff',
   complete: function() {
     textIndex = 0
     textElement.innerText = jumpWords[textIndex]

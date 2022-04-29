@@ -183,6 +183,7 @@ main {
     line-height: 43px;
     left: 18%;
     top: 70%;
+    transition: position 1s;
 }
 
 .description-jumper {
