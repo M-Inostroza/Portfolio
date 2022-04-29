@@ -177,6 +177,17 @@ main {
     cursor: pointer;
     border-radius: 50%;
     cursor: pointer;
+    scroll-behavior: smooth;
+}
+
+#hire-floating-window {
+    position: absolute;
+    height: 20rem;
+    width: 30rem;
+    right: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s;
 }
 
 /* Text & Frame */

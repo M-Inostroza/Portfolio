@@ -142,11 +142,35 @@ const frame_contact = bodymovin.loadAnimation({
 contact_element.addEventListener('mouseenter', (e) => {
     frame_contact.play();
     frame_contact.setDirection(1);
+    window_hire.style.opacity = 1;
+    window_hire_anim.play()
+})
+
+//Click to scroll
+
+contact_element.addEventListener('click', (e) => {
+    var section_contact_container = document.querySelector('.section-contact-container');
+    section_contact_container.scrollIntoView({behavior: "smooth"})
 })
 
 // PLAY OUT
 contact_element.addEventListener('mouseleave', (e) => {
     frame_contact.setDirection(-1);
     frame_contact.play();
-    window_contact.style.opacity = 0;
+    window_hire.style.opacity = 0;
 })
+
+// Floating window element
+const window_hire = document.getElementById("hire-floating-window");
+
+// Floating window animation
+var window_hire_anim = bodymovin.loadAnimation({
+    container: window_hire,
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    path: '/anims/window_hire.json'
+})
+
+// Reduces anim speed
+window_hire_anim.setSpeed(0.7);
