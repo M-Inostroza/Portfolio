@@ -91,6 +91,12 @@ skills_element.addEventListener('mouseenter', (e) => {
     window_skills_anim.play()
 })
 
+//Click to scroll
+skills_element.addEventListener('click', (e) => {
+    var section_skills_container = document.querySelector('.section-contact-container');
+    section_contact_container.scrollIntoView({behavior: "smooth"})
+})
+
 // PLAY OUT
 skills_element.addEventListener('mouseleave', (e) => {
     frame_skills.setDirection(-1);
@@ -147,7 +153,6 @@ contact_element.addEventListener('mouseenter', (e) => {
 })
 
 //Click to scroll
-
 contact_element.addEventListener('click', (e) => {
     var section_contact_container = document.querySelector('.section-contact-container');
     section_contact_container.scrollIntoView({behavior: "smooth"})
