@@ -193,9 +193,20 @@ main {
 /* Text & Frame */
 
 .frame-phrase {
+    background-image: url(/images/Text-Frame.png);
+    background-position: center center;
+    height: 13rem;
+    width: 50rem;
     position: absolute;
     left: 17%;
     top: 74%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail {
+    font-size: 4rem;
 }
 
 .description {
