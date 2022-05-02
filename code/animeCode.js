@@ -104,4 +104,87 @@ textTimeline.add({
 
 
 
+//-----Changing Text-----//
 
+const detailWords = ["Web", "User interface", "User experience", "games"];
+
+const textDetail = document.querySelector(".detail");
+
+let detailIndex = 0;
+
+const detailTimeline = anime.timeline({
+  easing: 'easeOutQuad',
+  targets: textDetail,
+  loop: true
+});
+
+detailTimeline.add({
+  //Web
+  translateX: [
+    {value: 130 , duration: 0.01},
+    {value: 0,  duration: 500},
+    {value: 0,  duration: 2000}, 
+    {value: -130, duration: 500}
+  ],
+  opacity: [
+    {value: 0, duration: 0.01}, 
+    {value: 1, duration: 500}, 
+    {value: 1, duration: 2000}, 
+    {value: 0, duration: 500}
+  ],
+  complete: function() {detailIndex++ , textDetail.innerText = detailWords[detailIndex]}
+  //Index 1
+})
+.add({
+  //User interface
+  translateX: [
+    {value: 130 , duration: 0.01},
+    {value: 0,  duration: 500},
+    {value: 0,  duration: 2000}, 
+    {value: -130, duration: 500}
+  ],
+  opacity: [
+    {value: 0, duration: 0.01}, 
+    {value: 1, duration: 500}, 
+    {value: 1, duration: 2000}, 
+    {value: 0, duration: 500}
+  ],
+  complete: function() {detailIndex++ , textDetail.innerText = detailWords[detailIndex]}
+  //Index 2
+})
+.add({
+  //User experience
+  translateX: [
+    {value: 130 , duration: 0.01},
+    {value: 0,  duration: 500},
+    {value: 0,  duration: 2000}, 
+    {value: -130, duration: 500}
+  ],
+  opacity: [
+    {value: 0, duration: 0.01}, 
+    {value: 1, duration: 500}, 
+    {value: 1, duration: 2000}, 
+    {value: 0, duration: 500}
+  ],
+  complete: function() {detailIndex++ , textDetail.innerText = detailWords[detailIndex]}
+  //Index 3
+})
+.add({
+  //games
+  translateX: [
+    {value: 130 , duration: 0.01},
+    {value: 0,  duration: 500},
+    {value: 0,  duration: 2000}, 
+    {value: -130, duration: 500}
+  ],
+  opacity: [
+    {value: 0}, 
+    {value: 1, duration: 300}, 
+    {value: 1, duration: 2000}, 
+    {value: 0, duration: 300},
+  ],
+  complete: function() {
+    detailIndex = 0;
+    textDetail.innerText = detailWords[detailIndex]
+    detailTimeline.restart()
+  }})
