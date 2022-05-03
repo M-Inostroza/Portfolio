@@ -143,7 +143,6 @@ main {
     bottom: -3%;
     height: 37rem;
     width: 37rem;
-    cursor: pointer;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -262,10 +261,11 @@ main {
 
 .title-active {
     position: absolute;
-    top: 25%;
-    left: 46%;
+    top: 15%;
     color: white;
 }
+
+
 .UI-group {
     grid-row: 2;
     display: flex;
@@ -275,6 +275,10 @@ main {
 }
 
 .frame-container {
+    background-image: url(/images/frame_video.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
     position: absolute;
     top: 17%;
     display: flex;
@@ -282,49 +286,48 @@ main {
     align-items: center;
     width: 50rem;
     height: 50rem;
-    margin: 0 auto;
-}
-
-
-.frame-video {
-    width: 40.8rem;
-    height: 42.4rem;  
-}
-
-.moon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30rem;
-    height: 30rem;
-    z-index: 2;
-}
-
-.moon-main {
-    width: 25rem;
-    height: 25rem;
-}
-
-.moon-third {
-    padding: 30rem 20rem 0 0;
-}
-
-.moon-second {
-    padding: 30rem 0 0 20rem;
 }
 
 .left-arrow {
-    padding: 2.5rem;
-    width: 25.5px;
-    height: 46px;
+    width: 5rem;
+    height: 7rem;
+    position: absolute;
+    left: 10.5%;
+    cursor: pointer;
 }
 
 .right-arrow {
-    padding: 2.5rem;
-    width: 25.5px;
-    height: 46px;
+    width: 5rem;
+    height: 7rem;
+    position: absolute;
+    right: 11.5%;
+    cursor: pointer;
 }
 
+.active-moon {
+    position: absolute;
+    top: 30%;
+    border: 1px solid red;
+    height: 25rem;
+    width: 25rem;
+}
+
+.inactive-moon-left{
+    position: absolute;
+    left: 10%;
+    bottom: 20%;
+    border: 1px solid rgb(0, 255, 221);
+    height: 25rem;
+    width: 25rem;
+}
+.inactive-moon-right{
+    position: absolute;
+    right: 10%;
+    bottom: 20%;
+    border: 1px solid rgb(0, 255, 221);
+    height: 25rem;
+    width: 25rem;
+}
 
 .planet-work-base {
     grid-row: 3;

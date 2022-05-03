@@ -188,3 +188,47 @@ detailTimeline.add({
     textDetail.innerText = detailWords[detailIndex]
     detailTimeline.restart()
   }})
+
+
+  //-----Works moon carrusel-----//
+
+  const moons = ["SSNF","Moxy", "in progress"];
+  const titleActive = document.querySelector('.title-active');
+
+  //Buttons
+  const buttonLeft = document.querySelector('.left-arrow');
+  const buttonRight = document.querySelector('.right-arrow');
+
+  function moonSlider(){
+
+    let moonIndex = 0;
+
+    buttonLeft.addEventListener('click', e =>{
+      if(moonIndex == 0){
+        moonIndex = 0;
+      } else {
+        moonIndex--;
+        titleActive.innerText = moons[moonIndex];
+      }
+      console.log(moonIndex)
+    }),
+
+    buttonRight.addEventListener('click', e =>{
+      
+      if(moonIndex == (moons.length - 1)){
+        moonIndex = moons.length - 1 ;
+      } else {
+        moonIndex++;
+        titleActive.innerText = moons[moonIndex];
+      }
+      
+      console.log(moonIndex)
+    })
+  }
+
+  moonSlider()
+  
+  
+
+
+

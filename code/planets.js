@@ -32,7 +32,12 @@ frame_quad_element.addEventListener('mouseenter', (e) => {
     frame_quad_anim.play()
     window_works.style.opacity = 1;
     window_works_anim.play()
-    
+})
+
+//Click to scroll
+frame_quad_element.addEventListener('click', (e) => {
+    var section_work_container = document.querySelector('.UI-works');
+    section_work_container.scrollIntoView({behavior: "smooth"})
 })
 
 // PLAY OUT
@@ -93,8 +98,8 @@ skills_element.addEventListener('mouseenter', (e) => {
 
 //Click to scroll
 skills_element.addEventListener('click', (e) => {
-    var section_skills_container = document.querySelector('.section-contact-container');
-    section_contact_container.scrollIntoView({behavior: "smooth"})
+    var section_skills_container = document.querySelector('.skill-frame-container');
+    section_skills_container.scrollIntoView({behavior: "smooth"})
 })
 
 // PLAY OUT
