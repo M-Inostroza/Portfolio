@@ -304,27 +304,23 @@ main {
     cursor: pointer;
 }
 
-.active-moon {
-    position: absolute;
-    top: 30%;
-    border: 1px solid red;
+.moon-main {
+    margin-top: 5rem;
     height: 25rem;
     width: 25rem;
 }
 
 .inactive-moon-left{
     position: absolute;
-    left: 10%;
-    bottom: 20%;
-    border: 1px solid rgb(0, 255, 221);
+    left: -100%;
+    bottom: -20%;
     height: 25rem;
     width: 25rem;
 }
 .inactive-moon-right{
     position: absolute;
-    right: 10%;
-    bottom: 20%;
-    border: 1px solid rgb(0, 255, 221);
+    right: -100%;
+    bottom: -20%;
     height: 25rem;
     width: 25rem;
 }

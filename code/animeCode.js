@@ -192,41 +192,33 @@ detailTimeline.add({
 
   //-----Works moon carrusel-----//
 
-  const moons = ["SSNF","Moxy", "in progress"];
-  const titleActive = document.querySelector('.title-active');
 
-  //Buttons
   const buttonLeft = document.querySelector('.left-arrow');
   const buttonRight = document.querySelector('.right-arrow');
 
-  function moonSlider(){
+  buttonLeft.addEventListener('click', () =>{
 
-    let moonIndex = 0;
+    let activeMoon = document.querySelector('.moon-main');
+    let moonLeft = document.querySelector('.inactive-moon-left');
+    let moonRight = document.querySelector('.inactive-moon-right');
 
-    buttonLeft.addEventListener('click', e =>{
-      if(moonIndex == 0){
-        moonIndex = 0;
-      } else {
-        moonIndex--;
-        titleActive.innerText = moons[moonIndex];
-      }
-      console.log(moonIndex)
-    }),
+    moonLeft.classList.replace('inactive-moon-left', 'moon-main')
+    activeMoon.classList.replace('moon-main', 'inactive-moon-right')
+    moonRight.classList.replace('inactive-moon-right', 'inactive-moon-left')
+  })
 
-    buttonRight.addEventListener('click', e =>{
-      
-      if(moonIndex == (moons.length - 1)){
-        moonIndex = moons.length - 1 ;
-      } else {
-        moonIndex++;
-        titleActive.innerText = moons[moonIndex];
-      }
-      
-      console.log(moonIndex)
-    })
-  }
+  buttonRight.addEventListener('click', () =>{
 
-  moonSlider()
+    let activeMoon = document.querySelector('.moon-main');
+    let moonLeft = document.querySelector('.inactive-moon-left');
+    let moonRight = document.querySelector('.inactive-moon-right');
+
+    moonRight.classList.replace('inactive-moon-right', 'moon-main')
+    activeMoon.classList.replace('moon-main', 'inactive-moon-left')
+    moonLeft.classList.replace('inactive-moon-left', 'inactive-moon-right')
+  })
+
+
   
   
 
