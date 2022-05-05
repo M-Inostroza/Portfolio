@@ -192,33 +192,6 @@ detailTimeline.add({
 
   //-----Works moon carrusel-----//
 
-
-  const buttonLeft = document.querySelector('.left-arrow');
-  const buttonRight = document.querySelector('.right-arrow');
-
-  buttonLeft.addEventListener('click', () =>{
-
-    let activeMoon = document.querySelector('.moon-main');
-    let moonLeft = document.querySelector('.inactive-moon-left');
-    let moonRight = document.querySelector('.inactive-moon-right');
-
-    moonLeft.classList.replace('inactive-moon-left', 'moon-main')
-    activeMoon.classList.replace('moon-main', 'inactive-moon-right')
-    moonRight.classList.replace('inactive-moon-right', 'inactive-moon-left')
-  })
-
-  buttonRight.addEventListener('click', () =>{
-
-    let activeMoon = document.querySelector('.moon-main');
-    let moonLeft = document.querySelector('.inactive-moon-left');
-    let moonRight = document.querySelector('.inactive-moon-right');
-
-    moonRight.classList.replace('inactive-moon-right', 'moon-main')
-    activeMoon.classList.replace('moon-main', 'inactive-moon-left')
-    moonLeft.classList.replace('inactive-moon-left', 'inactive-moon-right')
-  })
-
-
   
   
 

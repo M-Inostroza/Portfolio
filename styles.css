@@ -1,5 +1,9 @@
 /* Globals */
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 :root {
     --main-color: 
 }
@@ -288,7 +292,7 @@ main {
     height: 50rem;
 }
 
-.left-arrow {
+.left-arrow, .prev {
     width: 5rem;
     height: 7rem;
     position: absolute;
@@ -296,7 +300,7 @@ main {
     cursor: pointer;
 }
 
-.right-arrow {
+.carousel-button, .after {
     width: 5rem;
     height: 7rem;
     position: absolute;
