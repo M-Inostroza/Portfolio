@@ -292,7 +292,13 @@ main {
     height: 50rem;
 }
 
-.left-arrow, .prev {
+ul {
+    list-style-type: none;
+    padding: 0;
+    
+}
+
+.prev {
     width: 5rem;
     height: 7rem;
     position: absolute;
@@ -300,7 +306,7 @@ main {
     cursor: pointer;
 }
 
-.carousel-button, .after {
+.next {
     width: 5rem;
     height: 7rem;
     position: absolute;
@@ -308,20 +314,20 @@ main {
     cursor: pointer;
 }
 
-.moon-main {
+.slide[data-active] {
     margin-top: 5rem;
-    height: 25rem;
-    width: 25rem;
+    height: 26rem;
+    width: 26rem;
 }
 
-.inactive-moon-left{
+.slide[data-left]{
     position: absolute;
     left: -100%;
     bottom: -20%;
     height: 25rem;
     width: 25rem;
 }
-.inactive-moon-right{
+.slide[data-right]{
     position: absolute;
     right: -100%;
     bottom: -20%;
