@@ -320,14 +320,14 @@ ul {
     width: 26rem;
 }
 
-.slide[data-left]{
+.moon-left{
     position: absolute;
     left: -100%;
     bottom: -20%;
     height: 25rem;
     width: 25rem;
 }
-.slide[data-right]{
+.moon-right{
     position: absolute;
     right: -100%;
     bottom: -20%;

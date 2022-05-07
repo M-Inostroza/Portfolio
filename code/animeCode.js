@@ -194,10 +194,33 @@ detailTimeline.add({
 
   const buttons = document.querySelectorAll("[data-carousel-button]");
 
+  //Loop for both buttons
   buttons.forEach(button => {
     button.addEventListener('click', () =>{
+
+      //This gives 1 or -1 according to the button
       const offset = button.dataset.carouselButton === "next" ? 1 : -1;
-      const slides = button.closest('[data-carousel]')
+
+      //This selects the moons
+      const moons = button.closest('[data-carousel]').querySelector("[data-moons]")
+
+      //This grabs the active moon
+      const activeMoon = moons.querySelector("[data-active]")
+
+      //This gives the index number of the active moon and (+1 or -1)
+      let newIndex = [...moons.children].indexOf(activeMoon) + offset
+
+      //Checks if the slides hit the last element
+      if (newIndex < 0) newIndex = moons.children.length - 1
+
+      //Checks if the first item hits the end of the array
+      if (newIndex >= moons.children.length) newIndex = 0
+
+      //Sets active the element in the index
+      moons.children[newIndex].dataset.active = true
+
+      //Deletes data set active atribute
+      delete activeMoon.dataset.active
     })
   })
   
