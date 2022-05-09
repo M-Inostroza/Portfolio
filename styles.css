@@ -314,20 +314,20 @@ ul {
     cursor: pointer;
 }
 
-.slide[data-active] {
+.moon[data-active] {
     margin-top: 5rem;
     height: 26rem;
     width: 26rem;
 }
 
-.moon-left{
+.moon[data-left]{
     position: absolute;
     left: -100%;
     bottom: -20%;
     height: 25rem;
     width: 25rem;
 }
-.moon-right{
+.moon[data-right]{
     position: absolute;
     right: -100%;
     bottom: -20%;

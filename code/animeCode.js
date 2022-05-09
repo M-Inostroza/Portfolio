@@ -204,23 +204,32 @@ detailTimeline.add({
       //This selects the moons
       const moons = button.closest('[data-carousel]').querySelector("[data-moons]")
 
-      //This grabs the active moon
+      //Moons in variables
       const activeMoon = moons.querySelector("[data-active]")
 
-      //This gives the index number of the active moon and (+1 or -1)
+      const leftMoon = moons.querySelector("[data-left]")
+      
+      const rightMoon = moons.querySelector("[data-right]")
+
+      //Gives the index number of the active moon + (1 or -1)
       let newIndex = [...moons.children].indexOf(activeMoon) + offset
 
       //Checks if the slides hit the last element
-      if (newIndex < 0) newIndex = moons.children.length - 1
+      if (newIndex < 0) newIndex = moons.children.length -1
 
       //Checks if the first item hits the end of the array
       if (newIndex >= moons.children.length) newIndex = 0
 
       //Sets active the element in the index
+      console.log(newIndex)
       moons.children[newIndex].dataset.active = true
-
+      moons.children[newIndex-1].dataset.left = true
+      
       //Deletes data set active atribute
       delete activeMoon.dataset.active
+
+      delete leftMoon.dataset.left
+      
     })
   })
   
