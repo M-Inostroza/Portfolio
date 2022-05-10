@@ -310,11 +310,12 @@ ul {
     width: 5rem;
     height: 7rem;
     position: absolute;
-    right: 11.5%;
+    right: 11%;
     cursor: pointer;
 }
 
 .moon[data-active] {
+    display: flex;
     margin-top: 5rem;
     height: 26rem;
     width: 26rem;

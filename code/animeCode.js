@@ -188,3 +188,6 @@ detailTimeline.add({
     textDetail.innerText = detailWords[detailIndex]
     detailTimeline.restart()
   }})
+
+
+  
