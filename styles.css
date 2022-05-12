@@ -4,35 +4,30 @@
     box-sizing: border-box;
 }
 
-:root {
-    --main-color: 
-}
-
-h1 {
-    font-size: 4.8rem;
-    font-family: 'nulshockbold', Arial, sans-serif;
-    color: white;
-}
-
-h2 {
-    font-size: 4rem;
-    font-family: 'nulshockbold', Arial, sans-serif;
-}
-
-h3 {
-    font-size: 4rem;
-    font-family: 'nulshockbold', Arial, sans-serif;
-}
-
 * {
     margin: 0;
 }
 
-p {
+:root {
+    --main-color: 
+}
+
+h1, h2, h3, h4, p {
     font-family: 'nulshockbold', Arial, sans-serif;
     color: white;
 }
 
+h1 {
+    font-size: 4.8rem;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 4rem;
+}
 
 @font-face {
     font-family: 'nulshockbold';
@@ -316,6 +311,8 @@ ul {
 
 .moon[data-active] {
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
     margin-top: 5rem;
     height: 26rem;
     width: 26rem;
@@ -334,6 +331,11 @@ ul {
     bottom: -20%;
     height: 25rem;
     width: 25rem;
+}
+
+.moon-title {
+    position: absolute;
+    top: 12%;
 }
 
 .planet-work-base {
