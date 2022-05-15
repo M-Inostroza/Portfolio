@@ -2,6 +2,10 @@
 
 const buttons = document.querySelectorAll("[data-carousel-button]");
 
+const moonTitle = document.querySelector('.moon-title');
+
+window.onload = function changeText() {moonTitle.innerText = "SSNF"}
+
 //Deactivate while anim is running
 let canClick = true;
 
@@ -9,29 +13,30 @@ let canClick = true;
 buttons.forEach(button => {
     button.addEventListener('click', () =>{
         //Moon selector
-        const moons = button.closest('[data-carousel]').querySelector("[data-moons]")
+        const moons = button.closest('[data-carousel]').querySelector("[data-moons]");
+
         //Moons variables
-        const activeMoon = moons.querySelector("[data-active]")
-        const leftMoon = moons.querySelector("[data-left]")
-        const rightMoon = moons.querySelector("[data-right]")
+        let activeMoon = moons.querySelector("[data-active]")
+        let leftMoon = moons.querySelector("[data-left]")
+        let rightMoon = moons.querySelector("[data-right]")
+
+        
 
         if (canClick) { 
             canClick = false;
-
+            
             //Changes dataset according to button
             if (button.dataset.carouselButton === "next") {
-
                 //-----Moon section movement-----//
-
+                
                 //Center to left-down
                 anime({
                     targets: activeMoon,
                     translateX: [0,-620],
-                    translateY: [0,200],
+                    translateY: [0,195],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
-                    
                     complete: () => {
                         activeMoon.style.transform = 'initial';
                         delete activeMoon.dataset.active
@@ -43,7 +48,7 @@ buttons.forEach(button => {
                 //Left to right
                 anime({
                     targets: leftMoon,
-                    translateX: [0,1250],
+                    translateX: [0,1240],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
@@ -57,8 +62,8 @@ buttons.forEach(button => {
                 //Down-right to center
                 anime({
                     targets: rightMoon,
-                    translateX: [0,-620],
-                    translateY: [0,-200],
+                    translateX: [0,-615],
+                    translateY: [0,-195],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
@@ -66,14 +71,15 @@ buttons.forEach(button => {
                         rightMoon.style.transform = 'initial';
                         delete rightMoon.dataset.right
                         leftMoon.dataset.right = true;
+                        moonTitle.innerText = rightMoon.dataset.moon;
                     }
-                });        
+                });      
             } else {
                 //Center to right-down
                 anime({
                     targets: activeMoon,
-                    translateX: [0,620],
-                    translateY: [0,200],
+                    translateX: [0,615],
+                    translateY: [0,195],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
@@ -88,7 +94,7 @@ buttons.forEach(button => {
                 //Right to left
                 anime({
                     targets: rightMoon,
-                    translateX: [0,-1250],
+                    translateX: [0,-1240],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
@@ -102,8 +108,8 @@ buttons.forEach(button => {
                 //Down-left to center
                 anime({
                     targets: leftMoon,
-                    translateX: [0,620],
-                    translateY: [0,-200],
+                    translateX: [0,625],
+                    translateY: [0,-195],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
@@ -111,9 +117,12 @@ buttons.forEach(button => {
                         leftMoon.style.transform = 'initial';
                         delete leftMoon.dataset.left;
                         leftMoon.dataset.active = true;
+                        moonTitle.innerText = leftMoon.dataset.moon;
                     }
                 });
+                
             }
         }
     })
 })
+

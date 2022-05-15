@@ -290,7 +290,6 @@ main {
 ul {
     list-style-type: none;
     padding: 0;
-    
 }
 
 .prev {
@@ -313,29 +312,30 @@ ul {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 5rem;
     height: 26rem;
     width: 26rem;
+    margin-top: 5rem;
 }
 
 .moon[data-left]{
     position: absolute;
     left: -100%;
     bottom: -20%;
-    height: 25rem;
-    width: 25rem;
+    height: 26rem;
+    width: 26rem;
 }
 .moon[data-right]{
     position: absolute;
     right: -100%;
     bottom: -20%;
-    height: 25rem;
-    width: 25rem;
+    height: 26rem;
+    width: 26rem;
 }
 
 .moon-title {
     text-align: center;
-    padding-bottom: 2rem;
+    position: absolute;
+    top: 12%;
 }
 
 .planet-work-base {
