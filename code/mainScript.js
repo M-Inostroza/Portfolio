@@ -27,7 +27,23 @@ buttons.forEach(button => {
             
             //Changes dataset according to button
             if (button.dataset.carouselButton === "next") {
-                //-----Moon section movement-----//
+
+                //Text Changing -- right to left
+                anime({
+                    targets: moonTitle,
+                    translateX: [0,-150],
+                    opacity: [1,0],
+                    easing: 'easeOutQuad',
+                    duration: 750,
+                    complete: () => {
+                        moonTitle.innerText = rightMoon.dataset.moon;
+                        moonTitle.style.transform = 'initial';
+                        moonTitle.style.opacity = 1;
+                    }
+                })
+
+
+                //-----Moon movement-----//
                 
                 //Center to left-down
                 anime({
@@ -71,10 +87,22 @@ buttons.forEach(button => {
                         rightMoon.style.transform = 'initial';
                         delete rightMoon.dataset.right
                         leftMoon.dataset.right = true;
-                        moonTitle.innerText = rightMoon.dataset.moon;
                     }
                 });      
             } else {
+
+                //Text Changing -- left to right
+                anime({
+                    targets: moonTitle,
+                    translateX: 150,
+                    opacity: 0,
+                    easing: 'easeOutQuad',
+                    duration: 750,
+                    complete: () => {
+                        moonTitle.innerText = leftMoon.dataset.moon;
+                    }
+                })
+
                 //Center to right-down
                 anime({
                     targets: activeMoon,
@@ -117,7 +145,6 @@ buttons.forEach(button => {
                         leftMoon.style.transform = 'initial';
                         delete leftMoon.dataset.left;
                         leftMoon.dataset.active = true;
-                        moonTitle.innerText = leftMoon.dataset.moon;
                     }
                 });
                 
