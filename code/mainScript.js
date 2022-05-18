@@ -100,6 +100,8 @@ buttons.forEach(button => {
                     duration: 750,
                     complete: () => {
                         moonTitle.innerText = leftMoon.dataset.moon;
+                        moonTitle.style.transform = 'initial';
+                        moonTitle.style.opacity = 1;
                     }
                 })
 

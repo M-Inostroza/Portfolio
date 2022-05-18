@@ -100,7 +100,7 @@ main {
     position: absolute;
     top: 33%;
     left: 10%;
-    width: 30rem;
+    width: 29rem;
     height: 30rem;
 }
 
@@ -109,8 +109,8 @@ main {
     z-index: 1;
     left: -1%;
     top: -1%;
-    height: 30rem;
-    width: 30rem;
+    height: 31rem;
+    width: 31rem;
     cursor: pointer;
 }
 
@@ -312,8 +312,8 @@ ul {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height: 26rem;
-    width: 26rem;
+    height: 27rem;
+    width: 27rem;
     margin-top: 5rem;
 }
 

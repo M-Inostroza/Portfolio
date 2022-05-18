@@ -8,7 +8,7 @@ var planet_works = bodymovin.loadAnimation({
     renderer: 'svg',
     loop: true,
     autoplay: true,
-    path: '/anims/planet_works.json'
+    path: '/anims/body_export.json'
 })
 
 // Container frame element
@@ -189,3 +189,12 @@ window_hire_anim.setSpeed(0.7);
 //------------MOONS------------//
 
 //--Moon SSNF--//
+
+// Moon animation
+var moon_ssnf = bodymovin.loadAnimation({
+    container: document.getElementById("moon_ssnf"),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/Moon SSNF.json'
+})
