@@ -198,3 +198,12 @@ var moon_ssnf = bodymovin.loadAnimation({
     autoplay: true,
     path: '/anims/Moon SSNF.json'
 })
+
+// Moon animation
+var moon2_ssnf = bodymovin.loadAnimation({
+    container: document.getElementById("moon2_ssnf"),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/Moon 2 SSNF.json'
+})

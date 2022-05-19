@@ -321,15 +321,15 @@ ul {
     position: absolute;
     left: -100%;
     bottom: -20%;
-    height: 26rem;
-    width: 26rem;
+    height: 27rem;
+    width: 27rem;
 }
 .moon[data-right]{
     position: absolute;
     right: -100%;
     bottom: -20%;
-    height: 26rem;
-    width: 26rem;
+    height: 27rem;
+    width: 27rem;
 }
 
 .moon-title {
