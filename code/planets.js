@@ -199,6 +199,8 @@ var moon_ssnf = bodymovin.loadAnimation({
     path: '/anims/Moon SSNF.json'
 })
 
+//--Moon Moxy--//
+
 // Moon animation
 var moon2_ssnf = bodymovin.loadAnimation({
     container: document.getElementById("moon2_ssnf"),
