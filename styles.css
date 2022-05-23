@@ -274,9 +274,6 @@ main {
 }
 
 .frame-container {
-    background-image: url(/images/frame_video.png);
-    background-position: center center;
-    background-repeat: no-repeat;
     margin: 0 auto;
     position: absolute;
     top: 17%;
@@ -285,6 +282,10 @@ main {
     align-items: center;
     width: 50rem;
     height: 50rem;
+}
+
+.image-frame{
+    position: absolute;
 }
 
 ul {
@@ -315,6 +316,8 @@ ul {
     height: 27rem;
     width: 27rem;
     margin-top: 5rem;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .moon[data-left]{
@@ -323,6 +326,7 @@ ul {
     bottom: -20%;
     height: 27rem;
     width: 27rem;
+    z-index: 1;
 }
 .moon[data-right]{
     position: absolute;
@@ -330,6 +334,7 @@ ul {
     bottom: -20%;
     height: 27rem;
     width: 27rem;
+    z-index: 1;
 }
 
 .moon-title {
@@ -344,6 +349,8 @@ ul {
     width: 100rem;
     height: auto;
     padding-top: 10rem;
+    filter: blur(0.3rem);
+    z-index: 0;
 }
 
 

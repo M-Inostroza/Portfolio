@@ -202,10 +202,33 @@ var moon_ssnf = bodymovin.loadAnimation({
 //--Moon Moxy--//
 
 // Moon animation
-var moon2_ssnf = bodymovin.loadAnimation({
-    container: document.getElementById("moon2_ssnf"),
+var moon2_moxy = bodymovin.loadAnimation({
+    container: document.getElementById("moon2_moxy"),
     renderer: 'svg',
     loop: true,
     autoplay: true,
     path: '/anims/Moon 2 SSNF.json'
 })
+
+//-Moon Unknown-//
+
+//Moon animation
+var moon3_unknown = bodymovin.loadAnimation({
+    container: document.getElementById("moon3_unknown"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: '/anims/Moon 3 Unknown.json'
+})
+
+
+//-- Background Planet --//
+
+var backgroundCover = bodymovin.loadAnimation({
+    container: document.getElementById("background_planet"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: '/anims/BG_cover.json'
+})
+
