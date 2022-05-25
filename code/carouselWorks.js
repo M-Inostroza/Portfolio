@@ -28,10 +28,15 @@ activeElement.addEventListener('click', ()=> {
 
     let activeName = document.querySelector('.moon-title')
     
+    //Move from center to left with scale
     anime({
         begin: () => {
+            //Dissapears elements in the background
             anime({
                 targets: [activeName, buttonRight, buttonLeft, rightElement, leftElement, planetBase, titleElement, titleElementBG, frameImg],
+                begin: () => {
+                    
+                },
                 opacity: 0,
                 easing: 'easeInQuad',
                 duration: 200
