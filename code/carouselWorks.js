@@ -1,4 +1,5 @@
 //-----Works moon carousel-----//
+console.log("Welcome, dear traveller... feel free to inspect everything!")
 
 const buttons = document.querySelectorAll("[data-carousel-button]");
 
@@ -6,48 +7,85 @@ const moonTitle = document.querySelector('.moon-title');
 
 const activeElement = document.querySelector('[data-moons]')
 
+//Elements that dissapear in the background
+let [...outElements] = document.querySelectorAll('[data-out]');
+let [...inElements] = document.querySelectorAll('[data-in]')
+
 window.onload = function changeText() {moonTitle.innerText = "SSNF"}
 
 //Deactivate while anim is running
 let canClick = true;
+let isActive = false;
 
 //Animates the active element on click
 activeElement.addEventListener('click', ()=> {
 
-    let isActive = true;
-
     let centerElement = activeElement.querySelector('[data-active]')
-    let rightElement = activeElement.querySelector('[data-right]')
     let leftElement = activeElement.querySelector('[data-left]')
-    let planetBase = document.querySelector('.planet-work-base')
-    let titleElement = document.querySelector('.title-works')
-    let titleElementBG = document.querySelector('.title-works-base')
-    let frameImg = document.querySelector('.image-frame')
-    let buttonLeft = document.querySelector('.carousel-button.prev')
-    let buttonRight = document.querySelector('.carousel-button.next')
-
-    let activeName = document.querySelector('.moon-title')
+    let rightElement = activeElement.querySelector('[data-right]')
     
-    //Move from center to left with scale
-    anime({
-        begin: () => {
-            //Dissapears elements in the background
-            anime({
-                targets: [activeName, buttonRight, buttonLeft, rightElement, leftElement, planetBase, titleElement, titleElementBG, frameImg],
-                begin: () => {
-                    
-                },
-                opacity: 0,
-                easing: 'easeInQuad',
-                duration: 200
-            })
-        },
-        targets: centerElement,
-        scale: 2.3,
-        translateX: -250,
-        easing: 'easeInOutQuad',
-        duration: 450
-    })
+    if(!isActive && canClick){
+        //Move from center to left with scale
+        anime({
+            begin:  ()=>{canClick=false},
+            targets: centerElement,
+            scale: 2.3,
+            translateX: -250,
+            easing: 'easeInOutQuad',
+            duration: 450,
+            complete: ()=>{canClick=true}    
+        })
+
+        //Dissapear elements
+        anime({
+            begin: ()=>{isActive=true},
+            targets: [outElements, leftElement, rightElement],
+            opacity: [1,0],
+            easing: 'easeInOutQuad',
+            duration: 350,
+            complete: () => {
+                outElements.forEach(element => {
+                    element.classList.toggle('noDisplay')
+                });
+                leftElement.classList.toggle('noDisplay')
+                rightElement.classList.toggle('noDisplay')
+                inElements.forEach(element => {
+                    element.classList.remove('noDisplay')
+                })
+            }
+        })
+    } else if (isActive && canClick) {
+        //Move from center to left with scale
+        anime({
+            begin:  ()=>{canClick=false},
+            targets: centerElement,
+            scale: 1,
+            translateX: 0,
+            easing: 'easeInOutQuad',
+            duration: 450,
+            complete: ()=>{canClick=true}
+        })
+
+        //Reapears elements
+        anime({
+            begin: ()=>{
+                isActive=false
+                outElements.forEach(element => {
+                    element.classList.toggle('noDisplay')
+                });
+                leftElement.classList.toggle('noDisplay')
+                rightElement.classList.toggle('noDisplay')
+                inElements.forEach(element => {
+                    element.classList.add('noDisplay')
+                })
+            },
+            targets: [outElements, leftElement, rightElement],
+            opacity: [0, 1],
+            duration: 350,
+            easing: 'easeInOutQuad'
+        })
+    }
+    
 })
 
 //Loop both buttons
