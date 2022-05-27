@@ -353,12 +353,15 @@ ul {
 
 .text-container {
     position: absolute;
-    top: 20%;
-    left: 40%;
-    height: 50rem;
-    width: 80rem;
+    top: 10%;
+    left: 30%;
+    height: 58rem;
+    width: 95rem;
     border: red 1px solid;
     pointer-events: none;
+    background-image: url(/images/worksLoremFrame.png);
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .planet-work-base {

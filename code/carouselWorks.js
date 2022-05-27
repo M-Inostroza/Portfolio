@@ -25,6 +25,16 @@ activeElement.addEventListener('click', ()=> {
     let rightElement = activeElement.querySelector('[data-right]')
     
     if(!isActive && canClick){
+        //Moves the title in
+        anime({
+            targets: moonTitle,
+            scale: 1.8,
+            easing: "easeInOutQuad",
+            duration: 350,
+            translateY: -35,
+            translateX: 120
+        })
+
         //Move from center to left with scale
         anime({
             begin:  ()=>{canClick=false},
@@ -55,6 +65,17 @@ activeElement.addEventListener('click', ()=> {
             }
         })
     } else if (isActive && canClick) {
+
+        //Moves the title out
+        anime({
+            targets: moonTitle,
+            scale: 1,
+            easing: "easeInOutQuad",
+            duration: 350,
+            translateY: 0,
+            translateX: 0
+        })
+
         //Move from center to left with scale
         anime({
             begin:  ()=>{canClick=false},
