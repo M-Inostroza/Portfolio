@@ -1,21 +1,37 @@
 //-----Works moon carousel-----//
+
 console.log("Welcome, dear traveller... feel free to inspect everything!")
 
+//Arrows
 const buttons = document.querySelectorAll("[data-carousel-button]");
 
+//Title + update onload
 const moonTitle = document.querySelector('.moon-title');
+window.onload = function changeText() {moonTitle.innerText = "SSNF"}
 
+//Active Moon
 const activeElement = document.querySelector('[data-moons]')
 
-//Elements that dissapear in the background
+//Text container
+const textContainer = document.querySelector('.text-container');
+const bulletPointContainer = document.querySelector('.bullet-point-container')
+
+//Elements that appear and dissapear in the background
 let [...outElements] = document.querySelectorAll('[data-out]');
 let [...inElements] = document.querySelectorAll('[data-in]')
 
-window.onload = function changeText() {moonTitle.innerText = "SSNF"}
-
-//Deactivate while anim is running
+//Deactivate click while anim is running
 let canClick = true;
 let isActive = false;
+
+//Frame animation
+var textFrame = bodymovin.loadAnimation({
+    container: textContainer,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: '/anims/worksLoremFrame.json'
+})
 
 //Animates the active element on click
 activeElement.addEventListener('click', ()=> {
@@ -25,25 +41,39 @@ activeElement.addEventListener('click', ()=> {
     let rightElement = activeElement.querySelector('[data-right]')
     
     if(!isActive && canClick){
-        //Moves the title in
+        //Scales the title up
         anime({
+            begin: () => {
+                //Activates text container
+                setTimeout(() => {
+                    textContainer.classList.remove('noDisplay')
+                    bulletPointContainer.classList.remove('noDisplay')
+                    textFrame.setDirection(1)
+                    textFrame.setSpeed(1.5)
+                    textFrame.play()
+                }, 240);
+            },
             targets: moonTitle,
             scale: 1.8,
             easing: "easeInOutQuad",
             duration: 350,
-            translateY: -35,
-            translateX: 120
+            translateY: -60,
+            translateX: 20,
+            
         })
 
-        //Move from center to left with scale
+        //Moves moon from center to left with scale
         anime({
             begin:  ()=>{canClick=false},
             targets: centerElement,
+            delay: 100,
             scale: 2.3,
             translateX: -250,
             easing: 'easeInOutQuad',
-            duration: 450,
-            complete: ()=>{canClick=true}    
+            duration: 350,
+            complete: ()=>{
+                canClick=true
+            }    
         })
 
         //Dissapear elements
@@ -52,42 +82,52 @@ activeElement.addEventListener('click', ()=> {
             targets: [outElements, leftElement, rightElement],
             opacity: [1,0],
             easing: 'easeInOutQuad',
-            duration: 350,
+            duration: 250,
             complete: () => {
                 outElements.forEach(element => {
                     element.classList.toggle('noDisplay')
                 });
                 leftElement.classList.toggle('noDisplay')
                 rightElement.classList.toggle('noDisplay')
-                inElements.forEach(element => {
-                    element.classList.remove('noDisplay')
-                })
             }
         })
     } else if (isActive && canClick) {
 
-        //Moves the title out
+        //Scales the title down
         anime({
+            begin: ()=> {
+                bulletPointContainer.classList.add('noDisplay')
+                textFrame.setDirection(-1)
+                textFrame.setSpeed(1.5)
+                textFrame.play()
+            },
             targets: moonTitle,
             scale: 1,
             easing: "easeInOutQuad",
             duration: 350,
+            delay: 100,
             translateY: 0,
-            translateX: 0
+            translateX: 0,
+            complete:()=> {
+                textContainer.classList.add('noDisplay')
+            }
         })
 
-        //Move from center to left with scale
+        //Moves moon from left to center with scale
         anime({
             begin:  ()=>{canClick=false},
             targets: centerElement,
             scale: 1,
             translateX: 0,
             easing: 'easeInOutQuad',
-            duration: 450,
-            complete: ()=>{canClick=true}
+            delay: 100,
+            duration: 350,
+            complete: ()=>{
+                canClick=true
+            }
         })
 
-        //Reapears elements
+        //Display elements
         anime({
             begin: ()=>{
                 isActive=false
@@ -96,20 +136,18 @@ activeElement.addEventListener('click', ()=> {
                 });
                 leftElement.classList.toggle('noDisplay')
                 rightElement.classList.toggle('noDisplay')
-                inElements.forEach(element => {
-                    element.classList.add('noDisplay')
-                })
             },
             targets: [outElements, leftElement, rightElement],
+            delay: 100,
             opacity: [0, 1],
-            duration: 350,
+            duration: 450,
             easing: 'easeInOutQuad'
         })
     }
     
 })
 
-//Loop both buttons
+//Loop buttons
 buttons.forEach(button => {
     button.addEventListener('click', () =>{
         //Moon selector

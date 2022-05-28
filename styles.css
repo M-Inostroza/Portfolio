@@ -355,13 +355,26 @@ ul {
     position: absolute;
     top: 10%;
     left: 30%;
-    height: 58rem;
-    width: 95rem;
-    border: red 1px solid;
+    height: 50rem;
+    width: 80rem;
     pointer-events: none;
-    background-image: url(/images/worksLoremFrame.png);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bullet-point-container {
+    position: absolute;
+    left: 8%;
+    width: 30rem;
+    height: 38rem;
+}
+
+.bullet-point {
+    background-image: url(/images/bullet.png);
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: left top;
+    padding: 0.7rem 2rem 2rem 3rem
 }
 
 .planet-work-base {
