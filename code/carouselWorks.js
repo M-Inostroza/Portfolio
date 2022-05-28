@@ -1,5 +1,20 @@
 //-----Works moon carousel-----//
 
+const bulletTextsWeb = [
+    "Research, Analysis & Planning",
+    "UI/UX Design & Implementation",
+    "Code & Database Development",
+    "Testing, Integration & SEO",
+    "Deployment & Analytics"
+]
+
+const bulletTextsSM = [
+    "Asset development, implementation & management",
+    "Content design, creation & edition",
+    "Photography & Videography",
+    "Content strategy & planning"
+]
+
 console.log("Welcome, dear traveller... feel free to inspect everything!")
 
 //Arrows
@@ -11,10 +26,13 @@ window.onload = function changeText() {moonTitle.innerText = "SSNF"}
 
 //Active Moon
 const activeElement = document.querySelector('[data-moons]')
+console.log(activeElement.children)
 
-//Text container
+//Text elements
 const textContainer = document.querySelector('.text-container');
-const bulletPointContainer = document.querySelector('.bullet-point-container')
+const bulletPointContainer = document.querySelector('.bullet-point-container');
+const bulletList = document.querySelector('.bullet-list');
+let [...bulletPoints] = document.querySelectorAll('.bullet-point');
 
 //Elements that appear and dissapear in the background
 let [...outElements] = document.querySelectorAll('[data-out]');
@@ -51,15 +69,43 @@ activeElement.addEventListener('click', ()=> {
                     textFrame.setDirection(1)
                     textFrame.setSpeed(1.5)
                     textFrame.play()
-                }, 240);
+                }, 200);
             },
             targets: moonTitle,
             scale: 1.8,
             easing: "easeInOutQuad",
-            duration: 350,
+            duration: 250,
             translateY: -60,
             translateX: 20,
+        })
+
+        
+        //Creates Bulletpoints
+        if (centerElement.dataset.name == "ssnf") {
+            for (let i = 0; i < bulletTextsWeb.length; i++) {
+                let element = document.createElement('p');
+                element.innerText = bulletTextsWeb[i]
+                element.classList.add('bullet-point')
+                bulletList.appendChild(element)
+            }
+        } else if (centerElement.dataset.name == "moxy") {
+            for (let i = 0; i < bulletTextsSM.length; i++) {
+                let element = document.createElement('p');
+                element.innerText = bulletTextsSM[i]
+                element.classList.add('bullet-point')
+                bulletList.appendChild(element)
+            }
+        } else if (centerElement.dataset.name == "unknown") {
             
+        }
+
+        //Shows the bulletpoints
+        anime({
+            targets: bulletList.children,
+            opacity: [0,1],
+            duration: 500,
+            easing: 'easeInQuad',
+            delay: anime.stagger(200),
         })
 
         //Moves moon from center to left with scale
@@ -96,7 +142,6 @@ activeElement.addEventListener('click', ()=> {
         //Scales the title down
         anime({
             begin: ()=> {
-                bulletPointContainer.classList.add('noDisplay')
                 textFrame.setDirection(-1)
                 textFrame.setSpeed(1.5)
                 textFrame.play()
@@ -110,6 +155,21 @@ activeElement.addEventListener('click', ()=> {
             translateX: 0,
             complete:()=> {
                 textContainer.classList.add('noDisplay')
+            }
+        })
+
+        //Hides & destroys the bulletpoints
+        anime({
+            targets: bulletPoints,
+            opacity: [1,0],
+            duration: 150,
+            easing: 'easeOutQuad',
+            complete: ()=>{
+                let bulletChild = bulletList.lastElementChild;
+                while (bulletChild) {
+                bulletList.removeChild(bulletChild);
+                bulletChild = bulletList.lastElementChild;}
+                bulletPointContainer.classList.add('noDisplay')
             }
         })
 
@@ -172,7 +232,7 @@ buttons.forEach(button => {
                     easing: 'easeInQuad',
                     duration: 400,
                     complete: () => {
-                        moonTitle.innerText = rightMoon.dataset.moon;
+                        moonTitle.innerText = rightMoon.dataset.name;
                         moonTitle.style.transform = 'initial';
                         moonTitle.style.opacity = 1;
                         anime({
@@ -242,7 +302,7 @@ buttons.forEach(button => {
                     easing: 'easeInQuad',
                     duration: 400,
                     complete: () => {
-                        moonTitle.innerText = leftMoon.dataset.moon;
+                        moonTitle.innerText = leftMoon.dataset.name;
                         moonTitle.style.transform = 'initial';
                         moonTitle.style.opacity = 1;
                         anime({

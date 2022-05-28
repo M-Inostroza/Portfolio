@@ -37,8 +37,17 @@ h3 {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Spline Sans Mono', monospace;
+    src: url(/Fonts/SplineSansMono-VariableFont_wght.ttf) format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html { font-size: 62.5%;} /* =10px */
 body { font-size: 1.4rem;} /* =14px */
+
+/* Tools */
 
 .noDisplay {
     display: none;
@@ -365,8 +374,8 @@ ul {
 
 .bullet-point-container {
     position: absolute;
-    left: 8%;
-    width: 30rem;
+    left: 6%;
+    width: 33rem;
     height: 38rem;
 }
 
@@ -374,7 +383,10 @@ ul {
     background-image: url(/images/bullet.png);
     background-repeat: no-repeat;
     background-position: left top;
-    padding: 0.7rem 2rem 2rem 3rem
+    padding: 0rem 2rem 3rem 3.6rem;
+    font-family: 'Spline Sans Mono', monospace;
+    font-size: 2.4rem;
+    font-weight: bold;
 }
 
 .planet-work-base {
