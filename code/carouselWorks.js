@@ -17,22 +17,24 @@ const bulletTextsSM = [
 
 console.log("Welcome, dear traveller... feel free to inspect everything!")
 
-//Arrows
-const buttons = document.querySelectorAll("[data-carousel-button]");
+//Main variables:
 
-//Title + update onload
-const moonTitle = document.querySelector('.moon-title');
+const buttons = document.querySelectorAll("[data-carousel-button]"); //Arrow buttons
+const moonTitle = document.querySelector('.moon-title'); //Title
 window.onload = function changeText() {moonTitle.innerText = "SSNF"}
 
-//Active Moon
-const activeElement = document.querySelector('[data-moons]')
-console.log(activeElement.children)
+const activeElement = document.querySelector('[data-moons]') //Element in the center
 
 //Text elements
 const textContainer = document.querySelector('.text-container');
 const bulletPointContainer = document.querySelector('.bullet-point-container');
 const bulletList = document.querySelector('.bullet-list');
+let link = document.querySelector('.link-work')
 let [...bulletPoints] = document.querySelectorAll('.bullet-point');
+
+//Video elements
+const videoContainer = document.querySelector('.video-container')
+const videoElement = document.querySelector('.video')
 
 //Elements that appear and dissapear in the background
 let [...outElements] = document.querySelectorAll('[data-out]');
@@ -62,7 +64,7 @@ activeElement.addEventListener('click', ()=> {
         //Scales the title up
         anime({
             begin: () => {
-                //Activates text container
+                //Activates container
                 setTimeout(() => {
                     textContainer.classList.remove('noDisplay')
                     bulletPointContainer.classList.remove('noDisplay')
@@ -80,8 +82,15 @@ activeElement.addEventListener('click', ()=> {
         })
 
         
-        //Creates Bulletpoints
+        //Creates Bulletpoints & play video
         if (centerElement.dataset.name == "ssnf") {
+            videoContainer.style.display = 'flex';
+            link.setAttribute('href',"https://shapeshifter-fitness.com/index.php")
+            link.innerText = 'www.ssnf.de'
+            link.style.display = 'flex';
+            videoElement.setAttribute('src', '/videos/SSNF_prev.mp4')
+            videoElement.play
+            link.innerText = 'www.ssnf.de'
             for (let i = 0; i < bulletTextsWeb.length; i++) {
                 let element = document.createElement('p');
                 element.innerText = bulletTextsWeb[i]
@@ -89,18 +98,33 @@ activeElement.addEventListener('click', ()=> {
                 bulletList.appendChild(element)
             }
         } else if (centerElement.dataset.name == "moxy") {
+            link.setAttribute('href',"https://www.instagram.com/moxycologneairport/")
+            link.innerText = 'Instagram'
+            link.style.display = 'flex';
+            videoContainer.style.display = 'flex';
+            videoElement.setAttribute('src', '/videos/MOXY_prev.mp4')
+            videoElement.play
             for (let i = 0; i < bulletTextsSM.length; i++) {
                 let element = document.createElement('p');
                 element.innerText = bulletTextsSM[i]
                 element.classList.add('bullet-point')
                 bulletList.appendChild(element)
             }
-        } else if (centerElement.dataset.name == "unknown") {
-            
+        } else {
+            console.log('working on it...')
         }
 
-        //Shows the bulletpoints
+        //Shows the bulletpoints & video container
         anime({
+            begin: ()=> {
+                anime({
+                    targets: videoContainer,
+                    scaleY: [0,1],
+                    delay: 350,
+                    easing: 'easeInQuad',
+                    duration: 130
+                })
+            },
             targets: bulletList.children,
             opacity: [0,1],
             duration: 500,
@@ -142,6 +166,12 @@ activeElement.addEventListener('click', ()=> {
         //Scales the title down
         anime({
             begin: ()=> {
+                anime({
+                    targets: videoContainer,
+                    scaleY: [1,0],
+                    easing: 'easeOutQuad',
+                    duration: 100
+                })
                 textFrame.setDirection(-1)
                 textFrame.setSpeed(1.5)
                 textFrame.play()
@@ -154,6 +184,8 @@ activeElement.addEventListener('click', ()=> {
             translateY: 0,
             translateX: 0,
             complete:()=> {
+                videoContainer.style.display = 'none';
+                link.style.display = 'none';
                 textContainer.classList.add('noDisplay')
             }
         })
@@ -207,7 +239,12 @@ activeElement.addEventListener('click', ()=> {
     
 })
 
-//Loop buttons
+
+
+
+
+
+//-----Rotation mechanic-----//
 buttons.forEach(button => {
     button.addEventListener('click', () =>{
         //Moon selector

@@ -389,6 +389,39 @@ ul {
     font-weight: bold;
 }
 
+.video-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34rem;
+    height: 34rem;
+    right: 8%;
+    background-image: url(/images/VideoFrame.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: none;
+}
+
+.video {
+    width: 32.5rem;
+    height: 32.5rem;
+}
+
+.link-work {
+    position: absolute;
+    font-family: 'Spline Sans Mono', monospace;
+    display: none;
+    left: 8%;
+    bottom: -10%;
+    font-style: italic;
+    font-size: 3rem;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    pointer-events: all;
+}
+
 .planet-work-base {
     grid-row: 3;
     margin: 0 auto;
