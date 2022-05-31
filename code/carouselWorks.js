@@ -90,7 +90,6 @@ activeElement.addEventListener('click', ()=> {
             link.style.display = 'flex';
             videoElement.setAttribute('src', '/videos/SSNF_prev.mp4')
             videoElement.play
-            link.innerText = 'www.ssnf.de'
             for (let i = 0; i < bulletTextsWeb.length; i++) {
                 let element = document.createElement('p');
                 element.innerText = bulletTextsWeb[i]
@@ -99,7 +98,6 @@ activeElement.addEventListener('click', ()=> {
             }
         } else if (centerElement.dataset.name == "moxy") {
             link.setAttribute('href',"https://www.instagram.com/moxycologneairport/")
-            link.innerText = 'Instagram'
             link.style.display = 'flex';
             videoContainer.style.display = 'flex';
             videoElement.setAttribute('src', '/videos/MOXY_prev.mp4')

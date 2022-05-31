@@ -422,6 +422,10 @@ ul {
     pointer-events: all;
 }
 
+.ig-logo {
+    height: 5rem;
+}
+
 .planet-work-base {
     grid-row: 3;
     margin: 0 auto;
