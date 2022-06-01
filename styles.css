@@ -424,6 +424,7 @@ ul {
 
 .ig-logo {
     height: 5rem;
+    position: absolute;
 }
 
 .planet-work-base {

@@ -98,6 +98,7 @@ activeElement.addEventListener('click', ()=> {
             }
         } else if (centerElement.dataset.name == "moxy") {
             link.setAttribute('href',"https://www.instagram.com/moxycologneairport/")
+            link.innerText = 'instagram.com/moxycologneairport'
             link.style.display = 'flex';
             videoContainer.style.display = 'flex';
             videoElement.setAttribute('src', '/videos/MOXY_prev.mp4')
