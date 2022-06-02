@@ -452,38 +452,71 @@ ul {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 1024px;
-    
+    height: 102.4rem;
+    align-items: center;
+    justify-content: center;
 }
 
 .skill-frame-container {
+    background-image: url(/images/skill-frame-UI.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 80rem;
+    width: 120rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
     z-index: 2;
 }
 
-.frame-skills-img {
-    height: 75%;
-}
-
 .rookie {
-    top: 23%;
-    bottom: 77%;
-    left: 25%;
-    right: 75%;
+    top: 24%;
+    left: 23%;
     position: absolute;
     color: white;
 }
 
 .pro {
-    top: 23%;
-    bottom: 77%;
-    left: 73%;
-    right: 27%;
+    top: 24%;
+    right: 23%;
     position: absolute;
     color: white;
+}
+
+.skill-avatar-ps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(/images/skill_name_frame.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 9rem;
+    width: 9rem;
+}
+
+.skill-text {
+    font-family: 'Spline Sans Mono', monospace;
+    font-size: 5rem;
+    margin: 0 auto;
+}
+
+.skill-bar {
+    background-image: url(/images/skill_bar.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: -2;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 8%;
+    width: 92rem;
+    height: 4rem;
+}
+
+.skill-fader-ps {
+    height: 3.3rem;
+    width: 1.8rem;
 }
 
 .progress-bar {
@@ -493,16 +526,13 @@ ul {
     width: 98rem;
     height: 1.5rem;
     z-index: 2;
-    top: 25%;
+    top: 27%;
 }
 
 .skills-title {
     position: absolute;
-    width: 286px;
-    height: 68px;
-    left: 16rem;
-    top: 5rem;
-    color: #FFFFFF;
+    top: 6%;
+    left: 9%;
     z-index: 2;
 }
 
@@ -512,8 +542,8 @@ ul {
     height: 5rem;
     width: 20rem;
     z-index: 1;
-    top: 7%;
-    left: 10%;
+    top: 8%;
+    left: 11%;
     opacity: 70%;
 }
 
