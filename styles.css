@@ -483,6 +483,16 @@ ul {
     color: white;
 }
 
+.bar-container {
+    position: absolute;
+    width: 100rem;
+    height: 50rem;
+    top: 30%;
+    display: grid;
+    align-items: center;
+    justify-content: left;
+}
+
 .skill-avatar-ps {
     display: flex;
     align-items: center;
@@ -496,7 +506,7 @@ ul {
 
 .skill-text {
     font-family: 'Spline Sans Mono', monospace;
-    font-size: 5rem;
+    font-size: 4.2rem;
     margin: 0 auto;
 }
 
@@ -509,7 +519,7 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    left: 8%;
+    left: 7%;
     width: 92rem;
     height: 4rem;
 }
@@ -558,17 +568,7 @@ ul {
     z-index: 1;
 }
 
-/* Progress bars */
 
-.bar-container {
-    position: absolute;
-    width: 100rem;
-    height: 50rem;
-    top: 30%;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-}
 
 /* Contact */
 
