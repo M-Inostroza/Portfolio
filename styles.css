@@ -26,7 +26,7 @@ h2 {
 }
 
 h3 {
-    font-size: 4rem;
+    font-size: 2.4rem;
 }
 
 @font-face {
@@ -458,7 +458,7 @@ ul {
 }
 
 .skill-frame-container {
-    background-image: url(/images/skill-frame-UI.png);
+    background-image: url(/images/skill_frame_UI_tab_1.png);
     background-position: center center;
     background-repeat: no-repeat;
     height: 80rem;
@@ -467,6 +467,12 @@ ul {
     align-items: center;
     justify-content: center;
     z-index: 2;
+}
+
+.tab-title {
+    position: absolute;
+    top: 18.5%;
+    right: 39.3%;
 }
 
 .rookie {
@@ -517,16 +523,19 @@ ul {
     z-index: -2;
     position: absolute;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     left: 7%;
     width: 92rem;
     height: 4rem;
 }
 
-.skill-fader-ps {
-    height: 3.3rem;
-    width: 1.8rem;
+.skill-fader {
+    background-image: url(/images/skill_fader.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 4rem;
+    width: 2.4rem;
 }
 
 .progress-bar {
