@@ -461,32 +461,65 @@ ul {
     background-image: url(/images/skill_frame_UI_tab_1.png);
     background-position: center center;
     background-repeat: no-repeat;
-    height: 80rem;
+    height: 75rem;
     width: 120rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     z-index: 2;
 }
 
-.tab-title {
-    position: absolute;
-    top: 18.5%;
-    right: 39.3%;
+.description-container {
+    margin-top: 4rem;
+    height: 15rem;
+    width: 105rem;
+}
+
+.titles {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.titles h3 {
+    cursor: pointer;
+}
+
+h3[data-title]:nth-child(1) {
+    margin: 0.2rem 4rem 0 0;
+}
+
+h3[data-title]:nth-child(2) {
+    opacity: 0.3;
+    margin: 0.2rem 4.8rem 0 1.5rem;
+}
+
+h3[data-title]:nth-child(3) {
+    opacity: 0.3;
+    margin: 0.2rem 1.8rem 0 1.5rem;
+}
+
+.levels {
+    display: flex;
+    margin: 5.5rem 0 1rem 0;
+    justify-content: space-between;
 }
 
 .rookie {
-    top: 24%;
-    left: 23%;
-    position: absolute;
-    color: white;
+    padding-left: 4rem;
 }
 
 .pro {
-    top: 24%;
-    right: 23%;
-    position: absolute;
-    color: white;
+    padding-right: 4rem;
+}
+
+.progress-bar {
+    background-image: url(/images/progress_bar.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 98rem;
+    height: 1.5rem;
+    z-index: 2;
+    margin: 0 auto;
 }
 
 .bar-container {
@@ -536,16 +569,6 @@ ul {
     background-repeat: no-repeat;
     height: 4rem;
     width: 2.4rem;
-}
-
-.progress-bar {
-    position: absolute;
-    background-image: url(/images/progress_bar.png);
-    background-repeat: no-repeat;
-    width: 98rem;
-    height: 1.5rem;
-    z-index: 2;
-    top: 27%;
 }
 
 .skills-title {

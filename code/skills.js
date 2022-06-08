@@ -1,28 +1,29 @@
 const [...faders] = document.querySelectorAll('.skill-fader');
-const [...tabTitles] = document.querySelectorAll('.tab-title')
+const [...tabTitles] = document.querySelectorAll("[data-title]")
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        var translateX_Distance;
+        let translateX_value;
         switch (entry.target.dataset.name) {
             case 'ps':
-                translateX_Distance = 600
+                translateX_value = 600
                 break;
             case 'ai':
-                translateX_Distance = 500
+                translateX_value = 500
                 break;
             case 'ae':
-                translateX_Distance = 650 
+                translateX_value = 650 
                 break;
             case 'fi':
-                translateX_Distance = 700
+                translateX_value = 700
                 break;
         }
         anime({
             targets: entry.target,
-            translateX: [0, translateX_Distance],
+            translateX: [0, translateX_value],
             easing: 'easeInOutQuad',
             duration: 850,
+            opacity: [0,1],
             delay: 200
         })
     })
@@ -31,3 +32,9 @@ const observer = new IntersectionObserver(entries => {
 faders.forEach(fader => {
     observer.observe(fader)
 });
+
+tabTitles.forEach(title => {
+    title.addEventListener('click', () => {
+        console.log(title.dataset)
+    })
+})
