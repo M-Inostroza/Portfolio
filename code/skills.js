@@ -1,7 +1,30 @@
+
+//Variables
 const [...faders] = document.querySelectorAll('.skill-fader');
 const [...tabTitles] = document.querySelectorAll("[data-title]");
-let [...avatarInitials] = document.querySelectorAll('.skill-text');
+let [...skillAvatars] = document.querySelectorAll('.skill-avatar');
 const frameElement = document.querySelector('.skill-frame-container');
+
+//Expands the avatar frame
+skillAvatars.forEach(avatar => {
+    let openFrame = bodymovin.loadAnimation({
+        container: avatar,
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: '/anims/skill_avatar_open.json'
+    })
+
+    avatar.addEventListener('mouseenter', () => {
+        openFrame.setDirection(1)
+        openFrame.play()
+    })
+    
+    avatar.addEventListener('mouseleave', () => { 
+        openFrame.setDirection(-1)
+        openFrame.play()
+    })
+})
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -39,10 +62,6 @@ tabTitles.forEach(title => {
     title.addEventListener('click', () => {
         switch (title.dataset.title) {
             case 'design':
-                avatarInitials[0].textContent = 'Ps';
-                avatarInitials[1].textContent = 'Ai';
-                avatarInitials[2].textContent = 'Ae';
-                avatarInitials[3].textContent = 'Fi';
                 frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_1.png)";
                 delete title.dataset.back
                 title.dataset.main = true;
@@ -50,10 +69,6 @@ tabTitles.forEach(title => {
                 tabTitles[2].dataset.back = true;
                 break;
             case 'code':
-                avatarInitials[0].textContent = 'Js';
-                avatarInitials[1].textContent = 'Ph';
-                avatarInitials[2].textContent = 'Ph';
-                avatarInitials[3].textContent = 'Ph';
                 frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_2.png)";
                 delete title.dataset.back
                 title.dataset.main = true;
@@ -71,27 +86,3 @@ tabTitles.forEach(title => {
     })
 })
 
-avatarInitials.forEach(avatar => {
-    avatar.addEventListener('mouseenter', () => {
-        switch (avatar.textContent) {
-            case 'Ps':
-                avatar.textContent = 'Photoshop'
-                avatar.style.fontSize = '1rem'
-                break;
-        
-            default:
-                break;
-        }
-    })
-
-    avatar.addEventListener('mouseleave', () => {
-        switch (avatar.textContent) {
-            case 'Photoshop':
-                avatar.textContent = 'Ps'
-                avatar.style.fontSize = '4rem'
-                break;
-            default:
-                break;
-        }
-    })
-})

@@ -544,18 +544,16 @@ h3[data-title]:nth-child(3) {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url(/images/skill_name_frame.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 9rem;
-    width: 9rem;
+    height: 10rem;
+    width: 17rem;
+    cursor: pointer;
 }
 
 .skill-text {
+    position: absolute;
     font-family: 'Spline Sans Mono', monospace;
     font-size: 4.2rem;
-    margin: 0 auto;
-    cursor: pointer;
+    z-index: 5;
 }
 
 .skill-bar {
@@ -567,7 +565,7 @@ h3[data-title]:nth-child(3) {
     display: flex;
     justify-content: left;
     align-items: center;
-    left: 80%;
+    left: 45%;
     width: 92rem;
     height: 4rem;
 }
