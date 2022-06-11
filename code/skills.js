@@ -3,6 +3,7 @@
 const [...faders] = document.querySelectorAll('.skill-fader');
 const [...tabTitles] = document.querySelectorAll("[data-title]");
 let [...skillAvatars] = document.querySelectorAll('.skill-avatar');
+let [...skillText] = document.querySelectorAll('.skill-text');
 const frameElement = document.querySelector('.skill-frame-container');
 
 //Expands the avatar frame
@@ -16,16 +17,16 @@ skillAvatars.forEach(avatar => {
     })
 
     avatar.addEventListener('mouseenter', () => {
-        openFrame.setDirection(1)
-        openFrame.play()
+        open_text_avatar(avatar, openFrame)
     })
     
     avatar.addEventListener('mouseleave', () => { 
-        openFrame.setDirection(-1)
-        openFrame.play()
+        close_text_avatar(avatar, openFrame)
     })
 })
 
+
+//Controls faders 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         let translateX_value;
@@ -58,6 +59,7 @@ faders.forEach(fader => {
     observer.observe(fader)
 });
 
+//Tabs mechanic
 tabTitles.forEach(title => {
     title.addEventListener('click', () => {
         switch (title.dataset.title) {
@@ -86,3 +88,63 @@ tabTitles.forEach(title => {
     })
 })
 
+//------------------------------------------------------------------------//
+
+//Functions
+function open_text_avatar(avatar, anim) {
+    switch (avatar.querySelector('.skill-text').textContent) {
+        case 'Ps':
+            anime({
+                begin: ()=> {
+                    skillText[0].textContent = 'Photoshop'
+                },
+                targets: skillText[0],
+                opacity: [0,1],
+                scale: 0.6,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'Ai':
+            skillText[1].textContent = 'Illustrator'
+            break;
+        case 'Ae':
+            skillText[2].textContent = 'After Effects'
+            break;
+        case 'Fi':
+            skillText[3].textContent = 'Figma'
+            break;
+    
+    }
+    anim.setDirection(1)
+    anim.play()
+}
+
+function close_text_avatar(avatar, anim) {
+    switch (avatar.querySelector('.skill-text').textContent) {
+        case 'Photoshop':
+            anime({
+                begin: ()=> {
+                    skillText[0].textContent = 'Ps'
+                },
+                targets: skillText[0],
+                opacity: [0,1],
+                scale: 1,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'Illustrator':
+            skillText[1].textContent = 'Ai'
+            break;
+        case 'After Effects':
+            skillText[2].textContent = 'Ae'
+            break;
+        case 'Figma':
+            skillText[3].textContent = 'Fi'
+            break;
+    
+    }
+    anim.setDirection(-1)
+    anim.play()
+}
