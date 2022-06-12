@@ -534,7 +534,7 @@ h3[data-title]:nth-child(3) {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 10rem;
+    height: 11rem;
     width: 17rem;
     cursor: pointer;
 }
