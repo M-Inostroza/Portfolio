@@ -11,7 +11,14 @@ const designTab = document.querySelector('[data-design]')
 const codeTab = document.querySelector('[data-code]')
 const webTab = document.querySelector('[data-web]')
 
-
+//Planet bg anim
+var planet_BG = bodymovin.loadAnimation({
+    container: document.getElementById("planet-skills-BG"),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/planet_skills_BG.json'
+})
 
 //Expands the avatar frame
 skillAvatars.forEach(avatar => {
@@ -188,6 +195,18 @@ function open_text_avatar(avatar, anim) {
                 easing: 'easeInQuad'
             })
             break;
+        case 'Wp':
+            anime({
+                begin: ()=> {
+                    skillText[9].textContent = 'Wordpress'
+                },
+                targets: skillText[9],
+                opacity: [0,1],
+                scale: 0.6,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
     }
     anim.setDirection(1)
     anim.play()
@@ -255,6 +274,18 @@ function close_text_avatar(avatar, anim) {
                 easing: 'easeInQuad'
             })
             break;
+        case 'Wordpress':
+                anime({
+                    begin: ()=> {
+                        skillText[9].textContent = 'Wp'
+                    },
+                    targets: skillText[9],
+                    opacity: [0,1],
+                    scale: 1,
+                    duration: 200,
+                    easing: 'easeInQuad'
+                })
+                break;
     
     }
     anim.setDirection(-1)
