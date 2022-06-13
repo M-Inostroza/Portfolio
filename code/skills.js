@@ -9,6 +9,8 @@ const frameElement = document.querySelector('.skill-frame-container');
 //tabs
 const designTab = document.querySelector('[data-design]')
 const codeTab = document.querySelector('[data-code]')
+const webTab = document.querySelector('[data-web]')
+
 
 
 //Expands the avatar frame
@@ -57,6 +59,15 @@ const observer = new IntersectionObserver(entries => {
             case 'Php':
                 translateX_value = 350
                 break;
+            case 'html':
+                translateX_value = 800
+                break;
+            case 'css':
+                translateX_value = 750
+                break;
+            case 'wp':
+                translateX_value = 250
+                break;
         }
         anime({
             targets: entry.target,
@@ -83,6 +94,7 @@ tabTitles.forEach(title => {
                 title.dataset.main = true;
                 tabTitles[1].dataset.back = true;
                 tabTitles[2].dataset.back = true;
+                webTab.classList.add('noDisplay')
                 codeTab.classList.add('noDisplay')
                 designTab.classList.remove('noDisplay')
                 break;
@@ -94,13 +106,17 @@ tabTitles.forEach(title => {
                 tabTitles[2].dataset.back = true;
                 codeTab.classList.remove('noDisplay')
                 designTab.classList.add('noDisplay')
+                webTab.classList.add('noDisplay')
                 break;
-            case 'media':
+            case 'web':
                 frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_3.png)";
                 delete title.dataset.back
                 title.dataset.main = true;
                 tabTitles[0].dataset.back = true;
                 tabTitles[1].dataset.back = true;
+                codeTab.classList.add('noDisplay')
+                designTab.classList.add('noDisplay')
+                webTab.classList.remove('noDisplay')
                 break;
         }
     })
