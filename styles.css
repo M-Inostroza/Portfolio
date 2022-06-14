@@ -63,27 +63,19 @@ main {
 
 .main-title { 
     position: absolute;
-    left: 6.83%;
-    right: 33.65%;
-    top: 8.5%;
-    bottom: 80.08%;
-    color: #FFFFFF;
+    left: 6%;
+    top: 8%;
     z-index: 2;
 }
 
-.main-title::before {
-    border: 1px red solid;
-    width: 20rem;
-    height: 20rem;
-}
 
-.code{
+.code {
     color: #F09FCE;
     font-family: 'nulshockbold', Arial, sans-serif;
     font-size: 4.8rem;
     text-align: center;
     text-transform: uppercase;
-    opacity:0.7;
+    opacity:0.8;
 }
 
 .lower-bar {
@@ -191,8 +183,8 @@ main {
 
 /* Text & Frame */
 
-.frame-phrase {
-    background-image: url(/images/Text-Frame.png);
+.subHeader-frame {
+    background-image: url(/images/subHeader-frame.png);
     background-position: center center;
     height: 13rem;
     width: 50rem;
@@ -669,10 +661,13 @@ h3[data-title]:nth-child(3) {
 .submit-button {
     position: absolute;
     bottom: 6%;
-    width: 20rem;
-    height: 5rem;
+    width: 18rem;
+    height: 4.6rem;
     cursor: pointer;
-    background-image: url(/images/submit_button.png);
+    font-family: 'nulshockbold', Arial, sans-serif;
+    color: #fff;
+    background-color: #4E4E6B;
+    border-radius: 0.8rem;
 }
 
 /* Tools */
