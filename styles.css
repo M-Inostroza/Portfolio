@@ -238,7 +238,7 @@ main {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
     position: relative;
-    background-image: url(/images/Background_works.png);
+    background-image: url(/images/works_BG.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -437,7 +437,7 @@ ul {
 .UI-skills {
     position: relative;
     display: flex;
-    background-image: url(/images/BG-space-skills.png);
+    background-image: url(/images/skills_BG.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -602,7 +602,7 @@ h3[data-title]:nth-child(3) {
 .section-contact-container {
     position: relative;
     display: flex;
-    background-image: url(/images/BG_contact.png);
+    background-image: url(/images/contact_BG.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -645,7 +645,7 @@ h3[data-title]:nth-child(3) {
 }
 
 .grid-form {
-    height: 66rem;
+    height: 58rem;
     width: 42rem;
     display: grid;
     align-content: center;
@@ -672,7 +672,14 @@ h3[data-title]:nth-child(3) {
     width: 38rem;
 }
 
-
+.submit-button {
+    position: absolute;
+    bottom: 6%;
+    width: 20rem;
+    height: 5rem;
+    cursor: pointer;
+    background-image: url(/images/submit_button.png);
+}
 
 /* Tools */
 
