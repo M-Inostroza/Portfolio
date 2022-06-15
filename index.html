@@ -201,14 +201,31 @@
     <!-- Contact Section -->
     <section class="section-contact-container">
       <h1 class="title-contact">get in touch</h1>
+      <div class="contact-planet"></div>
       <div class="title-contact-base"></div>
         <div class="form-container">
             <form action="https://formsubmit.co/1d436d9160ca1fe75d29bf0279f84739" method="POST" class="grid-form">
-              <input type="text" id="name" name="name" placeholder="__Name" class="input-text" value="">
-              <input type="text" id="lastName" name="lastName" placeholder="__Last name" class="input-text">
-              <input type="email" id="email" name="email" placeholder="__E-mail" class="input-text">
-              <textarea id="message" name="message" placeholder="__Message" cols="30" rows="4" value="" class="input-area-text"></textarea>
-              <input type="submit" value="_Submit" class="submit-button inactive">
+              <div>
+                <h4>Name</h4>
+                <input type="text" id="name" name="name" placeholder="__Name" class="input-text" value="">
+              </div>
+              
+              <div>
+                <h4>Last Name</h4>
+                <input type="text" id="lastName" name="lastName" placeholder="__Last name" class="input-text">
+              </div>
+              
+              <div>
+                <h4>email</h4>
+                <input type="email" id="email" name="email" placeholder="__E-mail" class="input-text">
+              </div>
+              
+              <div>
+                <h4>Message</h4>
+                <textarea id="message" name="message" placeholder="__Message" cols="30" rows="4" value="" class="input-area-text"></textarea>
+              </div>
+              
+              <input type="submit" value="_Submit" class="submit-button disabled">
             </form>
         </div>
     </section>
