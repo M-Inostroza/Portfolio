@@ -8,7 +8,7 @@ var planet_works = bodymovin.loadAnimation({
     renderer: 'svg',
     loop: true,
     autoplay: true,
-    path: '/anims/body_export.json'
+    path: '/anims/planet_works.json'
 })
 
 // Container frame element
@@ -229,6 +229,6 @@ var backgroundCover = bodymovin.loadAnimation({
     renderer: "svg",
     loop: true,
     autoplay: true,
-    path: '/anims/BG_cover.json'
+    path: '/anims/works_halfPlanet.json'
 })
 

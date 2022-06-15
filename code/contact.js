@@ -1,3 +1,4 @@
+
 //Variables
 const submit_button = document.querySelector('.submit-button');
 
@@ -27,7 +28,6 @@ form.addEventListener('keyup', ()=> {
         can_submit = true;
         submit_button.classList.add('enabled')
         submit_button.classList.remove('disabled')
-        console.log('all good')
     }
 })
 
@@ -35,4 +35,12 @@ form.addEventListener('submit', (e)=>{
     if (!can_submit) {
         e.preventDefault()
     }
+})
+
+var planet_anim = bodymovin.loadAnimation({
+    container: document.getElementById("contact-planet"),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/contact_halfPlanet.json'
 })
