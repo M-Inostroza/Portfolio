@@ -1,4 +1,4 @@
-//-----Works moon carousel-----//
+//-----Works section-----//
 
 const bulletTextsWeb = [
     "Research, Analysis & Planning",
@@ -446,4 +446,32 @@ buttons.forEach(button => {
 })
 
 
+//--Title Intro--//
+const title_element_works = document.querySelector('.title-works-container');
+const title_text_works = document.querySelector('.title-works')
 
+//Opening and title display
+const observerWorks = new IntersectionObserver(display_title);
+
+observerWorks.observe(title_element_works)
+
+function display_title() {
+    anime({
+        begin: () => {
+          title_text_works.style.opacity = 0;
+        },
+        targets: title_element_works,
+        scaleX: [0,1],
+        easing: 'easeInOutQuad',
+        duration: 300,
+        delay: 400,
+        complete: () => {
+          anime({
+            targets: title_text_works,
+            opacity: [0,1],
+            easing: 'easeInOutQuad',
+            duration: 250
+          })
+        }
+      })
+}

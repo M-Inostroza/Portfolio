@@ -188,8 +188,8 @@ window_hire_anim.setSpeed(0.7);
 //-----------------------------------//
 
 //--Title Intro--//
-const title_element = document.querySelector('.container-main-title');
-const title_text = document.querySelector('.main-title')
+const title_element = document.querySelector('.title-main-container');
+const title_text = document.querySelector('.title-main')
 
 //Opening and title display
 document.addEventListener('DOMContentLoaded', () => {

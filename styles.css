@@ -52,7 +52,7 @@ html { font-size: 62.5%;} /* =10px */
 body { font-size: 1.4rem;} /* =14px */
 
 
-/* Main */
+/*------------------------ Main ------------------------*/
 
 main {
     position: relative;
@@ -65,13 +65,14 @@ main {
     z-index: 0;
 }
 
-.container-main-title {
+.title-main-container {
     position: absolute;
     display: flex;
     align-items: center;
     background-image: url(/images/base_main_title.png);
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: contain;
     width: 98rem;
     height: 14rem;
     left: 6%;
@@ -79,29 +80,23 @@ main {
     z-index: 2;
 }
 
-.main-title {
-    margin-left: 2.8rem;
+.title-main {
+    margin-left: 6rem;
+    font-size: 4rem;
 }
 
 .code {
     color: #F09FCE;
     font-family: 'nulshockbold', Arial, sans-serif;
-    font-size: 4.8rem;
+    font-size: 4rem;
     text-align: center;
     text-transform: uppercase;
     opacity:0.8;
 }
 
-.lower-bar {
-    position: absolute;
-    width: 100%;
-    height: 6%;
-    bottom: 0%;
-    background: #1A1A40;
-    z-index: 3;
-}
+/* --Planets-- */
 
-/* Planets */
+/* -Works- */
 
 #planet-works {
     position: absolute;
@@ -130,14 +125,14 @@ main {
     transition: opacity 0.2s;
 }
 
+/* -Skills- */
+
 #planet-skills {
     position: absolute;
     width: 35rem;
     height: 35rem;
-    left: 75%;
-    right: 25%;
-    top: 15%;
-    bottom: 95%;
+    left: 70%;
+    top: 20%;
 }
 
 #frame-planet-skills {
@@ -147,7 +142,6 @@ main {
     bottom: -3%;
     height: 37rem;
     width: 37rem;
-    border-radius: 50%;
     cursor: pointer;
 }
 
@@ -162,10 +156,12 @@ main {
     transition: opacity 0.25s;
 }
 
+/* -Contact- */
+
 #planet-contact {
     position: absolute;
     bottom: 10%;
-    right: 25%;
+    right: 20%;
     height: 30rem;
     width: 30rem;
 }
@@ -178,9 +174,6 @@ main {
     height: 26rem;
     width: 26rem;
     cursor: pointer;
-    border-radius: 50%;
-    cursor: pointer;
-    scroll-behavior: smooth;
 }
 
 #hire-floating-window {
@@ -196,11 +189,13 @@ main {
 /* Text & Frame */
 
 .subHeader-frame {
+    position: absolute;
     background-image: url(/images/subHeader-frame.png);
     background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
     height: 13rem;
     width: 50rem;
-    position: absolute;
     left: 17%;
     top: 74%; 
     display: flex;
@@ -209,17 +204,12 @@ main {
 }
 
 .detail {
-    font-size: 4rem;
+    font-size: 3.4rem;
 }
 
 .description {
     position: absolute;
-    color: #FFFFFF;
-    font-family: 'Nulshock';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 3.6rem;
-    line-height: 43px;
+    font-size: 3.4rem;
     left: 18%;
     top: 70%;
 }
@@ -229,7 +219,298 @@ main {
     opacity: 0;
 }
 
-/* Works */
+/*---Main monitor res---*/ /*1280px*/
+
+@media screen and (max-width: 1280px) {
+    
+    .title-main-container {
+        width: 70rem;
+        left: 3%;
+    }
+    
+    .title-main {
+        font-size: 3.4rem;
+        margin-left: 2.4rem;
+    }
+    
+    .code {
+        font-size: 3.4rem;
+    }
+    
+    /* --Planets-- */
+
+    /* -Works- */
+    
+    #planet-works {
+        left: 5%;
+        width: 21rem;
+        height: 22rem;
+    }
+
+    #frame-planet-works {
+        height: 21rem;
+        width: 21rem;
+    }
+    
+    #work-floating-window {
+        left: 56%;
+        height: 22rem;
+        width: 22rem;
+    }
+    
+    /* -Skills- */
+
+    #planet-skills {
+        width: 27rem;
+        height: 27rem;
+        left: 65%;
+    }
+    
+    #frame-planet-skills {
+        right: -3%;
+        bottom: -3%;
+        height: 29rem;
+        width: 29rem;
+    }
+    
+    #skill-floating-window {
+        right: 65%;
+        top: 20%;
+        height: 12rem;
+        width: 22rem;
+    }
+
+
+    /* -Contact- */
+
+    #planet-contact {
+        bottom: 15%;
+        right: 10%;
+        height: 30rem;
+        width: 30rem;
+    }
+}
+
+/*---Main tablet res---*/ /*768px*/
+
+@media screen and (max-width: 768px) {
+    
+    .title-main-container {
+        width: 60rem;
+        left: 4%;
+        top: 4%;
+    }
+    
+    .title-main {
+        font-size: 2.8rem;
+        margin-left: 2.8rem;
+    }
+    
+    .code {
+        font-size: 2.8rem;
+    }
+    
+    /* --Planets-- */
+
+    /* -Works- */
+    
+    #planet-works {
+        top: 20%;
+        left: 10%;
+        width: 22rem;
+        height: 22rem;
+    }
+    
+    #frame-planet-works {
+        height: 22rem;
+        width: 22rem;
+    }
+    
+    #work-floating-window {
+        left: 60%;
+        bottom: 25%;
+        height: 22rem;
+        width: 22rem;
+    }
+
+    /* -Skills- */
+
+    #planet-skills {
+        width: 23rem;
+        height: 23rem;
+        top: 32%;
+    }
+    
+    #frame-planet-skills {
+        right: -3%;
+        bottom: -3%;
+        height: 24rem;
+        width: 24rem;
+    }
+    
+    #skill-floating-window {
+        right: 65%;
+        top: 20%;
+        height: 11rem;
+        width: 22rem;
+    }
+
+
+    /* -Contact- */
+    
+    #planet-contact {
+        bottom: 20%;
+        right: 20%;
+        height: 22rem;
+        width: 22rem;
+    }
+    
+    #frame-planet-contact {
+        right: 7%;
+        bottom: 7%;
+        height: 19rem;
+        width: 19rem;
+    }
+    
+    #hire-floating-window {
+        height: 11rem;
+        width: 22rem;
+        right: 50%;
+    }
+    
+    /* Text & Frame */
+    
+    .subHeader-frame {
+        height: 13rem;
+        width: 42rem;
+        left: 6%;
+        top: 80%; 
+    }
+    
+    .detail {
+        font-size: 2.6rem;
+    }
+    
+    .description {
+        font-size: 2.6rem;
+        left: 7%;
+        top: 78%;
+    }
+}
+
+/*---Main phone res---*/ /*375px*/
+
+@media screen and (max-width: 375px) {
+
+    main {
+        height: 820px;
+    }
+    
+    .title-main-container {
+        width: 34rem;
+        left: 4%;
+        top: 0%;
+    }
+    
+    .title-main {
+        font-size: 1.6rem;
+        margin-left: 1.8rem;
+    }
+    
+    .code {
+        font-size: 1.6rem;
+    }
+    
+    /* --Planets-- */
+
+    /* -Works- */
+    
+    #planet-works {
+        top: 14%;
+        left: 4%;
+        width: 16rem;
+        height: 16rem;
+    }
+    
+    #frame-planet-works {
+        height: 16rem;
+        width: 16rem;
+    }
+    
+    #work-floating-window {
+        left: 60%;
+        bottom: 25%;
+        height: 16rem;
+        width: 16rem;
+    }
+
+    /* -Skills- */
+
+    #planet-skills {
+        width: 18rem;
+        height: 18rem;
+        top: 30%;
+        left: 52%;
+    }
+    
+    #frame-planet-skills {
+        right: -3%;
+        bottom: -3%;
+        height: 19rem;
+        width: 19rem;
+    }
+    
+    #skill-floating-window {
+        right: 65%;
+        top: 20%;
+        height: 8rem;
+        width: 18rem;
+    }
+
+
+    /* -Contact- */
+    
+    #planet-contact {
+        bottom: 26%;
+        right: 20%;
+        height: 17rem;
+        width: 17rem;
+    }
+    
+    #frame-planet-contact {
+        right: 7%;
+        bottom: 7%;
+        height: 15rem;
+        width: 15rem;
+    }
+    
+    #hire-floating-window {
+        height: 8rem;
+        width: 18rem;
+        right: 50%;
+    }
+    
+    /* Text & Frame */
+    
+    .subHeader-frame {
+        height: 13rem;
+        width: 30rem;
+        left: 3%;
+        top: 80%; 
+    }
+    
+    .detail {
+        font-size: 2rem;
+    }
+    
+    .description {
+        font-size: 2rem;
+        left: 6%;
+        top: 79%;
+    }
+}
+
+/*------------------------ Works ------------------------*/
 
 .UI-works {
     display: grid;
@@ -244,12 +525,23 @@ main {
     height: 1024px;
 }
 
-.title-works {
+.title-works-container {
+    width: 26rem;
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/images/title_works_container.png);
+    background-repeat: no-repeat;
+    background-position: center center;
     position: absolute;
     bottom: 85%;
     left: 15%;
     z-index: 2;
-    color: white;
+}
+
+.title-works {
+    text-align: center;
 }
 
 .title-works-base {
