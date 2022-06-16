@@ -232,3 +232,165 @@ var backgroundCover = bodymovin.loadAnimation({
     path: '/anims/works_halfPlanet.json'
 })
 
+
+
+//-----Shifting text-----//
+
+const stay_duration = 1200;
+const fade_duration = 800;
+
+const jumpWords = ["make", "design", "prototype", "build", "imagine"];
+
+const textElement = document.querySelector('.description-jumper')
+
+let textIndex = 0;
+
+const textTimeline = anime.timeline({
+  easing: 'easeOutQuad',
+  targets: textElement,
+  loop: true
+});
+
+textTimeline.add({
+  //Make
+  translateY: [
+    {value: [40,0], duration: fade_duration},
+    {value: 0, duration: stay_duration},
+    {value: [0,-40], duration: fade_duration}],
+  opacity: [
+    {value: [0,1], duration: fade_duration},
+    {value: 1, duration: stay_duration},
+    {value: [1,0], duration: fade_duration}],
+  color: '#EAC1D8',
+  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
+
+}).add({
+  //Design
+  translateY: [
+    {value: [40,0], duration: fade_duration},
+    {value: 0, duration: stay_duration},
+    {value: [0,-40], duration: fade_duration}],
+  opacity: [
+    {value: [0,1], duration: fade_duration},
+    {value: 1, duration: stay_duration},
+    {value: [1,0], duration: fade_duration}],
+  color: '#CAAFDC',
+  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
+
+}).add({
+  //Prototype
+  translateY: [
+    {value: [40,0], duration: fade_duration},
+    {value: 0, duration: stay_duration},
+    {value: [0,-40], duration: fade_duration}],
+  opacity: [
+    {value: [0,1], duration: fade_duration},
+    {value: 1, duration: stay_duration},
+    {value: [1,0], duration: fade_duration}],
+  color: '#B5ACCC',
+  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
+
+}).add({
+  //Build
+  translateY: [
+    {value: [40,0], duration: fade_duration},
+    {value: 0, duration: stay_duration},
+    {value: [0,-40], duration: fade_duration}],
+  opacity: [
+    {value: [0,1], duration: fade_duration},
+    {value: 1, duration: stay_duration},
+    {value: [1,0], duration: fade_duration}],
+  color: '#B1B1BC',
+  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
+
+}).add({
+  //Imagine
+  translateY: [
+    {value: [40,0], duration: fade_duration},
+    {value: 0, duration: stay_duration},
+    {value: [0,-40], duration: fade_duration}],
+  opacity: [
+    {value: [0,1], duration: fade_duration},
+    {value: 1, duration: stay_duration},
+    {value: [1,0], duration: fade_duration}],
+  color: '#fff',
+  complete: function() {
+    textIndex = 0
+    textElement.innerText = jumpWords[textIndex]
+    textTimeline.restart()
+  }
+})
+
+
+
+//-----Changing Text-----//
+
+const detailWords = ["Web", "User interface", "User experience", "Games"];
+
+const textDetail = document.querySelector(".detail");
+
+let detailIndex = 0;
+
+const detailTimeline = anime.timeline({
+  easing: 'easeOutQuad',
+  targets: textDetail,
+  loop: true
+});
+
+detailTimeline.add({
+  //Web
+  translateX: [
+    {value: [130,0], duration: fade_duration},
+    {value: 0, duration: stay_duration},
+    {value: [0,-130], duration: fade_duration}],
+  opacity: [
+    {value: [0,1], duration: fade_duration},
+    {value: 1, duration: stay_duration},
+    {value: [1,0], duration: fade_duration}],
+  complete: function() {detailIndex++ , textDetail.innerText = detailWords[detailIndex]}
+  //Index 1
+})
+.add({
+  //User interface
+  translateX: [
+    {value: [130,0], duration: fade_duration},
+    {value: 0, duration: stay_duration},
+    {value: [0,-130], duration: fade_duration}],
+  opacity: [
+    {value: [0,1], duration: fade_duration},
+    {value: 1, duration: stay_duration},
+    {value: [1,0], duration: fade_duration}],
+  complete: function() {detailIndex++ , textDetail.innerText = detailWords[detailIndex]}
+  //Index 2
+})
+.add({
+  //User experience
+  translateX: [
+    {value: [130,0], duration: fade_duration},
+    {value: 0, duration: stay_duration},
+    {value: [0,-130], duration: fade_duration}],
+  opacity: [
+    {value: [0,1], duration: fade_duration},
+    {value: 1, duration: stay_duration},
+    {value: [1,0], duration: fade_duration}],
+  complete: function() {detailIndex++ , textDetail.innerText = detailWords[detailIndex]}
+  //Index 3
+})
+.add({
+  //games
+  translateX: [
+    {value: [130,0], duration: fade_duration},
+    {value: 0, duration: stay_duration},
+    {value: [0,-130], duration: fade_duration}],
+  opacity: [
+    {value: [0,1], duration: fade_duration},
+    {value: 1, duration: stay_duration},
+    {value: [1,0], duration: fade_duration}],
+  complete: function() {
+    detailIndex = 0;
+    textDetail.innerText = detailWords[detailIndex]
+    detailTimeline.restart()
+  }})
+
+
+  
