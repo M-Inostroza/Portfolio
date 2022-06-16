@@ -15,9 +15,54 @@ const bulletTextsSM = [
     "Content strategy & planning"
 ]
 
-console.log("Welcome, dear traveller... feel free to inspect everything!")
-
 //Main variables:
+
+
+//------------MOONS------------//
+
+//--Moon SSNF--//
+
+// Moon animation
+var moon_ssnf = bodymovin.loadAnimation({
+    container: document.getElementById("moon_ssnf"),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/Moon SSNF.json'
+})
+
+//--Moon Moxy--//
+
+// Moon animation
+var moon2_moxy = bodymovin.loadAnimation({
+    container: document.getElementById("moon2_moxy"),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/Moon 2 SSNF.json'
+})
+
+//-Moon Unknown-//
+
+//Moon animation
+var moon3_unknown = bodymovin.loadAnimation({
+    container: document.getElementById("moon3_unknown"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: '/anims/Moon 3 Unknown.json'
+})
+
+
+//-- Background Planet --//
+
+var backgroundCover = bodymovin.loadAnimation({
+    container: document.getElementById("background_planet"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: '/anims/works_halfPlanet.json'
+})
 
 const buttons = document.querySelectorAll("[data-carousel-button]"); //Arrow buttons
 const moonTitle = document.querySelector('.moon-title'); //Title

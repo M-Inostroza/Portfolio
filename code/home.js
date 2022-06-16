@@ -185,54 +185,33 @@ var window_hire_anim = bodymovin.loadAnimation({
 // Reduces anim speed
 window_hire_anim.setSpeed(0.7);
 
+//-----------------------------------//
 
-//------------MOONS------------//
+//--Title Intro--//
+const title_element = document.querySelector('.container-main-title');
+const title_text = document.querySelector('.main-title')
 
-//--Moon SSNF--//
-
-// Moon animation
-var moon_ssnf = bodymovin.loadAnimation({
-    container: document.getElementById("moon_ssnf"),
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: '/anims/Moon SSNF.json'
+//Opening and title display
+document.addEventListener('DOMContentLoaded', () => {
+  anime({
+    begin: () => {
+      title_text.style.opacity = 0;
+    },
+    targets: title_element,
+    scaleX: [0,1],
+    easing: 'easeInOutQuad',
+    duration: 300,
+    delay: 400,
+    complete: () => {
+      anime({
+        targets: title_text,
+        opacity: [0,1],
+        easing: 'easeInOutQuad',
+        duration: 250
+      })
+    }
+  })
 })
-
-//--Moon Moxy--//
-
-// Moon animation
-var moon2_moxy = bodymovin.loadAnimation({
-    container: document.getElementById("moon2_moxy"),
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: '/anims/Moon 2 SSNF.json'
-})
-
-//-Moon Unknown-//
-
-//Moon animation
-var moon3_unknown = bodymovin.loadAnimation({
-    container: document.getElementById("moon3_unknown"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: '/anims/Moon 3 Unknown.json'
-})
-
-
-//-- Background Planet --//
-
-var backgroundCover = bodymovin.loadAnimation({
-    container: document.getElementById("background_planet"),
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: '/anims/works_halfPlanet.json'
-})
-
-
 
 //-----Shifting text-----//
 

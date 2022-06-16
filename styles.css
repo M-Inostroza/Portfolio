@@ -65,13 +65,23 @@ main {
     z-index: 0;
 }
 
-.main-title { 
+.container-main-title {
     position: absolute;
+    display: flex;
+    align-items: center;
+    background-image: url(/images/base_main_title.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 98rem;
+    height: 14rem;
     left: 6%;
     top: 8%;
     z-index: 2;
 }
 
+.main-title {
+    margin-left: 2.8rem;
+}
 
 .code {
     color: #F09FCE;
