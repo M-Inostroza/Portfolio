@@ -133,11 +133,10 @@ activeElement.addEventListener('click', ()=> {
                 }, 200);
             },
             targets: moonTitle,
-            scale: 1.8,
             easing: "easeInOutQuad",
             duration: 250,
-            translateY: -60,
-            translateX: 20,
+            translateY: -80,
+            translateX: -80,
         })
 
         
@@ -196,7 +195,7 @@ activeElement.addEventListener('click', ()=> {
             begin:  ()=>{canClick=false},
             targets: [centerElement, click_container],
             delay: 100,
-            scale: 2.3,
+            scale: 1.6,
             translateX: -250,
             easing: 'easeInOutQuad',
             duration: 350,
@@ -343,8 +342,8 @@ buttons.forEach(button => {
                 //Center to left-down
                 anime({
                     targets: activeMoon,
-                    translateX: [0,-615],
-                    translateY: [0,190],
+                    translateX: [0,-472],
+                    translateY: [0,172],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
@@ -359,7 +358,7 @@ buttons.forEach(button => {
                 //Left to right
                 anime({
                     targets: leftMoon,
-                    translateX: [0,1230],
+                    translateX: [0,948],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
@@ -373,8 +372,8 @@ buttons.forEach(button => {
                 //Down-right to center
                 anime({
                     targets: rightMoon,
-                    translateX: [0,-615],
-                    translateY: [0,-190],
+                    translateX: [0,-472],
+                    translateY: [0,-172],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
@@ -411,8 +410,8 @@ buttons.forEach(button => {
                 //Center to right-down
                 anime({
                     targets: activeMoon,
-                    translateX: [0,615],
-                    translateY: [0,190],
+                    translateX: [0,472],
+                    translateY: [0,172],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
@@ -427,7 +426,7 @@ buttons.forEach(button => {
                 //Right to left
                 anime({
                     targets: rightMoon,
-                    translateX: [0,-1230],
+                    translateX: [0,-948],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
@@ -441,8 +440,8 @@ buttons.forEach(button => {
                 //Down-left to center
                 anime({
                     targets: leftMoon,
-                    translateX: [0,615],
-                    translateY: [0,-190],
+                    translateX: [0,472],
+                    translateY: [0,-172],
                     opacity: [1,0.5,1],
                     easing: 'easeInOutQuad',
                     duration: 750,
