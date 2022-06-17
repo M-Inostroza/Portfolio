@@ -538,29 +538,19 @@ main {
     bottom: 85%;
     left: 15%;
     z-index: 2;
+    opacity: 0;
 }
 
 .title-works {
     text-align: center;
-}
-
-.title-works-base {
-    background-image: url(/images/name\ base.png);
-    width: 22rem;
-    height: 5rem;
-    position: absolute;
-    left: 17%;
-    top: 11%;
-    z-index: 1;
-    opacity: 70%;
+    font-size: 4rem;
+    opacity: 0;
 }
 
 .title-active {
     position: absolute;
     top: 15%;
-    color: white;
 }
-
 
 .UI-group {
     grid-row: 2;
