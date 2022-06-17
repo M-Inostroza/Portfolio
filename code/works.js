@@ -15,7 +15,16 @@ const bulletTextsSM = [
     "Content strategy & planning"
 ]
 
-//Main variables:
+//Click invitation
+const click_container = document.getElementById('frame-click')
+
+const click_anim = bodymovin.loadAnimation({
+    container: click_container,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/click.json'
+})
 
 
 //------------MOONS------------//
@@ -53,6 +62,8 @@ var moon3_unknown = bodymovin.loadAnimation({
     path: '/anims/Moon 3 Unknown.json'
 })
 
+const lock_img = document.querySelector('[data-lock]')
+
 
 //-- Background Planet --//
 
@@ -64,11 +75,14 @@ var backgroundCover = bodymovin.loadAnimation({
     path: '/anims/works_halfPlanet.json'
 })
 
-const buttons = document.querySelectorAll("[data-carousel-button]"); //Arrow buttons
+//Arrow buttons
+const buttons = document.querySelectorAll("[data-carousel-button]");
+
 const moonTitle = document.querySelector('.moon-title'); //Title
 window.onload = function changeText() {moonTitle.innerText = "SSNF"}
 
-const activeElement = document.querySelector('[data-moons]') //Element in the center
+//Element in the center
+const activeElement = document.querySelector('[data-moons]')
 
 //Text elements
 const textContainer = document.querySelector('.text-container');
@@ -154,8 +168,9 @@ activeElement.addEventListener('click', ()=> {
                 element.classList.add('bullet-point')
                 bulletList.appendChild(element)
             }
-        } else {
+        } else if (centerElement.dataset.name == "unknown") {
             console.log('working on it...')
+            lock_img.classList.remove('noDisplay')
         }
 
         //Shows the bulletpoints & video container
@@ -179,7 +194,7 @@ activeElement.addEventListener('click', ()=> {
         //Moves moon from center to left with scale
         anime({
             begin:  ()=>{canClick=false},
-            targets: centerElement,
+            targets: [centerElement, click_container],
             delay: 100,
             scale: 2.3,
             translateX: -250,
@@ -252,7 +267,7 @@ activeElement.addEventListener('click', ()=> {
         //Moves moon from left to center with scale
         anime({
             begin:  ()=>{canClick=false},
-            targets: centerElement,
+            targets: [centerElement, click_container],
             scale: 1,
             translateX: 0,
             easing: 'easeInOutQuad',
@@ -272,6 +287,7 @@ activeElement.addEventListener('click', ()=> {
                 });
                 leftElement.classList.toggle('noDisplay')
                 rightElement.classList.toggle('noDisplay')
+                lock_img.classList.add('noDisplay')
             },
             targets: [outElements, leftElement, rightElement],
             delay: 100,
@@ -282,10 +298,6 @@ activeElement.addEventListener('click', ()=> {
     }
     
 })
-
-
-
-
 
 
 //-----Rotation mechanic-----//
@@ -479,6 +491,5 @@ const observerWorks = new IntersectionObserver(entries => {
 });
 
 observerWorks.observe(title_element_works)
-
 
 
