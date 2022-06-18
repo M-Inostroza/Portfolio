@@ -6,6 +6,10 @@ let [...skillAvatars] = document.querySelectorAll('.skill-avatar');
 let [...skillText] = document.querySelectorAll('.skill-text');
 const frameElement = document.querySelector('.skill-frame-container');
 
+//Queries
+const _querySizeTablet = window.matchMedia('(max-width: 768px)');
+const _querySizePhone = window.matchMedia('(max-width: 375px)');
+
 //tabs
 const designTab = document.querySelector('[data-design]')
 const codeTab = document.querySelector('[data-code]')
@@ -37,6 +41,20 @@ skillAvatars.forEach(avatar => {
     avatar.addEventListener('mouseleave', () => { 
         close_text_avatar(avatar, openFrame)
     })
+
+    if(_querySizeTablet.matches || _querySizePhone.matches) {
+        const avatarObserver = new IntersectionObserver(entries=>{
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    open_text_avatar(entry.target, openFrame)
+                } else {
+                    close_text_avatar(entry.target, openFrame)
+                }
+            })
+        })
+
+        avatarObserver.observe(avatar)
+    }
 })
 
 
@@ -44,41 +62,93 @@ skillAvatars.forEach(avatar => {
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         let translateX_value;
+        let translateY_value;
         switch (entry.target.dataset.name) {
             case 'ps':
                 translateX_value = 600
+                if (_querySizeTablet.matches) {translateX_value = 400}
+                if (_querySizePhone.matches) {
+                    translateY_value = -170
+                    translateX_value = 0
+                }
                 break;
             case 'ai':
                 translateX_value = 500
+                if (_querySizeTablet.matches) {translateX_value = 340}
+                if (_querySizePhone.matches) {
+                    translateY_value = -50
+                    translateX_value = 0
+                }
                 break;
             case 'ae':
-                translateX_value = 650 
+                translateX_value = 650
+                if (_querySizeTablet.matches) {translateX_value = 440}
+                if (_querySizePhone.matches) {
+                    translateY_value = -130
+                    translateX_value = 0
+                }
                 break;
             case 'fi':
                 translateX_value = 700
+                if (_querySizeTablet.matches) {translateX_value = 480}
+                if (_querySizePhone.matches) {
+                    translateY_value = -190
+                    translateX_value = 0
+                }
                 break;
             case 'js':
                 translateX_value = 550
+                if (_querySizeTablet.matches) {translateX_value = 400}
+                if (_querySizePhone.matches) {
+                    translateY_value = -100
+                    translateX_value = 0
+                }
                 break;
             case 'C#':
                 translateX_value = 450
+                if (_querySizeTablet.matches) {translateX_value = 260}
+                if (_querySizePhone.matches) {
+                    translateY_value = 60
+                    translateX_value = 0
+                }
                 break;
             case 'Php':
                 translateX_value = 350
+                if (_querySizeTablet.matches) {translateX_value = 180}
+                if (_querySizePhone.matches) {
+                    translateY_value = 100
+                    translateX_value = 0
+                }
                 break;
             case 'html':
                 translateX_value = 800
+                if (_querySizeTablet.matches) {translateX_value = 540}
+                if (_querySizePhone.matches) {
+                    translateY_value = -190
+                    translateX_value = 0
+                }
                 break;
             case 'css':
                 translateX_value = 750
+                if (_querySizeTablet.matches) {translateX_value = 500}
+                if (_querySizePhone.matches) {
+                    translateY_value = -180
+                    translateX_value = 0
+                }
                 break;
             case 'wp':
                 translateX_value = 250
+                if (_querySizeTablet.matches) {translateX_value = 140}
+                if (_querySizePhone.matches) {
+                    translateY_value = 100
+                    translateX_value = 0
+                }
                 break;
         }
         anime({
             targets: entry.target,
             translateX: [0, translateX_value],
+            translateY: [0, translateY_value],
             easing: 'easeInOutQuad',
             duration: 850,
             opacity: [0,1],
@@ -97,6 +167,7 @@ tabTitles.forEach(title => {
         switch (title.dataset.title) {
             case 'design':
                 frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_1.png)";
+                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_1.png)";}
                 delete title.dataset.back
                 title.dataset.main = true;
                 tabTitles[1].dataset.back = true;
@@ -107,6 +178,7 @@ tabTitles.forEach(title => {
                 break;
             case 'code':
                 frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_2.png)";
+                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_2.png)";}
                 delete title.dataset.back
                 title.dataset.main = true;
                 tabTitles[0].dataset.back = true;
@@ -117,6 +189,7 @@ tabTitles.forEach(title => {
                 break;
             case 'web':
                 frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_3.png)";
+                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_3.png)";}
                 delete title.dataset.back
                 title.dataset.main = true;
                 tabTitles[0].dataset.back = true;

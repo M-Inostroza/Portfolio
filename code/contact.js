@@ -44,3 +44,38 @@ var planet_anim = bodymovin.loadAnimation({
     autoplay: true,
     path: '/anims/contact_halfPlanet.json'
 })
+
+
+const title_element_contact = document.querySelector('.title-contact-container');
+const title_text_contact = document.querySelector('.title-contact')
+
+
+//Opening and title display
+const observerContact = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting){
+            anime({
+                targets: title_element_contact,
+                scaleX: [0,1],
+                opacity: [0,1],
+                easing: 'easeInOutQuad',
+                duration: 250,
+                delay: 350,
+                complete: ()=>{
+                    anime({
+                        targets: title_text_contact,
+                        opacity: [0,1],
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        delay: 150
+                    })
+                }
+            })
+        } else {
+            title_element_contact.style.opacity = 0;
+            title_text_contact.style.opacity = 0;
+        }
+    });
+});
+
+observerContact.observe(title_element_contact)
