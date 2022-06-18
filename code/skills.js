@@ -30,7 +30,7 @@ skillAvatars.forEach(avatar => {
         path: '/anims/skill_avatar_open.json'
     })
 
-    avatar.addEventListener('mouseenter', () => {
+    avatar.addEventListener('mouseover', () => {
         open_text_avatar(avatar, openFrame)
     })
     
@@ -135,10 +135,8 @@ tabTitles.forEach(title => {
 function open_text_avatar(avatar, anim) {
     switch (avatar.querySelector('.skill-text').textContent) {
         case 'Ps':
+            skillText[0].textContent = 'Photoshop'
             anime({
-                begin: ()=> {
-                    skillText[0].textContent = 'Photoshop'
-                },
                 targets: skillText[0],
                 opacity: [0,1],
                 scale: 0.6,
@@ -148,10 +146,8 @@ function open_text_avatar(avatar, anim) {
             break;
 
         case 'Ai':
+            skillText[1].textContent = 'Illustrator'
             anime({
-                begin: ()=> {
-                    skillText[1].textContent = 'Illustrator'
-                },
                 targets: skillText[1],
                 opacity: [0,1],
                 scale: 0.55,
@@ -160,10 +156,8 @@ function open_text_avatar(avatar, anim) {
             })
             break;
         case 'Ae':
+            skillText[2].textContent = 'After Effects'
             anime({
-                begin: ()=> {
-                    skillText[2].textContent = 'After Effects'
-                },
                 targets: skillText[2],
                 opacity: [0,1],
                 scale: 0.6,
@@ -172,10 +166,8 @@ function open_text_avatar(avatar, anim) {
             })
             break;
         case 'Fi':
+            skillText[3].textContent = 'Figma'
             anime({
-                begin: ()=> {
-                    skillText[3].textContent = 'Figma'
-                },
                 targets: skillText[3],
                 opacity: [0,1],
                 scale: 0.7,
@@ -184,10 +176,8 @@ function open_text_avatar(avatar, anim) {
             })
             break;
         case 'Js':
+            skillText[4].textContent = 'Javascript'
             anime({
-                begin: ()=> {
-                    skillText[4].textContent = 'Javascript'
-                },
                 targets: skillText[4],
                 opacity: [0,1],
                 scale: 0.6,
@@ -196,10 +186,8 @@ function open_text_avatar(avatar, anim) {
             })
             break;
         case 'Wp':
+            skillText[9].textContent = 'Wordpress'
             anime({
-                begin: ()=> {
-                    skillText[9].textContent = 'Wordpress'
-                },
                 targets: skillText[9],
                 opacity: [0,1],
                 scale: 0.6,
@@ -291,3 +279,37 @@ function close_text_avatar(avatar, anim) {
     anim.setDirection(-1)
     anim.play()
 }
+
+//--Title Intro--//
+const title_element_skills = document.querySelector('.title-skills-container');
+const title_text_skills = document.querySelector('.title-skills')
+
+//Opening and title display
+const observerSkills = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting){
+            anime({
+                targets: title_element_skills,
+                scaleX: [0,1],
+                opacity: [0,1],
+                easing: 'easeInOutQuad',
+                duration: 250,
+                delay: 350,
+                complete: ()=>{
+                    anime({
+                        targets: title_text_skills,
+                        opacity: [0,1],
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        delay: 150
+                    })
+                }
+            })
+        } else {
+            title_element_skills.style.opacity = 0;
+            title_text_skills.style.opacity = 0;
+        }
+    });
+});
+
+observerSkills.observe(title_element_skills)

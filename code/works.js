@@ -15,6 +15,10 @@ const bulletTextsSM = [
     "Content strategy & planning"
 ]
 
+//Screen size query
+const querySizeTablet = window.matchMedia('(max-width: 768px)');
+const querySizePhone = window.matchMedia('(max-width: 375px)');
+
 //Click invitation
 const click_container = document.getElementById('frame-click')
 
@@ -120,7 +124,7 @@ activeElement.addEventListener('click', ()=> {
     let rightElement = activeElement.querySelector('[data-right]')
     
     if(!isActive && canClick){
-        //Scales the title up
+        //Moves the text when element selected
         anime({
             begin: () => {
                 //Activates container
@@ -137,7 +141,47 @@ activeElement.addEventListener('click', ()=> {
             duration: 250,
             translateY: -80,
             translateX: -80,
-        })
+        });
+        //Query tablet --- move text
+        if(querySizeTablet.matches) {
+            anime({
+                begin: () => {
+                    //Activates container
+                    setTimeout(() => {
+                        textContainer.classList.remove('noDisplay')
+                        bulletPointContainer.classList.remove('noDisplay')
+                        textFrame.setDirection(1)
+                        textFrame.setSpeed(1.5)
+                        textFrame.play()
+                    }, 200);
+                },
+                targets: moonTitle,
+                easing: "easeInOutQuad",
+                duration: 250,
+                translateY: 40,
+                translateX: -60,
+            });
+        }
+        //Query Phone --- move text
+        if(querySizePhone.matches) {
+            anime({
+                begin: () => {
+                    //Activates container
+                    setTimeout(() => {
+                        textContainer.classList.remove('noDisplay')
+                        bulletPointContainer.classList.remove('noDisplay')
+                        textFrame.setDirection(1)
+                        textFrame.setSpeed(1.5)
+                        textFrame.play()
+                    }, 200);
+                },
+                targets: moonTitle,
+                easing: "easeInOutQuad",
+                duration: 250,
+                translateY: 60,
+                translateX: -100,
+            });
+        }
 
         
         //Creates Bulletpoints & play video
@@ -202,7 +246,38 @@ activeElement.addEventListener('click', ()=> {
             complete: ()=>{
                 canClick=true
             }    
-        })
+        });
+        //Query tablet --- Move moon
+        if(querySizeTablet.matches) {
+            anime({
+                begin:  ()=>{canClick=false},
+                targets: [centerElement, click_container],
+                delay: 100,
+                scale: 1.2,
+                translateX: -210,
+                translateY: 60,
+                easing: 'easeInOutQuad',
+                duration: 350,
+                complete: ()=>{
+                    canClick=true
+                }    
+            });
+        }
+        //Query phone --- Move moon
+        if(querySizePhone.matches) {
+            anime({
+                begin:  ()=>{canClick=false},
+                targets: [centerElement, click_container],
+                delay: 100,
+                scale: 1.2,
+                translateY: -120,
+                easing: 'easeInOutQuad',
+                duration: 350,
+                complete: ()=>{
+                    canClick=true
+                }    
+            });
+        }
 
         //Dissapear elements
         anime({
@@ -275,7 +350,23 @@ activeElement.addEventListener('click', ()=> {
             complete: ()=>{
                 canClick=true
             }
-        })
+        });
+        //Query tablet --- move moon
+        if(querySizeTablet.matches) {
+            anime({
+                begin:  ()=>{canClick=false},
+                targets: [centerElement, click_container],
+                scale: 1,
+                translateX: 0,
+                translateY: 0,
+                easing: 'easeInOutQuad',
+                delay: 100,
+                duration: 350,
+                complete: ()=>{
+                    canClick=true
+                }
+            });
+        }
 
         //Display elements
         anime({
@@ -337,7 +428,8 @@ buttons.forEach(button => {
                     }
                 })
 
-                //-----Moon movement-----//
+                //----------Moon movement----------//
+                
                 
                 //Center to left-down
                 anime({
@@ -354,6 +446,40 @@ buttons.forEach(button => {
                         canClick = true;
                     }
                 });
+                //Query tablet --- Center to left-down
+                if (querySizeTablet.matches) {
+                    anime({
+                        targets: activeMoon,
+                        translateX: [0,-264],
+                        translateY: [0,200],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            activeMoon.style.transform = 'initial';
+                            delete activeMoon.dataset.active
+                            rightMoon.dataset.active = true;
+                            canClick = true;
+                        }
+                    });
+                }
+                //Query phone --- Center to left-down
+                if (querySizePhone.matches) {
+                    anime({
+                        targets: activeMoon,
+                        translateX: [0,-106],
+                        translateY: [0,178],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            activeMoon.style.transform = 'initial';
+                            delete activeMoon.dataset.active
+                            rightMoon.dataset.active = true;
+                            canClick = true;
+                        }
+                    });
+                }
 
                 //Left to right
                 anime({
@@ -368,6 +494,36 @@ buttons.forEach(button => {
                         activeMoon.dataset.left = true;
                     }
                 });
+                //Query tablet --- Left to Right
+                if (querySizeTablet.matches) {
+                    anime({
+                        targets: leftMoon,
+                        translateX: [0,530],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            leftMoon.style.transform = 'initial';
+                            delete leftMoon.dataset.left
+                            activeMoon.dataset.left = true;
+                        }
+                    });
+                }
+                //Query phone --- Left to Right
+                if (querySizePhone.matches) {
+                    anime({
+                        targets: leftMoon,
+                        translateX: [0,210],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            leftMoon.style.transform = 'initial';
+                            delete leftMoon.dataset.left
+                            activeMoon.dataset.left = true;
+                        }
+                    });
+                }
 
                 //Down-right to center
                 anime({
@@ -382,7 +538,40 @@ buttons.forEach(button => {
                         delete rightMoon.dataset.right
                         leftMoon.dataset.right = true;
                     }
-                });  
+                });
+                //Query tablet Down-right to center
+                if (querySizeTablet.matches) {
+                    anime({
+                        targets: rightMoon,
+                        translateX: [0,-264],
+                        translateY: [0,-200],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            rightMoon.style.transform = 'initial';
+                            delete rightMoon.dataset.right
+                            leftMoon.dataset.right = true;
+                        }
+                    });
+                }
+                //Query Phone Down-right to center
+                if (querySizePhone.matches) {
+                    anime({
+                        targets: rightMoon,
+                        translateX: [0,-106],
+                        translateY: [0,-178],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            rightMoon.style.transform = 'initial';
+                            delete rightMoon.dataset.right
+                            leftMoon.dataset.right = true;
+                        }
+                    });
+                }
+
                 activeObject = activeMoon
             } else {
 
@@ -422,6 +611,40 @@ buttons.forEach(button => {
                         canClick = true;
                     }
                 });
+                //Query tablet --- Center to Right-down
+                if(querySizeTablet.matches) {
+                    anime({
+                        targets: activeMoon,
+                        translateX: [0,264],
+                        translateY: [0,200],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            activeMoon.style.transform = 'initial';
+                            delete activeMoon.dataset.active
+                            activeMoon.dataset.right = true;
+                            canClick = true;
+                        }
+                    });
+                }
+                //Query phone --- Center to Right-down
+                if(querySizePhone.matches) {
+                    anime({
+                        targets: activeMoon,
+                        translateX: [0,106],
+                        translateY: [0,178],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            activeMoon.style.transform = 'initial';
+                            delete activeMoon.dataset.active
+                            activeMoon.dataset.right = true;
+                            canClick = true;
+                        }
+                    });
+                }
 
                 //Right to left
                 anime({
@@ -436,6 +659,37 @@ buttons.forEach(button => {
                         rightMoon.dataset.left = true;
                     }
                 });
+                //Query tablet --- Right to left
+                if(querySizeTablet.matches) {
+                    anime({
+                        targets: rightMoon,
+                        translateX: [0,-530],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            rightMoon.style.transform = 'initial';
+                            delete rightMoon.dataset.right
+                            rightMoon.dataset.left = true;
+                        }
+                    });
+                }
+                //Query phone --- Right to left
+                if(querySizePhone.matches) {
+                    anime({
+                        targets: rightMoon,
+                        translateX: [0,-210],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            rightMoon.style.transform = 'initial';
+                            delete rightMoon.dataset.right
+                            rightMoon.dataset.left = true;
+                        }
+                    });
+                }
+                
 
                 //Down-left to center
                 anime({
@@ -450,7 +704,39 @@ buttons.forEach(button => {
                         delete leftMoon.dataset.left;
                         leftMoon.dataset.active = true;
                     }
-                });  
+                });
+                //Query tablet --- Down-left to center
+                if(querySizeTablet.matches) {
+                    anime({
+                        targets: leftMoon,
+                        translateX: [0,264],
+                        translateY: [0,-200],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            leftMoon.style.transform = 'initial';
+                            delete leftMoon.dataset.left;
+                            leftMoon.dataset.active = true;
+                        }
+                    });
+                }
+                //Query phone --- Down-left to center
+                if(querySizePhone.matches) {
+                    anime({
+                        targets: leftMoon,
+                        translateX: [0,106],
+                        translateY: [0,-178],
+                        opacity: [1,0.5,1],
+                        easing: 'easeInOutQuad',
+                        duration: 750,
+                        complete: () => {
+                            leftMoon.style.transform = 'initial';
+                            delete leftMoon.dataset.left;
+                            leftMoon.dataset.active = true;
+                        }
+                    });
+                }
             }    
         }
     })
