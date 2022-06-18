@@ -1,4 +1,7 @@
 
+//Queries
+const _queryTablet = window.matchMedia('(max-width: 768px)')
+const _queryPhone = window.matchMedia('(max-width: 375px)')
 
 //-----PLANET WORKS-----//
 
@@ -34,19 +37,6 @@ frame_quad_element.addEventListener('mouseenter', (e) => {
     window_works_anim.play()
 })
 
-//Click to scroll
-frame_quad_element.addEventListener('click', (e) => {
-    var section_work_container = document.querySelector('.UI-works');
-    section_work_container.scrollIntoView({behavior: "smooth"})
-})
-
-// PLAY OUT
-frame_quad_element.addEventListener('mouseleave', (e) => {
-    frame_quad_anim.setDirection(-1)
-    frame_quad_anim.play()
-    window_works.style.opacity = 0;
-})
-
 // Floating window element
 const window_works = document.getElementById("work-floating-window");
 
@@ -61,6 +51,28 @@ var window_works_anim = bodymovin.loadAnimation({
 
 // Reduces anim speed
 window_works_anim.setSpeed(0.7);
+
+if(_queryTablet.matches || _queryPhone.matches) {
+    frame_quad_anim.setDirection(1)
+    frame_quad_anim.play()
+    window_works.style.opacity = 1;
+    window_works_anim.play()
+}
+
+//Click to scroll
+frame_quad_element.addEventListener('click', (e) => {
+    var section_work_container = document.querySelector('.UI-works');
+    section_work_container.scrollIntoView({behavior: "smooth"})
+})
+
+// PLAY OUT
+frame_quad_element.addEventListener('mouseleave', (e) => {
+    frame_quad_anim.setDirection(-1)
+    frame_quad_anim.play()
+    window_works.style.opacity = 0;
+})
+
+
 
 
 
@@ -96,19 +108,6 @@ skills_element.addEventListener('mouseenter', (e) => {
     window_skills_anim.play()
 })
 
-//Click to scroll
-skills_element.addEventListener('click', (e) => {
-    var section_skills_container = document.querySelector('.skill-frame-container');
-    section_skills_container.scrollIntoView({behavior: "smooth"})
-})
-
-// PLAY OUT
-skills_element.addEventListener('mouseleave', (e) => {
-    frame_skills.setDirection(-1);
-    frame_skills.play();
-    window_skills.style.opacity = 0;
-})
-
 // Floating window element
 const window_skills = document.getElementById("skill-floating-window");
 
@@ -123,6 +122,27 @@ var window_skills_anim = bodymovin.loadAnimation({
 
 // Reduces anim speed
 window_skills_anim.setSpeed(0.7);
+
+
+if(_queryTablet.matches || _queryPhone.matches) {
+    frame_skills.play();
+    frame_skills.setDirection(1);
+    window_skills.style.opacity = 1;
+    window_skills_anim.play()
+}
+
+//Click to scroll
+skills_element.addEventListener('click', (e) => {
+    var section_skills_container = document.querySelector('.skill-frame-container');
+    section_skills_container.scrollIntoView({behavior: "smooth"})
+})
+
+// PLAY OUT
+skills_element.addEventListener('mouseleave', (e) => {
+    frame_skills.setDirection(-1);
+    frame_skills.play();
+    window_skills.style.opacity = 0;
+})
 
 
 
@@ -157,19 +177,6 @@ contact_element.addEventListener('mouseenter', (e) => {
     window_hire_anim.play()
 })
 
-//Click to scroll
-contact_element.addEventListener('click', (e) => {
-    var section_contact_container = document.querySelector('.section-contact-container');
-    section_contact_container.scrollIntoView({behavior: "smooth"})
-})
-
-// PLAY OUT
-contact_element.addEventListener('mouseleave', (e) => {
-    frame_contact.setDirection(-1);
-    frame_contact.play();
-    window_hire.style.opacity = 0;
-})
-
 // Floating window element
 const window_hire = document.getElementById("hire-floating-window");
 
@@ -184,6 +191,29 @@ var window_hire_anim = bodymovin.loadAnimation({
 
 // Reduces anim speed
 window_hire_anim.setSpeed(0.7);
+
+if(_queryTablet.matches || _queryPhone.matches) {
+    frame_contact.play();
+    frame_contact.setDirection(1);
+    window_hire.style.opacity = 1;
+    window_hire_anim.play()
+}
+
+
+//Click to scroll
+contact_element.addEventListener('click', (e) => {
+    var section_contact_container = document.querySelector('.section-contact-container');
+    section_contact_container.scrollIntoView({behavior: "smooth"})
+})
+
+// PLAY OUT
+contact_element.addEventListener('mouseleave', (e) => {
+    frame_contact.setDirection(-1);
+    frame_contact.play();
+    window_hire.style.opacity = 0;
+})
+
+
 
 //-----------------------------------//
 
