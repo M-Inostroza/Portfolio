@@ -7,6 +7,10 @@ const lastName_input = document.getElementById('lastName');
 const email_input = document.getElementById('email');
 const message_input = document.getElementById('message');
 
+const lock_data = document.querySelector('.lock');
+const privacy_data = document.querySelector('.data-container');
+
+const form_container = document.querySelector('.form-container')
 const form = document.querySelector('.grid-form')
 
 let can_submit;
@@ -78,4 +82,16 @@ const observerContact = new IntersectionObserver(entries => {
     });
 });
 
-observerContact.observe(title_element_contact)
+observerContact.observe(title_element_contact);
+
+lock_data.addEventListener('click', ()=> {
+    
+    privacy_data.classList.toggle('noDisplay')
+    form_container.classList.toggle('noDisplay')
+    anime({
+        targets: privacy_data,
+        scaleX: [0,1],
+        easing: 'easeInOutQuad',
+        duration: 200
+    })
+})
