@@ -134,10 +134,9 @@ main {
 /* -Skills- */
 
 #planet-skills {
-    overflow: hidden;
     position: absolute;
-    width: 33rem;
-    height: 33rem;
+    width: 35rem;
+    height: 35rem;
     left: 70%;
     top: 20%;
 }
