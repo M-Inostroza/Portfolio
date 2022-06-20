@@ -16,7 +16,7 @@ const bulletTextsSM = [
 ]
 
 //Screen size query
-const querySizeTablet = window.matchMedia('(max-width: 768px)');
+const querySizeTablet = window.matchMedia('(max-width: 780px)');
 const querySizePhone = window.matchMedia('(max-width: 420px)');
 
 //Click invitation

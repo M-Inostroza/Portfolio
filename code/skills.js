@@ -7,7 +7,7 @@ let [...skillText] = document.querySelectorAll('.skill-text');
 const frameElement = document.querySelector('.skill-frame-container');
 
 //Queries
-const _querySizeTablet = window.matchMedia('(max-width: 768px)');
+const _querySizeTablet = window.matchMedia('(max-width: 780px)');
 const _querySizePhone = window.matchMedia('(max-width: 420px)');
 
 //tabs
@@ -166,8 +166,8 @@ tabTitles.forEach(title => {
     title.addEventListener('click', () => {
         switch (title.dataset.title) {
             case 'design':
-                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_1.png)";
-                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_1.png)";}
+                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_1_svg.svg)";
+                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_1_svg.svg)";}
                 delete title.dataset.back
                 title.dataset.main = true;
                 tabTitles[1].dataset.back = true;
@@ -177,8 +177,8 @@ tabTitles.forEach(title => {
                 designTab.classList.remove('noDisplay')
                 break;
             case 'code':
-                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_2.png)";
-                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_2.png)";}
+                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_2_svg.svg)";
+                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_2_svg.svg)";}
                 delete title.dataset.back
                 title.dataset.main = true;
                 tabTitles[0].dataset.back = true;
@@ -188,8 +188,8 @@ tabTitles.forEach(title => {
                 webTab.classList.add('noDisplay')
                 break;
             case 'web':
-                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_3.png)";
-                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_3.png)";}
+                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_3_svg.svg)";
+                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_3_svg.svg)";}
                 delete title.dataset.back
                 title.dataset.main = true;
                 tabTitles[0].dataset.back = true;

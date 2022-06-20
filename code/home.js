@@ -1,7 +1,7 @@
 
 //Queries
-const _queryTablet = window.matchMedia('(max-width: 768px)')
-const _queryPhone = window.matchMedia('(max-width: 375px)')
+const _queryTablet = window.matchMedia('(max-width: 780px)')
+const _queryPhone = window.matchMedia('(max-width: 420px)')
 
 //-----PLANET WORKS-----//
 
