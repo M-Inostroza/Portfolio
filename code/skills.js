@@ -8,7 +8,7 @@ const frameElement = document.querySelector('.skill-frame-container');
 
 //Queries
 const _querySizeTablet = window.matchMedia('(max-width: 768px)');
-const _querySizePhone = window.matchMedia('(max-width: 375px)');
+const _querySizePhone = window.matchMedia('(max-width: 420px)');
 
 //tabs
 const designTab = document.querySelector('[data-design]')

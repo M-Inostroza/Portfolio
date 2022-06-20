@@ -62,7 +62,7 @@ body { font-size: 1.4rem;} /* =14px */
 
 main {
     position: relative;
-    background-image: url(/images/home_BG.png);
+    background-image: url(/images/home_BG.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -414,9 +414,9 @@ main {
     }
 }
 
-/*---Main phone res---*/ /*375px*/
+/*---Main phone res---*/ /*420px*/
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 420px) {
 
     main {
         height: 820px;
@@ -542,7 +542,7 @@ main {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
     position: relative;
-    background-image: url(/images/works_BG.png);
+    background-image: url(/images/works_BG.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -848,9 +848,9 @@ ul {
     }
 }
 
-/*---Main phone res---*/ /*375px*/
+/*---Main phone res---*/ /*420px*/
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 420px) {
 
     .UI-works {
         height: 812px;
@@ -980,7 +980,7 @@ ul {
 .UI-skills {
     position: relative;
     display: flex;
-    background-image: url(/images/skills_BG.png);
+    background-image: url(/images/skills_BG.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1137,12 +1137,17 @@ h3[data-title]:nth-child(2) {
 }
 
 #planet-skills-BG {
+
+    border: 1px red solid;
     position: absolute;
-    width: 70rem;
-    height: 70rem;
-    top: 28%;
+
+    width: 51.2rem;
+    height: 51.2rem;
+
+    bottom: 0%;
+    left: 0%;
     z-index: 1;
-    filter: blur(0.2rem);
+    filter: blur(0.1rem);
 }
 
 /*---Main tablet res---*/ /*768px*/
@@ -1234,17 +1239,18 @@ h3[data-title]:nth-child(2) {
     
     #planet-skills-BG {
         position: absolute;
-        width: 70rem;
-        height: 70rem;
-        top: 28%;
+        width: 51.2rem;
+        height: 51.2rem;
+        bottom: 0%;
+        left: 0%;
         z-index: 1;
         filter: blur(0.2rem);
     }
 }
 
-/*---Main phone res---*/ /*375px*/
+/*---Main phone res---*/ /*420px*/
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 420px) {
     
     .title-skills-container {
         background-size: contain;
@@ -1372,7 +1378,7 @@ h3[data-title]:nth-child(2) {
 .section-contact-container {
     position: relative;
     display: flex;
-    background-image: url(/images/contact_BG.png);
+    background-image: url(/images/contact_BG.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1561,9 +1567,9 @@ h3[data-title]:nth-child(2) {
         right: 1%;
     }
 }
-/*---Main phone res---*/ /*375px*/
+/*---Main phone res---*/ /*420px*/
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 420px) {
     
     .title-contact {
         font-size: 2.2rem;
