@@ -223,10 +223,8 @@ const title_text = document.querySelector('.title-main')
 
 //Opening and title display
 document.addEventListener('DOMContentLoaded', () => {
+  title_text.style.opacity = 0;
   anime({
-    begin: () => {
-      title_text.style.opacity = 0;
-    },
     targets: title_element,
     scaleX: [0,1],
     easing: 'easeInOutQuad',
