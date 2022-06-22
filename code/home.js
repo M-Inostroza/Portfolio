@@ -1,3 +1,18 @@
+//Loader
+const loader = document.querySelector('.loader');
+
+const loader_anim = bodymovin.loadAnimation({
+  container: loader,
+  renderer: 'svg',
+  loop: true,
+  autoplay: true,
+  path: '/anims/loader.json'
+})
+
+window.addEventListener('load', () => {
+  loader.style.display = 'none';
+})
+
 
 //Queries
 const _queryTablet = window.matchMedia('(max-width: 780px)')
