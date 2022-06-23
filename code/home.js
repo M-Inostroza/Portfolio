@@ -1,22 +1,58 @@
 //Loader
 const loader = document.querySelector('.loader');
 
+//--Title Intro--//
+const title_element = document.querySelector('.title-main-container');
+const title_text = document.querySelector('.title-main');
+
 const loader_anim = bodymovin.loadAnimation({
   container: loader,
   renderer: 'svg',
   loop: true,
   autoplay: true,
   path: '/anims/loader.json'
-})
+});
 
 window.addEventListener('load', () => {
-  loader.style.display = 'none';
+  anime({
+    targets: loader,
+    opacity: [1,0],
+    easing: 'easeInOutQuad',
+    complete: () => {
+      loader.style.display = 'none';
+    }
+  });
+
+
+  title_text.style.opacity = 0;
+  anime({
+    targets: title_element,
+    scaleX: [0,1],
+    easing: 'easeInOutQuad',
+    duration: 300,
+    delay: 800,
+    complete: () => {
+      anime({
+        targets: title_text,
+        opacity: [0,1],
+        easing: 'easeInOutQuad',
+        duration: 250
+      });
+    }
+  });
+
+});
+
+
+
+//Opening and title display
+document.addEventListener('DOMContentLoaded', () => {
+  
 })
 
-
 //Queries
-const _queryTablet = window.matchMedia('(max-width: 780px)')
-const _queryPhone = window.matchMedia('(max-width: 420px)')
+const _queryTablet = window.matchMedia('(max-width: 780px)');
+const _queryPhone = window.matchMedia('(max-width: 420px)');
 
 //-----PLANET WORKS-----//
 
@@ -27,7 +63,7 @@ var planet_works = bodymovin.loadAnimation({
     loop: true,
     autoplay: true,
     path: '/anims/planet_works.json'
-})
+});
 
 // Container frame element
 const frame_quad_element = document.getElementById("frame-planet-works");
@@ -39,7 +75,7 @@ var frame_quad_anim = bodymovin.loadAnimation({
     loop: false,
     autoplay: false,
     path: '/anims/frame_quad_works_in.json'
-})
+});
 
 // Adjust frame speed
 frame_quad_anim.setSpeed(2.5)
@@ -232,29 +268,6 @@ contact_element.addEventListener('mouseleave', (e) => {
 
 //-----------------------------------//
 
-//--Title Intro--//
-const title_element = document.querySelector('.title-main-container');
-const title_text = document.querySelector('.title-main')
-
-//Opening and title display
-document.addEventListener('DOMContentLoaded', () => {
-  title_text.style.opacity = 0;
-  anime({
-    targets: title_element,
-    scaleX: [0,1],
-    easing: 'easeInOutQuad',
-    duration: 300,
-    delay: 400,
-    complete: () => {
-      anime({
-        targets: title_text,
-        opacity: [0,1],
-        easing: 'easeInOutQuad',
-        duration: 250
-      })
-    }
-  })
-})
 
 //-----Shifting text-----//
 
