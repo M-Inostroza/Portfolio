@@ -2,8 +2,13 @@
 const loader = document.querySelector('.loader');
 
 //--Title Intro--//
-const title_element = document.querySelector('.title-main-container');
-const title_text = document.querySelector('.title-main');
+const title_element = document.querySelector('.home-title-container');
+const title_text = document.querySelector('.home-title');
+
+// Container frame element
+const planet_works_frame = document.getElementById("planet-works-frame");
+// Floating text element
+const works_frame_float = document.getElementById("works-frame-float");
 
 const loader_anim = bodymovin.loadAnimation({
   container: loader,
@@ -13,6 +18,7 @@ const loader_anim = bodymovin.loadAnimation({
   path: '/anims/loader.json'
 });
 
+//Waits until content is loaded before showing site
 window.addEventListener('load', () => {
   anime({
     targets: loader,
@@ -22,7 +28,6 @@ window.addEventListener('load', () => {
       loader.style.display = 'none';
     }
   });
-
 
   title_text.style.opacity = 0;
   anime({
@@ -43,13 +48,6 @@ window.addEventListener('load', () => {
 
 });
 
-
-
-//Opening and title display
-document.addEventListener('DOMContentLoaded', () => {
-  
-})
-
 //Queries
 const _queryTablet = window.matchMedia('(max-width: 780px)');
 const _queryPhone = window.matchMedia('(max-width: 420px)');
@@ -58,69 +56,65 @@ const _queryPhone = window.matchMedia('(max-width: 420px)');
 
 // Planet animation
 var planet_works = bodymovin.loadAnimation({
-    container: document.getElementById("planet-works"),
+    container: document.getElementById("home-planet-works"),
     renderer: 'svg',
     loop: true,
     autoplay: true,
-    path: '/anims/planet_works.json'
+    path: '/anims/home_planet_works.json'
 });
 
-// Container frame element
-const frame_quad_element = document.getElementById("frame-planet-works");
-
 // Frame animation
-var frame_quad_anim = bodymovin.loadAnimation({
-    container: frame_quad_element,
+var works_frame_anim = bodymovin.loadAnimation({
+    container: planet_works_frame,
     renderer: 'svg',
     loop: false,
     autoplay: false,
-    path: '/anims/frame_quad_works_in.json'
+    path: '/anims/home_frame_works.json'
 });
 
+// Reduces anim speed
+works_frame_anim.setSpeed(0.7);
+
 // Adjust frame speed
-frame_quad_anim.setSpeed(2.5)
-
-// PLAY IN
-frame_quad_element.addEventListener('mouseenter', (e) => {
-    frame_quad_anim.setDirection(1)
-    frame_quad_anim.play()
-    window_works.style.opacity = 1;
-    window_works_anim.play()
-})
-
-// Floating window element
-const window_works = document.getElementById("work-floating-window");
+works_frame_anim.setSpeed(2.5)
 
 // Floating window animation
-var window_works_anim = bodymovin.loadAnimation({
-    container: window_works,
-    renderer: 'svg',
-    loop: true,
-    autoplay: false,
-    path: '/anims/frame_floating_window.json'
+var works_float_anim = bodymovin.loadAnimation({
+  container: works_frame_float,
+  renderer: 'svg',
+  loop: true,
+  autoplay: true,
+  path: '/anims/home_works_float.json'
 })
 
-// Reduces anim speed
-window_works_anim.setSpeed(0.7);
+// PLAY IN
+planet_works_frame.addEventListener('mouseenter', () => {
+    works_frame_anim.setDirection(1)
+    works_frame_anim.play()
+    works_frame_float.style.opacity = 1;
+    works_frame_anim.play()
+})
 
+
+//Queries
 if(_queryTablet.matches || _queryPhone.matches) {
-    frame_quad_anim.setDirection(1)
-    frame_quad_anim.play()
-    window_works.style.opacity = 1;
+    works_frame_anim.setDirection(1)
+    works_frame_anim.play()
+    works_frame_float.style.opacity = 1;
     window_works_anim.play()
 }
 
 //Click to scroll
-frame_quad_element.addEventListener('click', (e) => {
+planet_works_frame.addEventListener('click', () => {
     var section_work_container = document.querySelector('.UI-works');
     section_work_container.scrollIntoView({behavior: "smooth"})
 })
 
 // PLAY OUT
-frame_quad_element.addEventListener('mouseleave', (e) => {
-    frame_quad_anim.setDirection(-1)
-    frame_quad_anim.play()
-    window_works.style.opacity = 0;
+planet_works_frame.addEventListener('mouseleave', () => {
+    works_frame_anim.setDirection(-1)
+    works_frame_anim.play()
+    works_frame_float.style.opacity = 0;
 })
 
 
