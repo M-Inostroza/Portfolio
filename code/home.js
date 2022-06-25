@@ -126,7 +126,7 @@ planet_works_frame.addEventListener('mouseleave', () => {
 
 // Planet animation
 var planet_skills = bodymovin.loadAnimation({
-    container: document.getElementById("planet-skills"),
+    container: document.getElementById("home-planet-skills"),
     renderer: 'svg',
     loop: true,
     autoplay: true,
@@ -134,7 +134,7 @@ var planet_skills = bodymovin.loadAnimation({
 })
 
 // Container frame element
-const skills_element = document.getElementById("frame-planet-skills");
+const skills_element = document.getElementById("planet-skills-frame");
 
 // Frame animation
 const frame_skills = bodymovin.loadAnimation({

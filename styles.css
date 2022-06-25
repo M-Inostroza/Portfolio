@@ -136,7 +136,7 @@ main {
 
 /* -Skills- */
 
-#planet-skills {
+#home-planet-skills {
     position: absolute;
     width: 35rem;
     height: 35rem;
@@ -144,7 +144,7 @@ main {
     top: 20%;
 }
 
-#frame-planet-skills {
+#planet-skills-frame {
     position: absolute;
     z-index: 1;
     right: -3%;
