@@ -154,7 +154,7 @@ main {
     cursor: pointer;
 }
 
-#skill-floating-window {
+#skills-frame-float {
     pointer-events: none;
     position: absolute;
     right: 65%;
@@ -167,7 +167,7 @@ main {
 
 /* -Contact- */
 
-#planet-contact {
+#home-planet-contact {
     position: absolute;
     bottom: 10%;
     right: 20%;
@@ -175,7 +175,7 @@ main {
     width: 30rem;
 }
 
-#frame-planet-contact {
+#planet-contact-frame {
     position: absolute;
     z-index: 1;
     right: 7%;
@@ -185,7 +185,7 @@ main {
     cursor: pointer;
 }
 
-#hire-floating-window {
+#contact-frame-float {
     position: absolute;
     height: 20rem;
     width: 30rem;

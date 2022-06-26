@@ -130,8 +130,10 @@ var planet_skills = bodymovin.loadAnimation({
     renderer: 'svg',
     loop: true,
     autoplay: true,
-    path: '/anims/planet_skills.json'
+    path: '/anims/home_planet_skills.json'
 })
+
+console.log(document.getElementById("home-planet-skills"))
 
 // Container frame element
 const skills_element = document.getElementById("planet-skills-frame");
@@ -145,6 +147,9 @@ const frame_skills = bodymovin.loadAnimation({
     path: '/anims/frame_skills.json'
 })
 
+// Floating window element
+const window_skills = document.getElementById("skills-frame-float");
+
 // PLAY IN
 skills_element.addEventListener('mouseenter', (e) => {
     frame_skills.play();
@@ -152,9 +157,6 @@ skills_element.addEventListener('mouseenter', (e) => {
     window_skills.style.opacity = 1;
     window_skills_anim.play()
 })
-
-// Floating window element
-const window_skills = document.getElementById("skill-floating-window");
 
 // Floating window animation
 var window_skills_anim = bodymovin.loadAnimation({
@@ -195,7 +197,7 @@ skills_element.addEventListener('mouseleave', (e) => {
 
 // Planet animation
 var planet_hire = bodymovin.loadAnimation({
-    container: document.getElementById("planet-contact"),
+    container: document.getElementById("home-planet-contact"),
     renderer: 'svg',
     loop: true,
     autoplay: true,
@@ -203,7 +205,7 @@ var planet_hire = bodymovin.loadAnimation({
 })
 
 // Frame container
-const contact_element = document.getElementById("frame-planet-contact");
+const contact_element = document.getElementById("planet-contact-frame");
 
 // Frame animation
 const frame_contact = bodymovin.loadAnimation({
@@ -214,6 +216,9 @@ const frame_contact = bodymovin.loadAnimation({
     path: '/anims/frame_skills.json'
 })
 
+// Floating window element
+const window_hire = document.getElementById("contact-frame-float");
+
 // PLAY IN
 contact_element.addEventListener('mouseenter', (e) => {
     frame_contact.play();
@@ -221,9 +226,6 @@ contact_element.addEventListener('mouseenter', (e) => {
     window_hire.style.opacity = 1;
     window_hire_anim.play()
 })
-
-// Floating window element
-const window_hire = document.getElementById("hire-floating-window");
 
 // Floating window animation
 var window_hire_anim = bodymovin.loadAnimation({
