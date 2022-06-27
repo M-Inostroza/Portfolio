@@ -124,6 +124,11 @@ planet_works_frame.addEventListener('mouseleave', () => {
 
 //-----PLANET SKILLS-----//
 
+// Container frame element
+const skills_element = document.getElementById("planet-skills-frame");
+// Floating window element
+const window_skills = document.getElementById("skills-frame-float");
+
 // Planet animation
 var planet_skills = bodymovin.loadAnimation({
     container: document.getElementById("home-planet-skills"),
@@ -133,27 +138,19 @@ var planet_skills = bodymovin.loadAnimation({
     path: '/anims/home_planet_skills.json'
 })
 
-console.log(document.getElementById("home-planet-skills"))
-
-// Container frame element
-const skills_element = document.getElementById("planet-skills-frame");
-
 // Frame animation
-const frame_skills = bodymovin.loadAnimation({
-    container: skills_element,
-    renderer: 'svg',
-    loop: false,
-    autoplay: false,
-    path: '/anims/frame_skills.json'
-})
-
-// Floating window element
-const window_skills = document.getElementById("skills-frame-float");
+const skills_frame_anim = bodymovin.loadAnimation({
+  container: skills_element,
+  renderer: 'svg',
+  loop: false,
+  autoplay: false,
+  path: '/anims/frame_skills.json'
+});
 
 // PLAY IN
 skills_element.addEventListener('mouseenter', (e) => {
-    frame_skills.play();
-    frame_skills.setDirection(1);
+    skills_frame_anim.play();
+    skills_frame_anim.setDirection(1);
     window_skills.style.opacity = 1;
     window_skills_anim.play()
 })
@@ -172,8 +169,8 @@ window_skills_anim.setSpeed(0.7);
 
 
 if(_queryTablet.matches || _queryPhone.matches) {
-    frame_skills.play();
-    frame_skills.setDirection(1);
+    skills_frame_anim.play();
+    skills_frame_anim.setDirection(1);
     window_skills.style.opacity = 1;
     window_skills_anim.play()
 }
@@ -186,8 +183,8 @@ skills_element.addEventListener('click', (e) => {
 
 // PLAY OUT
 skills_element.addEventListener('mouseleave', (e) => {
-    frame_skills.setDirection(-1);
-    frame_skills.play();
+    skills_frame_anim.setDirection(-1);
+    skills_frame_anim.play();
     window_skills.style.opacity = 0;
 })
 
