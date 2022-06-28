@@ -5,11 +5,6 @@ const loader = document.querySelector('.loader');
 const title_element = document.querySelector('.home-title-container');
 const title_text = document.querySelector('.home-title');
 
-// Container frame element
-const planet_works_frame = document.getElementById("planet-works-frame");
-// Floating text element
-const works_frame_float = document.getElementById("works-frame-float");
-
 const loader_anim = bodymovin.loadAnimation({
   container: loader,
   renderer: 'svg',
@@ -53,6 +48,11 @@ const _queryTablet = window.matchMedia('(max-width: 780px)');
 const _queryPhone = window.matchMedia('(max-width: 420px)');
 
 //-----PLANET WORKS-----//
+
+// Container frame element
+const planet_works_frame = document.getElementById("planet-works-frame");
+// Floating text element
+const works_frame_float = document.getElementById("works-frame-float");
 
 // Planet animation
 var planet_works = bodymovin.loadAnimation({
@@ -125,7 +125,7 @@ planet_works_frame.addEventListener('mouseleave', () => {
 //-----PLANET SKILLS-----//
 
 // Container frame element
-const skills_element = document.getElementById("planet-skills-frame");
+const planet_skills_frame = document.getElementById("planet-skills-frame");
 // Floating window element
 const window_skills = document.getElementById("skills-frame-float");
 
@@ -140,15 +140,15 @@ var planet_skills = bodymovin.loadAnimation({
 
 // Frame animation
 const skills_frame_anim = bodymovin.loadAnimation({
-  container: skills_element,
+  container: planet_skills_frame,
   renderer: 'svg',
   loop: false,
   autoplay: false,
-  path: '/anims/frame_skills.json'
+  path: '/anims/home_frame_skills.json'
 });
 
 // PLAY IN
-skills_element.addEventListener('mouseenter', (e) => {
+planet_skills_frame.addEventListener('mouseenter', (e) => {
     skills_frame_anim.play();
     skills_frame_anim.setDirection(1);
     window_skills.style.opacity = 1;
@@ -176,13 +176,13 @@ if(_queryTablet.matches || _queryPhone.matches) {
 }
 
 //Click to scroll
-skills_element.addEventListener('click', (e) => {
+planet_skills_frame.addEventListener('click', (e) => {
     var section_skills_container = document.querySelector('.skill-frame-container');
     section_skills_container.scrollIntoView({behavior: "smooth"})
 })
 
 // PLAY OUT
-skills_element.addEventListener('mouseleave', (e) => {
+planet_skills_frame.addEventListener('mouseleave', (e) => {
     skills_frame_anim.setDirection(-1);
     skills_frame_anim.play();
     window_skills.style.opacity = 0;
@@ -210,7 +210,7 @@ const frame_contact = bodymovin.loadAnimation({
     renderer: 'svg',
     loop: false,
     autoplay: false,
-    path: '/anims/frame_skills.json'
+    path: '/anims/home_frame_contact.json'
 })
 
 // Floating window element
