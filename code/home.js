@@ -101,7 +101,7 @@ if(_queryTablet.matches || _queryPhone.matches) {
     works_frame_anim.setDirection(1)
     works_frame_anim.play()
     works_frame_float.style.opacity = 1;
-    window_works_anim.play()
+    works_frame_anim.play()
 }
 
 //Click to scroll
@@ -161,7 +161,7 @@ var window_skills_anim = bodymovin.loadAnimation({
     renderer: 'svg',
     loop: true,
     autoplay: false,
-    path: '/anims/skills_frame_antena.json'
+    path: '/anims/home_skills_float.json'
 })
 
 // Reduces anim speed
