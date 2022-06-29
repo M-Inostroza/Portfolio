@@ -425,18 +425,18 @@ main {
         height: 820px;
     }
     
-    .title-main-container {
+    .home-title-container {
         width: 34rem;
-        left: 4%;
-        top: 0%;
+        position: unset;
+        margin: 0 auto;
     }
     
-    .title-main {
+    .home-title {
         font-size: 1.6rem;
         margin-left: 1.8rem;
     }
     
-    .code {
+    .code-text {
         font-size: 1.6rem;
     }
     
@@ -444,19 +444,19 @@ main {
 
     /* -Works- */
     
-    #planet-works {
+    #home-planet-works {
         top: 14%;
         left: 4%;
         width: 16rem;
         height: 16rem;
     }
     
-    #frame-planet-works {
+    #planet-works-frame {
         height: 16rem;
         width: 16rem;
     }
     
-    #work-floating-window {
+    #works-frame-float {
         left: 60%;
         bottom: 25%;
         height: 16rem;
@@ -465,21 +465,21 @@ main {
 
     /* -Skills- */
 
-    #planet-skills {
+    #home-planet-skills {
         width: 18rem;
         height: 18rem;
         top: 30%;
         left: 52%;
     }
     
-    #frame-planet-skills {
+    #planet-skills-frame {
         right: -3%;
         bottom: -3%;
         height: 19rem;
         width: 19rem;
     }
     
-    #skill-floating-window {
+    #skills-frame-float {
         right: 65%;
         top: 20%;
         height: 8rem;
@@ -489,21 +489,21 @@ main {
 
     /* -Contact- */
     
-    #planet-contact {
+    #home-planet-contact {
         bottom: 26%;
         right: 20%;
         height: 17rem;
         width: 17rem;
     }
     
-    #frame-planet-contact {
+    #planet-contact-frame {
         right: 7%;
         bottom: 7%;
         height: 15rem;
         width: 15rem;
     }
     
-    #hire-floating-window {
+    #contact-frame-float {
         height: 8rem;
         width: 18rem;
         right: 50%;
@@ -512,10 +512,10 @@ main {
     /* Text & Frame */
     
     .subHeader-frame {
-        height: 13rem;
+        height: 9rem;
         width: 30rem;
-        left: 3%;
-        top: 80%; 
+        position: unset; 
+        margin: 0 auto;
     }
     
     .detail {
@@ -524,8 +524,8 @@ main {
     
     .description {
         font-size: 2rem;
-        left: 6%;
-        top: 79%;
+        position: unset;
+        margin: 51rem auto 0 5.2rem;
     }
 }
 
@@ -861,10 +861,10 @@ ul {
     }
     
     .title-works-container {
-        width: 16rem;
-        height: 8rem;
-        bottom: 90%;
-        left: 6%;
+        width: 20rem;
+        height: 10rem;
+        position: unset;
+        margin: 0 auto;
     }
     
     .title-works {    
@@ -975,6 +975,9 @@ ul {
 
 
 
+
+
+
 /*------------------------ Skills ------------------------*/
 
 .section-skills-container {
@@ -995,7 +998,7 @@ ul {
 }
 
 .title-skills-container {
-    background-image: url(/images/title_skills_container.png);
+    background-image: url(/images/skills_title_container.png);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1250,13 +1253,15 @@ h3[data-title]:nth-child(2) {
     
     .title-skills-container {
         background-size: contain;
+        margin-left: calc(20rem / -2);
         top: 4%;
-        width: 14rem;
-        height: 6rem;
+        left: 50%;
+        width: 20rem;
+        height: 10rem;
     }
     
     .title-skills {
-        font-size: 1.6rem;
+        font-size: 2.8rem;
     }
     
     .skill-frame-container {
@@ -1274,26 +1279,19 @@ h3[data-title]:nth-child(2) {
     .titles {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: space-around;
         align-items: flex-start;
-        margin-top: 24rem;
+        width: 2.5rem;
+        height: 23.5rem;
+        margin-top: 27rem;
     }
     
     .titles h3 {
-        font-size: 1rem;
-        writing-mode: vertical-rl;
-        text-orientation: upright;
-        letter-spacing: -0.2rem;
-        margin-left: 0.6rem;
-        margin-top: 4.4rem;
-    }
-    
-    h3[data-title]:nth-child(1) {
-        margin-top: 4rem;
-    }
-    
-    h3[data-title]:nth-child(2) {
-        margin-top: 2.6rem;
+        width: 6rem;
+        padding-bottom: 3.4rem;
+        text-align: center;
+        font-size: 1.2rem;
+        transform: rotate(-90deg);
     }
     
     .levels {
@@ -1342,8 +1340,8 @@ h3[data-title]:nth-child(2) {
     
     #planet-skills-BG {
         position: absolute;
-        width: 44rem;
-        height: 44rem;
+        width: 38rem;
+        height: 38rem;
         bottom: 1%;
         z-index: 1;
         filter: blur(0.2rem);
@@ -1393,7 +1391,7 @@ h3[data-title]:nth-child(2) {
     left: 18%;
     display: flex;
     align-items: center;
-    background-image: url(/images/title_skills_container.png);
+    background-image: url(/images/skills_title_container.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

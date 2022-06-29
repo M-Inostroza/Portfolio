@@ -15,13 +15,13 @@ const designTab = document.querySelector('[data-design]')
 const codeTab = document.querySelector('[data-code]')
 const webTab = document.querySelector('[data-web]')
 
-//Planet bg anim
+//Background planet
 var planet_BG = bodymovin.loadAnimation({
     container: document.getElementById("planet-skills-BG"),
     renderer: 'svg',
     loop: true,
     autoplay: true,
-    path: '/anims/planet_skills_BG.json'
+    path: '/anims/skills_planet_BG.json'
 })
 
 //Expands the avatar frame
@@ -42,6 +42,7 @@ skillAvatars.forEach(avatar => {
         close_text_avatar(avatar, openFrame)
     })
 
+    //Let the avatar open when element is in viewport
     if(_querySizeTablet.matches || _querySizePhone.matches) {
         const avatarObserver = new IntersectionObserver(entries=>{
             entries.forEach(entry => {
@@ -137,10 +138,10 @@ const observer = new IntersectionObserver(entries => {
                 }
                 break;
             case 'wp':
-                translateX_value = 250
-                if (_querySizeTablet.matches) {translateX_value = 140}
+                translateX_value = 300
+                if (_querySizeTablet.matches) {translateX_value = 190}
                 if (_querySizePhone.matches) {
-                    translateY_value = 100
+                    translateY_value = -60
                     translateX_value = 0
                 }
                 break;
