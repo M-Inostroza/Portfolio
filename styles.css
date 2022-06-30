@@ -1426,19 +1426,11 @@ h3[data-title]:nth-child(2) {
 }
 
 .input-text {
-    background-image: url(/images/name_input.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
     height: 4.6rem;
     width: 38rem;
 }
 
 .input-area-text {
-    background-image: url(/images/textArea_input.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
     height: 12rem;
     width: 38rem;
 }
@@ -1557,10 +1549,12 @@ h3[data-title]:nth-child(2) {
     }
     
     .title-contact-container {
+        background-size: contain;
         top: 6%;
-        left: 10%;
-        width: 18rem;
-        height: 6rem;
+        left: 50%;
+        margin-left: calc(20rem / -2);
+        width: 20rem;
+        height: 10rem;
     }
     
     .form-container {
@@ -1591,10 +1585,17 @@ h3[data-title]:nth-child(2) {
     }
 
     .lock {
-        bottom: 10%;
-        right: 10%;
+        width: 8rem;
+        height: 8rem;
+        left: 50%;
+        margin: calc(8rem / -2);
+        bottom: 15%;
     }
-    
+
+    .data-container {
+        position: unset;
+        margin: 30rem auto 0 auto;
+    }
 }
 
 
