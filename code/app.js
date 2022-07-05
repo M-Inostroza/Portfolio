@@ -827,6 +827,9 @@ observerSkills.observe(title_element_skills)
 
   //-----Works section-----//
 
+const works_container = document.querySelector('.works-section')
+
+
 const bulletTextsWeb = [
     "Research, Analysis & Planning",
     "UI/UX Design & Implementation",

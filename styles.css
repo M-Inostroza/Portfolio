@@ -65,7 +65,8 @@ body { font-size: 1.4rem;} /* =14px */
 
 main {
     position: relative;
-    background-image: url(/images/home_BG.webp);
+    background-image: url(/images/BG.webp);
+    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
