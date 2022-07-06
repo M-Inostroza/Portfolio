@@ -10,7 +10,7 @@ const loader_anim = bodymovin.loadAnimation({
     loop: true,
     autoplay: true,
     path: '/anims/loader.json'
-  });
+});
 
 
 //--Title Home--//
@@ -79,6 +79,8 @@ const planet_bg_works_element = document.querySelector(".planet-work-base");
 const galaxy_element = document.querySelector('.galaxy');
 //Work-UI
 const work_section_element = document.querySelector('.UI-group');
+//Back button
+const back_button = document.querySelector('.back-button');
 
 //-----PLANET WORKS-----//
 
@@ -276,14 +278,6 @@ contact_element.addEventListener('mouseleave', (e) => {
     frame_contact.play();
     window_hire.style.opacity = 0;
 })
-
-
-//Planet clicks
-
-
-
-//Works
-
 
 //Create a timeline
 
@@ -510,7 +504,47 @@ detailTimeline.add({
 
 
 
+//----------Works----------//
 
+//--Title Intro--//
+const title_element_skills = document.querySelector('.title-skills-container');
+const title_text_skills = document.querySelector('.title-skills')
+
+//Opening and title display
+const observerSkills = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting){
+            anime({
+                targets: title_element_skills,
+                scaleX: [0,1],
+                opacity: [0,1],
+                easing: 'easeInOutQuad',
+                duration: 250,
+                delay: 350,
+                complete: ()=>{
+                    anime({
+                        targets: title_text_skills,
+                        opacity: [0,1],
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        delay: 150
+                    })
+                }
+            })
+        } else {
+            title_element_skills.style.opacity = 0;
+            title_text_skills.style.opacity = 0;
+        }
+    });
+});
+
+observerSkills.observe(title_element_skills)
+
+
+
+
+
+//----------Skills----------//
 
 
 //Variables
@@ -869,45 +903,6 @@ function close_text_avatar(avatar, anim) {
     anim.setDirection(-1)
     anim.play()
 }
-
-//--Title Intro--//
-const title_element_skills = document.querySelector('.title-skills-container');
-const title_text_skills = document.querySelector('.title-skills')
-
-//Opening and title display
-const observerSkills = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting){
-            anime({
-                targets: title_element_skills,
-                scaleX: [0,1],
-                opacity: [0,1],
-                easing: 'easeInOutQuad',
-                duration: 250,
-                delay: 350,
-                complete: ()=>{
-                    anime({
-                        targets: title_text_skills,
-                        opacity: [0,1],
-                        easing: 'easeInOutQuad',
-                        duration: 250,
-                        delay: 150
-                    })
-                }
-            })
-        } else {
-            title_element_skills.style.opacity = 0;
-            title_text_skills.style.opacity = 0;
-        }
-    });
-});
-
-observerSkills.observe(title_element_skills)
-
-
-
-
-
 
 
 

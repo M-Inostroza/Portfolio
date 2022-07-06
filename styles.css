@@ -624,6 +624,20 @@ main {
     opacity: 0;
 }
 
+.back-button {
+
+    background-image: url(/images/back_arrow.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    position: absolute;
+    height: 10rem;
+    width: 6rem;
+    top: 5%;
+    right: 10%;
+    cursor: pointer;
+}
+
 .frame-container {
     position: absolute;
     top: 17%;
