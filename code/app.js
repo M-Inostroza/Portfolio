@@ -1,17 +1,25 @@
+
+
+
 //Loader
 const loader = document.querySelector('.loader');
 
-//--Title Intro--//
+const loader_anim = bodymovin.loadAnimation({
+    container: loader,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/loader.json'
+  });
+
+
+//--Title Home--//
 const title_element = document.querySelector('.home-title-container');
 const title_text = document.querySelector('.home-title');
 
-const loader_anim = bodymovin.loadAnimation({
-  container: loader,
-  renderer: 'svg',
-  loop: true,
-  autoplay: true,
-  path: '/anims/loader.json'
-});
+//--Title Works--//
+const title_element_works = document.querySelector('.title-works-container');
+const title_text_works = document.querySelector('.title-works');
 
 //Waits until content is loaded before showing site
 window.addEventListener('load', () => {
@@ -25,6 +33,7 @@ window.addEventListener('load', () => {
   });
 
   title_text.style.opacity = 0;
+
   anime({
     targets: title_element,
     scaleX: [0,1],
@@ -41,22 +50,49 @@ window.addEventListener('load', () => {
     }
   });
 
+  anime({
+    targets: galaxy_element,
+    translateY: [800, 0],
+    easing: 'easeOutQuad',
+    duration: 1600,
+    delay: 200,
+  });
+
+  anime({
+    targets: [planet_skills_container, planet_contact_element, planet_works_element],
+    translateY: [-800, 0],
+    easing: 'easeOutQuad',
+    duration: 1200,
+    delay:200
+  })
+
 });
 
 //Queries
 const _queryTablet = window.matchMedia('(max-width: 780px)');
 const _queryPhone = window.matchMedia('(max-width: 420px)');
 
+
+//Bg planet works
+const planet_bg_works_element = document.querySelector(".planet-work-base");
+//Galaxy
+const galaxy_element = document.querySelector('.galaxy');
+//Work-UI
+const work_section_element = document.querySelector('.UI-group');
+
 //-----PLANET WORKS-----//
 
+//Container planet element
+const planet_works_element = document.getElementById("home-planet-works");
 // Container frame element
 const planet_works_frame = document.getElementById("planet-works-frame");
 // Floating text element
 const works_frame_float = document.getElementById("works-frame-float");
 
+
 // Planet animation
 var planet_works = bodymovin.loadAnimation({
-    container: document.getElementById("home-planet-works"),
+    container: planet_works_element,
     renderer: 'svg',
     loop: true,
     autoplay: true,
@@ -72,20 +108,20 @@ var works_frame_anim = bodymovin.loadAnimation({
     path: '/anims/home_frame_works.json'
 });
 
+// Floating window animation
+var works_float_anim = bodymovin.loadAnimation({
+    container: works_frame_float,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/home_works_float.json'
+  })
+
 // Reduces anim speed
 works_frame_anim.setSpeed(0.7);
 
 // Adjust frame speed
 works_frame_anim.setSpeed(2.5)
-
-// Floating window animation
-var works_float_anim = bodymovin.loadAnimation({
-  container: works_frame_float,
-  renderer: 'svg',
-  loop: true,
-  autoplay: true,
-  path: '/anims/home_works_float.json'
-})
 
 // PLAY IN
 planet_works_frame.addEventListener('mouseenter', () => {
@@ -95,7 +131,6 @@ planet_works_frame.addEventListener('mouseenter', () => {
     works_frame_anim.play()
 })
 
-
 //Queries
 if(_queryTablet.matches || _queryPhone.matches) {
     works_frame_anim.setDirection(1)
@@ -103,12 +138,6 @@ if(_queryTablet.matches || _queryPhone.matches) {
     works_frame_float.style.opacity = 1;
     works_frame_anim.play()
 }
-
-//Click to scroll
-planet_works_frame.addEventListener('click', () => {
-    var section_work_container = document.querySelector('.UI-works');
-    section_work_container.scrollIntoView({behavior: "smooth"})
-})
 
 // PLAY OUT
 planet_works_frame.addEventListener('mouseleave', () => {
@@ -129,9 +158,11 @@ const planet_skills_frame = document.getElementById("planet-skills-frame");
 // Floating window element
 const window_skills = document.getElementById("skills-frame-float");
 
+const planet_skills_container = document.getElementById("home-planet-skills");
+
 // Planet animation
 var planet_skills = bodymovin.loadAnimation({
-    container: document.getElementById("home-planet-skills"),
+    container: planet_skills_container,
     renderer: 'svg',
     loop: true,
     autoplay: true,
@@ -147,14 +178,6 @@ const skills_frame_anim = bodymovin.loadAnimation({
   path: '/anims/home_frame_skills.json'
 });
 
-// PLAY IN
-planet_skills_frame.addEventListener('mouseenter', (e) => {
-    skills_frame_anim.play();
-    skills_frame_anim.setDirection(1);
-    window_skills.style.opacity = 1;
-    window_skills_anim.play()
-})
-
 // Floating window animation
 var window_skills_anim = bodymovin.loadAnimation({
     container: window_skills,
@@ -162,6 +185,14 @@ var window_skills_anim = bodymovin.loadAnimation({
     loop: true,
     autoplay: false,
     path: '/anims/home_skills_float.json'
+})
+
+// PLAY IN
+planet_skills_frame.addEventListener('mouseenter', (e) => {
+    skills_frame_anim.play();
+    skills_frame_anim.setDirection(1);
+    window_skills.style.opacity = 1;
+    window_skills_anim.play()
 })
 
 // Reduces anim speed
@@ -175,12 +206,6 @@ if(_queryTablet.matches || _queryPhone.matches) {
     window_skills_anim.play()
 }
 
-//Click to scroll
-planet_skills_frame.addEventListener('click', (e) => {
-    var section_skills_container = document.querySelector('.skill-frame-container');
-    section_skills_container.scrollIntoView({behavior: "smooth"})
-})
-
 // PLAY OUT
 planet_skills_frame.addEventListener('mouseleave', (e) => {
     skills_frame_anim.setDirection(-1);
@@ -192,9 +217,11 @@ planet_skills_frame.addEventListener('mouseleave', (e) => {
 
 //-----PLANET HIRE-----//
 
+const planet_contact_element = document.getElementById("home-planet-contact");
+
 // Planet animation
 var planet_hire = bodymovin.loadAnimation({
-    container: document.getElementById("home-planet-contact"),
+    container: planet_contact_element,
     renderer: 'svg',
     loop: true,
     autoplay: true,
@@ -243,13 +270,6 @@ if(_queryTablet.matches || _queryPhone.matches) {
     window_hire_anim.play()
 }
 
-
-//Click to scroll
-contact_element.addEventListener('click', (e) => {
-    var section_contact_container = document.querySelector('.section-contact-container');
-    section_contact_container.scrollIntoView({behavior: "smooth"})
-})
-
 // PLAY OUT
 contact_element.addEventListener('mouseleave', (e) => {
     frame_contact.setDirection(-1);
@@ -258,6 +278,73 @@ contact_element.addEventListener('mouseleave', (e) => {
 })
 
 
+//Planet clicks
+
+
+
+//Works
+
+
+//Create a timeline
+
+planet_works_frame.addEventListener('click', () => {
+    work_section_element.classList.toggle('noDisplay');
+    title_element.style.opacity = 0;
+    document.querySelector('.description').style.opacity = 0;
+    document.querySelector('.subHeader-frame').style.opacity = 0;
+
+    var transition_works_timeline = anime.timeline({
+        easing: 'easeOutQuad',
+        duration: 1000
+    })
+
+    transition_works_timeline.add({
+        targets: [planet_skills_container],
+        translateX: [0, 800],
+        scale: [1, 1.5],
+        complete: () => {
+            planet_skills_container.classList.add('noDisplay');
+        }
+    }, 0).add({
+        targets: [planet_contact_element],
+        translateX: [0, 800],
+        translateY: [0, 500],
+        scale: [1, 1.5],
+        complete: () => {planet_contact_element.classList.add('noDisplay')}
+    }, 0).add({
+        targets: [galaxy_element],
+        translateX: [0, 400],
+        translateY: [0, 200],
+        scale: [1, 1.4],
+    }, 0).add({
+        targets: planet_works_element,
+        begin: () => { 
+            planet_works_element.style.left = '50%';
+            planet_works_element.style.top = '100%';
+        },
+        scale: [1, 3.4],
+        complete: () => {
+            planet_works_element.classList.add('noDisplay');
+            planet_bg_works_element.classList.remove('noDisplay')
+
+            title_element_works.style.opacity = 1;
+            title_element_works.classList.toggle('noDisplay');
+        }
+        
+    }, 0).add({
+        targets: work_section_element,
+        opacity: [0,1],
+        delay: 100
+    }, 600)
+
+    transition_works_timeline.play()
+})
+
+contact_element.addEventListener('click', (e) => {
+})
+
+planet_skills_frame.addEventListener('click', (e) => {
+})
 
 //-----------------------------------//
 
@@ -442,9 +529,11 @@ const designTab = document.querySelector('[data-design]')
 const codeTab = document.querySelector('[data-code]')
 const webTab = document.querySelector('[data-web]')
 
+const planet_bg_skills_container = document.getElementById("planet-skills-BG");
+
 //Background planet
 var planet_BG = bodymovin.loadAnimation({
-    container: document.getElementById("planet-skills-BG"),
+    container: planet_bg_skills_container,
     renderer: 'svg',
     loop: true,
     autoplay: true,
@@ -902,7 +991,7 @@ const lock_img = document.querySelector('[data-lock]')
 //-- Background Planet --//
 
 var backgroundCover = bodymovin.loadAnimation({
-    container: document.getElementById("background_planet"),
+    container: planet_bg_works_element,
     renderer: "svg",
     loop: true,
     autoplay: true,
@@ -1573,9 +1662,7 @@ buttons.forEach(button => {
 })
 
 
-//--Title Intro--//
-const title_element_works = document.querySelector('.title-works-container');
-const title_text_works = document.querySelector('.title-works')
+
 
 //Opening and title display
 const observerWorks = new IntersectionObserver(entries => {

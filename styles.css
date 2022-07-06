@@ -65,7 +65,7 @@ body { font-size: 1.4rem;} /* =14px */
 
 main {
     position: relative;
-    background-image: url(/images/BG.webp);
+    background-image: url(/images/BG.png);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -73,30 +73,51 @@ main {
     width: 100%;
     height: 1024px;
     z-index: 0;
+    overflow: hidden;
+}
+
+.galaxy {
+    background: url(/images/home_galaxy.png);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    top: 50%;
+    margin-top: -40rem;
+    left: 50%;
+    margin-left: -80rem;
+    height: 80rem;
+    width: 160rem;
+    z-index: -1;
 }
 
 .home-title-container {
+    
     position: absolute;
     display: flex;
     align-items: center;
-    background-image: url(/images/home_frame_heading.png);
+    background-image: url(/images/UI_title.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
-    width: 98rem;
-    height: 14rem;
+    width: 94rem;
+    height: 28rem;
     left: 6%;
-    top: 8%;
+    top: 2%;
     z-index: 2;
+    transition: opacity 1s;
 }
 
 .home-title {
-    margin-left: 6rem;
+    text-align: left;
+    margin-left: 12rem;
+    margin-top: 2rem;
     font-size: 4rem;
 }
 
 .code-text {
-    color: #F09FCE;
+
     font-family: 'nulshockbold', Arial, sans-serif;
     font-size: 4rem;
     text-align: center;
@@ -111,9 +132,11 @@ main {
 #home-planet-works {
     position: absolute;
     top: 33%;
-    left: 10%;
+    left: 20%;
+    margin-left: -14.5rem;
     width: 29rem;
     height: 30rem;
+    transition: left 1s, top 1s, scale 1s;
 }
 
 #planet-works-frame {
@@ -134,6 +157,8 @@ main {
     opacity: 0;
     transition: opacity 0.2s;
 }
+
+
 
 /* -Skills- */
 
@@ -222,11 +247,23 @@ main {
     font-size: 3.4rem;
     left: 18%;
     top: 70%;
+    transition: opacity 1s;
 }
 
 .description-jumper {
     display: inline-block;
     opacity: 0;
+    transition: opacity 1s;
+}
+
+.planet-work-base {
+    grid-row: 3;
+    margin: 0 auto;
+    width: 100rem;
+    height: auto;
+    padding-top: 71rem;
+    filter: blur(0.1rem);
+    z-index: 0;
 }
 
 .lower-bar {
@@ -237,6 +274,7 @@ main {
     height: 4rem;
     z-index: 2;
 }
+
 
 
 /*---Main monitor res---*/ /*1280px*/
@@ -583,6 +621,7 @@ main {
     justify-content: center;
     align-items: center;
     width: 100%;
+    opacity: 0;
 }
 
 .frame-container {
@@ -735,15 +774,7 @@ ul {
     position: absolute;
 }
 
-.planet-work-base {
-    grid-row: 3;
-    margin: 0 auto;
-    width: 100rem;
-    height: auto;
-    padding-top: 10rem;
-    filter: blur(0.1rem);
-    z-index: 0;
-}
+
 
 
 /*---Main tablet res---*/ /*780px*/
