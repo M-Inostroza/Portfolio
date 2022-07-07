@@ -247,13 +247,13 @@ main {
     font-size: 3.4rem;
     left: 18%;
     top: 70%;
-    transition: opacity 1s;
+    transition: opacity 0.5s;
 }
 
 .description-jumper {
     display: inline-block;
     opacity: 0;
-    transition: opacity 1s;
+    transition: opacity 0.5s;
 }
 
 .planet-work-base {
