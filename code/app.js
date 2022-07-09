@@ -76,7 +76,16 @@ const _queryPhone = window.matchMedia('(max-width: 420px)');
 //Bg planet works
 const planet_bg_works_element = document.querySelector(".planet-work-base");
 //Galaxy
-const galaxy_element = document.querySelector('.galaxy');
+const galaxy_element = document.getElementById('galaxy');
+var galaxy_anim = bodymovin.loadAnimation({
+    container: galaxy_element,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/galaxy.json',
+});
+galaxy_anim.setSpeed(0.5);
+
 //Work-UI
 const work_section_element = document.querySelector('.UI-group');
 //Back button
