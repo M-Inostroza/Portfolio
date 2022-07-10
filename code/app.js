@@ -84,7 +84,7 @@ var galaxy_anim = bodymovin.loadAnimation({
     autoplay: true,
     path: '/anims/galaxy.json',
 });
-galaxy_anim.setSpeed(0.5);
+galaxy_anim.setSpeed(0.75);
 
 //Work-UI
 const work_section_element = document.querySelector('.UI-group');
