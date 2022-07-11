@@ -77,8 +77,6 @@ main {
 }
 
 #galaxy {
-    border: red solid 1px;
-
     position: absolute;
     top: 50%;
     margin-top: -100rem;
@@ -89,37 +87,35 @@ main {
     z-index: -1;
 }
 
-.home-title-container {
-    
+#home-title-container {
     position: absolute;
-    display: flex;
-    align-items: center;
-    background-image: url(/images/UI_title.svg);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    width: 94rem;
-    height: 28rem;
-    left: 6%;
-    top: 2%;
+    top: 15%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    width: 100rem;
+    height: 25rem;
     z-index: 2;
-    transition: opacity 1s;
+    transition: opacity 500ms;
 }
 
 .home-title {
+    top: 35%;
+    left: 14%;
+    position: absolute;
     text-align: left;
-    margin-left: 12rem;
-    margin-top: 2rem;
-    font-size: 4rem;
+    font-size: 4.2rem;
+    transition: opacity 500ms;
+    z-index: 1;
 }
 
 .code-text {
-
     font-family: 'nulshockbold', Arial, sans-serif;
     font-size: 4rem;
     text-align: center;
     text-transform: uppercase;
-    opacity:0.8;
+    background: -webkit-linear-gradient(rgb(153, 47, 125), rgb(255, 255, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* --Planets-- */
@@ -251,16 +247,6 @@ main {
     display: inline-block;
     opacity: 0;
     transition: opacity 0.5s;
-}
-
-.planet-work-base {
-    grid-row: 3;
-    margin: 0 auto;
-    width: 100rem;
-    height: auto;
-    padding-top: 71rem;
-    filter: blur(0.1rem);
-    z-index: 0;
 }
 
 .lower-bar {

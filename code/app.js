@@ -1,4 +1,8 @@
 
+//Index:
+//--Loader--
+//--Titles--
+//--Load Func--
 
 
 //Loader
@@ -14,7 +18,14 @@ const loader_anim = bodymovin.loadAnimation({
 
 
 //--Title Home--//
-const title_element = document.querySelector('.home-title-container');
+const title_element = document.getElementById('home-title-container');
+const title_frame_anim = bodymovin.loadAnimation({
+    container: title_element,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: '/anims/frame_title_home.json'
+});
 const title_text = document.querySelector('.home-title');
 
 //--Title Works--//
@@ -23,6 +34,8 @@ const title_text_works = document.querySelector('.title-works');
 
 //Waits until content is loaded before showing site
 window.addEventListener('load', () => {
+
+    title_text.style.opacity = 0;
   anime({
     targets: loader,
     opacity: [1,0],
@@ -32,40 +45,27 @@ window.addEventListener('load', () => {
     }
   });
 
-  title_text.style.opacity = 0;
-
-  anime({
-    targets: title_element,
-    scaleX: [0,1],
-    easing: 'easeInOutQuad',
-    duration: 300,
-    delay: 800,
-    complete: () => {
-      anime({
-        targets: title_text,
-        opacity: [0,1],
-        easing: 'easeInOutQuad',
-        duration: 250
-      });
-    }
-  });
-
   anime({
     targets: galaxy_element,
     translateY: [800, 0],
     easing: 'easeOutQuad',
-    duration: 1600,
-    delay: 200,
+    duration: 2000,
+    delay: 300
   });
 
   anime({
     targets: [planet_skills_container, planet_contact_element, planet_works_element],
     translateY: [-800, 0],
     easing: 'easeOutQuad',
-    duration: 1200,
-    delay:200
+    duration: 1600,
+    delay:300,
+    complete: () => {
+        title_frame_anim.play();
+        setTimeout(() => {
+            title_text.style.opacity = 1;
+        }, 1200);
+    }
   })
-
 });
 
 //Queries
@@ -75,6 +75,7 @@ const _queryPhone = window.matchMedia('(max-width: 420px)');
 
 //Bg planet works
 const planet_bg_works_element = document.querySelector(".planet-work-base");
+
 //Galaxy
 const galaxy_element = document.getElementById('galaxy');
 var galaxy_anim = bodymovin.loadAnimation({
@@ -84,10 +85,11 @@ var galaxy_anim = bodymovin.loadAnimation({
     autoplay: true,
     path: '/anims/galaxy.json',
 });
-galaxy_anim.setSpeed(0.75);
+galaxy_anim.setSpeed(0.65);
 
 //Work-UI
 const work_section_element = document.querySelector('.UI-group');
+
 //Back button
 const back_button = document.querySelector('.back-button');
 
@@ -127,9 +129,6 @@ var works_float_anim = bodymovin.loadAnimation({
     autoplay: true,
     path: '/anims/home_works_float.json'
   })
-
-// Reduces anim speed
-works_frame_anim.setSpeed(0.7);
 
 // Adjust frame speed
 works_frame_anim.setSpeed(2.5)
@@ -298,10 +297,11 @@ back_button.addEventListener('click', () => {
     works_to_home()
 })
 
-contact_element.addEventListener('click', (e) => {
+planet_skills_frame.addEventListener('click', () => {
+    home_to_skills()
 })
 
-planet_skills_frame.addEventListener('click', (e) => {
+contact_element.addEventListener('click', (e) => {
 })
 
 //-----------------------------------//
@@ -471,527 +471,6 @@ detailTimeline.add({
 
 
 //----------Works----------//
-
-//--Title Intro--//
-const title_element_skills = document.querySelector('.title-skills-container');
-const title_text_skills = document.querySelector('.title-skills')
-
-//Opening and title display
-const observerSkills = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting){
-            anime({
-                targets: title_element_skills,
-                scaleX: [0,1],
-                opacity: [0,1],
-                easing: 'easeInOutQuad',
-                duration: 250,
-                delay: 350,
-                complete: ()=>{
-                    anime({
-                        targets: title_text_skills,
-                        opacity: [0,1],
-                        easing: 'easeInOutQuad',
-                        duration: 250,
-                        delay: 150
-                    })
-                }
-            })
-        } else {
-            title_element_skills.style.opacity = 0;
-            title_text_skills.style.opacity = 0;
-        }
-    });
-});
-
-observerSkills.observe(title_element_skills)
-
-
-
-
-
-
-
-
-//--------------------------------------------Skills----------------------------------------------------------------//
-
-
-//Variables
-const [...faders] = document.querySelectorAll('.skill-fader');
-const [...tabTitles] = document.querySelectorAll("[data-title]");
-let [...skillAvatars] = document.querySelectorAll('.skill-avatar');
-let [...skillText] = document.querySelectorAll('.skill-text');
-const frameElement = document.querySelector('.skill-frame-container');
-
-//Queries
-const _querySizeTablet = window.matchMedia('(max-width: 780px)');
-const _querySizePhone = window.matchMedia('(max-width: 420px)');
-
-//tabs
-const designTab = document.querySelector('[data-design]')
-const codeTab = document.querySelector('[data-code]')
-const webTab = document.querySelector('[data-web]')
-
-const planet_bg_skills_container = document.getElementById("planet-skills-BG");
-
-//Background planet
-var planet_BG = bodymovin.loadAnimation({
-    container: planet_bg_skills_container,
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: '/anims/skills_planet_BG.json'
-})
-
-//Expands the avatar frame
-skillAvatars.forEach(avatar => {
-    let openFrame = bodymovin.loadAnimation({
-        container: avatar,
-        renderer: 'svg',
-        loop: false,
-        autoplay: false,
-        path: '/anims/skill_avatar_open.json'
-    })
-
-    avatar.addEventListener('mouseover', () => {
-        open_text_avatar(avatar, openFrame)
-    })
-    
-    avatar.addEventListener('mouseleave', () => { 
-        close_text_avatar(avatar, openFrame)
-    })
-
-    //Let the avatar open when element is in viewport
-    if(_querySizeTablet.matches || _querySizePhone.matches) {
-        const avatarObserver = new IntersectionObserver(entries=>{
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    open_text_avatar(entry.target, openFrame)
-                } else {
-                    close_text_avatar(entry.target, openFrame)
-                }
-            })
-        })
-
-        avatarObserver.observe(avatar)
-    }
-})
-
-
-//Controls faders 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        let translateX_value;
-        let translateY_value;
-        switch (entry.target.dataset.name) {
-            case 'ps':
-                translateX_value = 600
-                if (_querySizeTablet.matches) {translateX_value = 400}
-                if (_querySizePhone.matches) {
-                    translateY_value = -170
-                    translateX_value = 0
-                }
-                break;
-            case 'ai':
-                translateX_value = 500
-                if (_querySizeTablet.matches) {translateX_value = 340}
-                if (_querySizePhone.matches) {
-                    translateY_value = -50
-                    translateX_value = 0
-                }
-                break;
-            case 'ae':
-                translateX_value = 650
-                if (_querySizeTablet.matches) {translateX_value = 440}
-                if (_querySizePhone.matches) {
-                    translateY_value = -130
-                    translateX_value = 0
-                }
-                break;
-            case 'fi':
-                translateX_value = 700
-                if (_querySizeTablet.matches) {translateX_value = 480}
-                if (_querySizePhone.matches) {
-                    translateY_value = -190
-                    translateX_value = 0
-                }
-                break;
-            case 'js':
-                translateX_value = 550
-                if (_querySizeTablet.matches) {translateX_value = 400}
-                if (_querySizePhone.matches) {
-                    translateY_value = -100
-                    translateX_value = 0
-                }
-                break;
-            case 'C#':
-                translateX_value = 450
-                if (_querySizeTablet.matches) {translateX_value = 260}
-                if (_querySizePhone.matches) {
-                    translateY_value = 60
-                    translateX_value = 0
-                }
-                break;
-            case 'Php':
-                translateX_value = 350
-                if (_querySizeTablet.matches) {translateX_value = 180}
-                if (_querySizePhone.matches) {
-                    translateY_value = 100
-                    translateX_value = 0
-                }
-                break;
-            case 'html':
-                translateX_value = 800
-                if (_querySizeTablet.matches) {translateX_value = 540}
-                if (_querySizePhone.matches) {
-                    translateY_value = -190
-                    translateX_value = 0
-                }
-                break;
-            case 'css':
-                translateX_value = 750
-                if (_querySizeTablet.matches) {translateX_value = 500}
-                if (_querySizePhone.matches) {
-                    translateY_value = -180
-                    translateX_value = 0
-                }
-                break;
-            case 'wp':
-                translateX_value = 300
-                if (_querySizeTablet.matches) {translateX_value = 190}
-                if (_querySizePhone.matches) {
-                    translateY_value = -60
-                    translateX_value = 0
-                }
-                break;
-        }
-        anime({
-            targets: entry.target,
-            translateX: [0, translateX_value],
-            translateY: [0, translateY_value],
-            easing: 'easeInOutQuad',
-            duration: 850,
-            opacity: [0,1],
-            delay: 200
-        })
-    })
-});
-
-faders.forEach(fader => {
-    observer.observe(fader)
-});
-
-//Tabs mechanic
-tabTitles.forEach(title => {
-    title.addEventListener('click', () => {
-        switch (title.dataset.title) {
-            case 'design':
-                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_1_svg.svg)";
-                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_1_svg.svg)";}
-                delete title.dataset.back
-                title.dataset.main = true;
-                tabTitles[1].dataset.back = true;
-                tabTitles[2].dataset.back = true;
-                webTab.classList.add('noDisplay')
-                codeTab.classList.add('noDisplay')
-                designTab.classList.remove('noDisplay')
-                break;
-            case 'code':
-                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_2_svg.svg)";
-                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_2_svg.svg)";}
-                delete title.dataset.back
-                title.dataset.main = true;
-                tabTitles[0].dataset.back = true;
-                tabTitles[2].dataset.back = true;
-                codeTab.classList.remove('noDisplay')
-                designTab.classList.add('noDisplay')
-                webTab.classList.add('noDisplay')
-                break;
-            case 'web':
-                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_3_svg.svg)";
-                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_3_svg.svg)";}
-                delete title.dataset.back
-                title.dataset.main = true;
-                tabTitles[0].dataset.back = true;
-                tabTitles[1].dataset.back = true;
-                codeTab.classList.add('noDisplay')
-                designTab.classList.add('noDisplay')
-                webTab.classList.remove('noDisplay')
-                break;
-        }
-    })
-})
-
-
-
-
-
-
-
-//-----------------------------------------------Functions-----------------------------------------------------------//
-
-function open_text_avatar(avatar, anim) {
-    switch (avatar.querySelector('.skill-text').textContent) {
-        case 'Ps':
-            skillText[0].textContent = 'Photoshop'
-            anime({
-                targets: skillText[0],
-                opacity: [0,1],
-                scale: 0.6,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-
-        case 'Ai':
-            skillText[1].textContent = 'Illustrator'
-            anime({
-                targets: skillText[1],
-                opacity: [0,1],
-                scale: 0.55,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-        case 'Ae':
-            skillText[2].textContent = 'After Effects'
-            anime({
-                targets: skillText[2],
-                opacity: [0,1],
-                scale: 0.6,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-        case 'Fi':
-            skillText[3].textContent = 'Figma'
-            anime({
-                targets: skillText[3],
-                opacity: [0,1],
-                scale: 0.7,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-        case 'Js':
-            skillText[4].textContent = 'Javascript'
-            anime({
-                targets: skillText[4],
-                opacity: [0,1],
-                scale: 0.6,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-        case 'Wp':
-            skillText[9].textContent = 'Wordpress'
-            anime({
-                targets: skillText[9],
-                opacity: [0,1],
-                scale: 0.6,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-    }
-    anim.setDirection(1)
-    anim.play()
-}
-
-function close_text_avatar(avatar, anim) {
-    switch (avatar.querySelector('.skill-text').textContent) {
-        case 'Photoshop':
-            anime({
-                begin: ()=> {
-                    skillText[0].textContent = 'Ps'
-                },
-                targets: skillText[0],
-                opacity: [0,1],
-                scale: 1,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-        case 'Illustrator':
-            anime({
-                begin: ()=> {
-                    skillText[1].textContent = 'Ai'
-                },
-                targets: skillText[1],
-                opacity: [0,1],
-                scale: 1,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-        case 'After Effects':
-            anime({
-                begin: ()=> {
-                    skillText[2].textContent = 'Ae'
-                },
-                targets: skillText[2],
-                opacity: [0,1],
-                scale: 1,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-        case 'Figma':
-            anime({
-                begin: ()=> {
-                    skillText[3].textContent = 'Fi'
-                },
-                targets: skillText[3],
-                opacity: [0,1],
-                scale: 1,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-        case 'Javascript':
-            anime({
-                begin: ()=> {
-                    skillText[4].textContent = 'Js'
-                },
-                targets: skillText[4],
-                opacity: [0,1],
-                scale: 1,
-                duration: 200,
-                easing: 'easeInQuad'
-            })
-            break;
-        case 'Wordpress':
-                anime({
-                    begin: ()=> {
-                        skillText[9].textContent = 'Wp'
-                    },
-                    targets: skillText[9],
-                    opacity: [0,1],
-                    scale: 1,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-    
-    }
-    anim.setDirection(-1)
-    anim.play()
-}
-
-function home_to_works() {
-    work_section_element.classList.toggle('noDisplay');
-    title_element.style.opacity = 0;
-    document.querySelector('.description').style.opacity = 0;
-    document.querySelector('.subHeader-frame').style.opacity = 0;
-
-    var transition_works_timeline = anime.timeline({
-        easing: 'easeOutQuad',
-        duration: 1000
-    })
-
-    transition_works_timeline.add({
-        targets: planet_skills_container,
-        translateX: [0, 800],
-        scale: [1, 1.5],
-        complete: () => {
-            planet_skills_container.classList.toggle('noDisplay');
-        }
-    }, 0).add({
-        targets: planet_contact_element,
-        translateX: [0, 800],
-        translateY: [0, 500],
-        scale: [1, 1.5],
-        complete: () => {planet_contact_element.classList.toggle('noDisplay')}
-    }, 0).add({
-        targets: galaxy_element,
-        translateX: [0, 400],
-        translateY: [0, 200],
-        scale: [1, 1.4],
-    }, 0).add({
-        targets: planet_works_element,
-        begin: () => { 
-            planet_works_element.style.left = '50%';
-            planet_works_element.style.top = '100%';
-        },
-        scale: [1, 3.4],
-        complete: () => {
-            planet_works_element.classList.toggle('noDisplay');
-            planet_bg_works_element.classList.toggle('noDisplay')
-
-            title_element_works.style.opacity = 1;
-            title_element_works.classList.toggle('noDisplay');
-        }
-        
-    }, 0).add({
-        targets: work_section_element,
-        opacity: [0,1],
-        delay: 100
-    }, 600)
-
-    transition_works_timeline.play()
-}
-
-function works_to_home() {
-
-    planet_works_element.classList.toggle('noDisplay');
-    planet_bg_works_element.classList.toggle('noDisplay');
-
-    document.querySelector('.description').style.opacity = 1;
-    document.querySelector('.subHeader-frame').style.opacity = 1;
-
-    var transition_home_timeline = anime.timeline({
-        easing: 'easeOutQuad',
-        duration: 1000
-    })
-
-    transition_home_timeline.add({
-        begin: () => {planet_skills_container.classList.toggle('noDisplay');},
-        targets: planet_skills_container,
-        translateX: [800, 0],
-        scale: [1.5, 1],
-        }, 0).add({
-            begin: () => {{planet_contact_element.classList.toggle('noDisplay')}},
-            targets: planet_contact_element,
-            translateX: [800, 0],
-            translateY: [500, 0],
-            scale: [1.5, 1]
-        }, 0).add({
-            targets: galaxy_element,
-            translateX: [400, 0],
-            translateY: [200, 0],
-            scale: [1.4, 1],
-        }, 0).add({
-            targets: planet_works_element,
-            begin: () => { 
-
-                planet_works_element.style.left = '20%';
-                planet_works_element.style.top = '32%';
-    
-                title_element_works.style.opacity = 0;
-                title_element_works.classList.toggle('noDisplay');
-                
-            },
-            scale: [3.4, 1],
-        }, 0).add({
-            targets: work_section_element,
-            opacity: [1,0],
-            duration: 500,
-            complete:() => {
-                title_element.style.opacity = 1;
-                work_section_element.classList.toggle('noDisplay')
-            }
-        }, 0)
-    
-        transition_home_timeline.play()
-} 
-
-    
-
-
-
-
-
-
 
 //------------------------------------------------Works section------------------------------------------------------//
 
@@ -1772,6 +1251,537 @@ const observerWorks = new IntersectionObserver(entries => {
 });
 
 observerWorks.observe(title_element_works)
+
+
+
+
+
+
+
+
+//--------------------------------------------Skills----------------------------------------------------------------//
+
+
+//--Title Intro--//
+const title_element_skills = document.querySelector('.title-skills-container');
+const title_text_skills = document.querySelector('.title-skills')
+
+//Opening and title display
+const observerSkills = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting){
+            anime({
+                targets: title_element_skills,
+                scaleX: [0,1],
+                opacity: [0,1],
+                easing: 'easeInOutQuad',
+                duration: 250,
+                delay: 350,
+                complete: ()=>{
+                    anime({
+                        targets: title_text_skills,
+                        opacity: [0,1],
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        delay: 150
+                    })
+                }
+            })
+        } else {
+            title_element_skills.style.opacity = 0;
+            title_text_skills.style.opacity = 0;
+        }
+    });
+});
+
+observerSkills.observe(title_element_skills)
+
+
+
+
+
+//Variables
+const [...faders] = document.querySelectorAll('.skill-fader');
+const [...tabTitles] = document.querySelectorAll("[data-title]");
+let [...skillAvatars] = document.querySelectorAll('.skill-avatar');
+let [...skillText] = document.querySelectorAll('.skill-text');
+const frameElement = document.querySelector('.skill-frame-container');
+
+//Queries
+const _querySizeTablet = window.matchMedia('(max-width: 780px)');
+const _querySizePhone = window.matchMedia('(max-width: 420px)');
+
+//tabs
+const designTab = document.querySelector('[data-design]')
+const codeTab = document.querySelector('[data-code]')
+const webTab = document.querySelector('[data-web]')
+
+const planet_bg_skills_container = document.getElementById("planet-skills-BG");
+
+//Background planet
+var planet_BG = bodymovin.loadAnimation({
+    container: planet_bg_skills_container,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/anims/skills_planet_BG.json'
+})
+
+//Expands the avatar frame
+skillAvatars.forEach(avatar => {
+    let openFrame = bodymovin.loadAnimation({
+        container: avatar,
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: '/anims/skill_avatar_open.json'
+    })
+
+    avatar.addEventListener('mouseover', () => {
+        open_text_avatar(avatar, openFrame)
+    })
+    
+    avatar.addEventListener('mouseleave', () => { 
+        close_text_avatar(avatar, openFrame)
+    })
+
+    //Let the avatar open when element is in viewport
+    if(_querySizeTablet.matches || _querySizePhone.matches) {
+        const avatarObserver = new IntersectionObserver(entries=>{
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    open_text_avatar(entry.target, openFrame)
+                } else {
+                    close_text_avatar(entry.target, openFrame)
+                }
+            })
+        })
+
+        avatarObserver.observe(avatar)
+    }
+})
+
+
+//Controls faders 
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        let translateX_value;
+        let translateY_value;
+        switch (entry.target.dataset.name) {
+            case 'ps':
+                translateX_value = 600
+                if (_querySizeTablet.matches) {translateX_value = 400}
+                if (_querySizePhone.matches) {
+                    translateY_value = -170
+                    translateX_value = 0
+                }
+                break;
+            case 'ai':
+                translateX_value = 500
+                if (_querySizeTablet.matches) {translateX_value = 340}
+                if (_querySizePhone.matches) {
+                    translateY_value = -50
+                    translateX_value = 0
+                }
+                break;
+            case 'ae':
+                translateX_value = 650
+                if (_querySizeTablet.matches) {translateX_value = 440}
+                if (_querySizePhone.matches) {
+                    translateY_value = -130
+                    translateX_value = 0
+                }
+                break;
+            case 'fi':
+                translateX_value = 700
+                if (_querySizeTablet.matches) {translateX_value = 480}
+                if (_querySizePhone.matches) {
+                    translateY_value = -190
+                    translateX_value = 0
+                }
+                break;
+            case 'js':
+                translateX_value = 550
+                if (_querySizeTablet.matches) {translateX_value = 400}
+                if (_querySizePhone.matches) {
+                    translateY_value = -100
+                    translateX_value = 0
+                }
+                break;
+            case 'C#':
+                translateX_value = 450
+                if (_querySizeTablet.matches) {translateX_value = 260}
+                if (_querySizePhone.matches) {
+                    translateY_value = 60
+                    translateX_value = 0
+                }
+                break;
+            case 'Php':
+                translateX_value = 350
+                if (_querySizeTablet.matches) {translateX_value = 180}
+                if (_querySizePhone.matches) {
+                    translateY_value = 100
+                    translateX_value = 0
+                }
+                break;
+            case 'html':
+                translateX_value = 800
+                if (_querySizeTablet.matches) {translateX_value = 540}
+                if (_querySizePhone.matches) {
+                    translateY_value = -190
+                    translateX_value = 0
+                }
+                break;
+            case 'css':
+                translateX_value = 750
+                if (_querySizeTablet.matches) {translateX_value = 500}
+                if (_querySizePhone.matches) {
+                    translateY_value = -180
+                    translateX_value = 0
+                }
+                break;
+            case 'wp':
+                translateX_value = 300
+                if (_querySizeTablet.matches) {translateX_value = 190}
+                if (_querySizePhone.matches) {
+                    translateY_value = -60
+                    translateX_value = 0
+                }
+                break;
+        }
+        anime({
+            targets: entry.target,
+            translateX: [0, translateX_value],
+            translateY: [0, translateY_value],
+            easing: 'easeInOutQuad',
+            duration: 850,
+            opacity: [0,1],
+            delay: 200
+        })
+    })
+});
+
+faders.forEach(fader => {
+    observer.observe(fader)
+});
+
+//Tabs mechanic
+tabTitles.forEach(title => {
+    title.addEventListener('click', () => {
+        switch (title.dataset.title) {
+            case 'design':
+                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_1_svg.svg)";
+                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_1_svg.svg)";}
+                delete title.dataset.back
+                title.dataset.main = true;
+                tabTitles[1].dataset.back = true;
+                tabTitles[2].dataset.back = true;
+                webTab.classList.add('noDisplay')
+                codeTab.classList.add('noDisplay')
+                designTab.classList.remove('noDisplay')
+                break;
+            case 'code':
+                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_2_svg.svg)";
+                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_2_svg.svg)";}
+                delete title.dataset.back
+                title.dataset.main = true;
+                tabTitles[0].dataset.back = true;
+                tabTitles[2].dataset.back = true;
+                codeTab.classList.remove('noDisplay')
+                designTab.classList.add('noDisplay')
+                webTab.classList.add('noDisplay')
+                break;
+            case 'web':
+                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_3_svg.svg)";
+                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_3_svg.svg)";}
+                delete title.dataset.back
+                title.dataset.main = true;
+                tabTitles[0].dataset.back = true;
+                tabTitles[1].dataset.back = true;
+                codeTab.classList.add('noDisplay')
+                designTab.classList.add('noDisplay')
+                webTab.classList.remove('noDisplay')
+                break;
+        }
+    })
+})
+
+
+
+
+
+
+
+//-----------------------------------------------Functions-----------------------------------------------------------//
+
+function open_text_avatar(avatar, anim) {
+    switch (avatar.querySelector('.skill-text').textContent) {
+        case 'Ps':
+            skillText[0].textContent = 'Photoshop'
+            anime({
+                targets: skillText[0],
+                opacity: [0,1],
+                scale: 0.6,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+
+        case 'Ai':
+            skillText[1].textContent = 'Illustrator'
+            anime({
+                targets: skillText[1],
+                opacity: [0,1],
+                scale: 0.55,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'Ae':
+            skillText[2].textContent = 'After Effects'
+            anime({
+                targets: skillText[2],
+                opacity: [0,1],
+                scale: 0.6,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'Fi':
+            skillText[3].textContent = 'Figma'
+            anime({
+                targets: skillText[3],
+                opacity: [0,1],
+                scale: 0.7,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'Js':
+            skillText[4].textContent = 'Javascript'
+            anime({
+                targets: skillText[4],
+                opacity: [0,1],
+                scale: 0.6,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'Wp':
+            skillText[9].textContent = 'Wordpress'
+            anime({
+                targets: skillText[9],
+                opacity: [0,1],
+                scale: 0.6,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+    }
+    anim.setDirection(1)
+    anim.play()
+}
+
+function close_text_avatar(avatar, anim) {
+    switch (avatar.querySelector('.skill-text').textContent) {
+        case 'Photoshop':
+            anime({
+                begin: ()=> {
+                    skillText[0].textContent = 'Ps'
+                },
+                targets: skillText[0],
+                opacity: [0,1],
+                scale: 1,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'Illustrator':
+            anime({
+                begin: ()=> {
+                    skillText[1].textContent = 'Ai'
+                },
+                targets: skillText[1],
+                opacity: [0,1],
+                scale: 1,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'After Effects':
+            anime({
+                begin: ()=> {
+                    skillText[2].textContent = 'Ae'
+                },
+                targets: skillText[2],
+                opacity: [0,1],
+                scale: 1,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'Figma':
+            anime({
+                begin: ()=> {
+                    skillText[3].textContent = 'Fi'
+                },
+                targets: skillText[3],
+                opacity: [0,1],
+                scale: 1,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'Javascript':
+            anime({
+                begin: ()=> {
+                    skillText[4].textContent = 'Js'
+                },
+                targets: skillText[4],
+                opacity: [0,1],
+                scale: 1,
+                duration: 200,
+                easing: 'easeInQuad'
+            })
+            break;
+        case 'Wordpress':
+                anime({
+                    begin: ()=> {
+                        skillText[9].textContent = 'Wp'
+                    },
+                    targets: skillText[9],
+                    opacity: [0,1],
+                    scale: 1,
+                    duration: 200,
+                    easing: 'easeInQuad'
+                })
+                break;
+    
+    }
+    anim.setDirection(-1)
+    anim.play()
+}
+
+function home_to_works() {
+    work_section_element.classList.toggle('noDisplay');
+    title_element.style.opacity = 0;
+    document.querySelector('.description').style.opacity = 0;
+    document.querySelector('.subHeader-frame').style.opacity = 0;
+
+    var transition_works_timeline = anime.timeline({
+        easing: 'easeOutQuad',
+        duration: 1000
+    })
+
+    transition_works_timeline.add({
+        targets: planet_skills_container,
+        translateX: [0, 800],
+        scale: [1, 1.5],
+        complete: () => {
+            planet_skills_container.classList.toggle('noDisplay');
+        }
+    }, 0).add({
+        targets: planet_contact_element,
+        translateX: [0, 800],
+        translateY: [0, 500],
+        scale: [1, 1.5],
+        complete: () => {planet_contact_element.classList.toggle('noDisplay')}
+    }, 0).add({
+        targets: galaxy_element,
+        translateX: [0, 400],
+        translateY: [0, 200],
+        scale: [1, 1.4],
+    }, 0).add({
+        targets: planet_works_element,
+        begin: () => { 
+            planet_works_element.style.left = '50%';
+            planet_works_element.style.top = '100%';
+        },
+        scale: [1, 3.4],
+        complete: () => {
+            title_element_works.style.opacity = 1;
+            title_element_works.classList.toggle('noDisplay');
+        }
+    }, 0).add({
+        targets: work_section_element,
+        opacity: [0,1],
+        delay: 100
+    }, 600)
+
+    transition_works_timeline.play()
+}
+
+function works_to_home() {
+    document.querySelector('.description').style.opacity = 1;
+    document.querySelector('.subHeader-frame').style.opacity = 1;
+
+    var transition_home_timeline = anime.timeline({
+        easing: 'easeOutQuad',
+        duration: 1000
+    })
+
+    transition_home_timeline.add({
+        begin: () => {planet_skills_container.classList.toggle('noDisplay');},
+        targets: planet_skills_container,
+        translateX: [800, 0],
+        scale: [1.5, 1],
+        }, 0).add({
+            begin: () => {{planet_contact_element.classList.toggle('noDisplay')}},
+            targets: planet_contact_element,
+            translateX: [800, 0],
+            translateY: [500, 0],
+            scale: [1.5, 1]
+        }, 0).add({
+            targets: galaxy_element,
+            translateX: [400, 0],
+            translateY: [200, 0],
+            scale: [1.4, 1],
+        }, 0).add({
+            targets: planet_works_element,
+            begin: () => { 
+
+                planet_works_element.style.left = '20%';
+                planet_works_element.style.top = '32%';
+    
+                title_element_works.style.opacity = 0;
+                title_element_works.classList.toggle('noDisplay');
+                
+            },
+            scale: [3.4, 1],
+        }, 0).add({
+            targets: work_section_element,
+            opacity: [1,0],
+            duration: 500,
+            complete:() => {
+                title_element.style.opacity = 1;
+                work_section_element.classList.toggle('noDisplay')
+            }
+        }, 0)
+    
+        transition_home_timeline.play()
+} 
+
+function home_to_skills() {
+    title_element.style.opacity = 0;
+    document.querySelector('.description').style.opacity = 0;
+    document.querySelector('.subHeader-frame').style.opacity = 0;
+
+    anime({
+        targets: planet_skills_container,
+        translateX: [0, -1400],
+        translateY: [0, 800],
+        scale: [1, 4],
+        easing: 'easeInOutQuad'
+    })
+}
+
+    
+
+
+
+
+
+
 
 
 
