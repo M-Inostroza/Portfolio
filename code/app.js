@@ -1766,13 +1766,35 @@ function home_to_skills() {
     document.querySelector('.description').style.opacity = 0;
     document.querySelector('.subHeader-frame').style.opacity = 0;
 
-    anime({
+    var transition_works_timeline = anime.timeline({
+        easing: 'easeInOutQuad',
+        duration: 1200
+    })
+    transition_works_timeline.add({
         targets: planet_skills_container,
         translateX: [0, -1400],
         translateY: [0, 800],
         scale: [1, 4],
-        easing: 'easeInOutQuad'
-    })
+    }, 0).add({
+        targets: planet_contact_element,
+        translateX: [0, -1400],
+        translateY: [0, 1200],
+        scale: [1, 1.5],
+        complete: () => {planet_contact_element.classList.toggle('noDisplay')}
+    }, 0).add({
+        targets: planet_works_element,
+        translateX: [0, -1400],
+        translateY: [0, 800],
+        scale: [1, 1.5],
+        complete: () => {planet_contact_element.classList.toggle('noDisplay')}
+    }, 0).add({
+        targets: galaxy_element,
+        translateX: [0, -400],
+        translateY: [0, 400],
+        scale: [1, 1.4],
+    }, 0)
+
+    transition_works_timeline.play();
 }
 
     
