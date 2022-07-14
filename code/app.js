@@ -32,7 +32,7 @@ const title_frame_anim = bodymovin.loadAnimation({
     renderer: 'svg',
     loop: false,
     autoplay: false,
-    path: '/anims/frame_title_home.json'
+    path: '/anims/new_frame_titel.json'
 });
 const title_text = document.querySelector('.home-title');
 

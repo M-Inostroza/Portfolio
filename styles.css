@@ -99,12 +99,12 @@ main {
 }
 
 .home-title {
-    top: 35%;
-    left: 14%;
+    top: 30%;
+    left: 13%;
     position: absolute;
     text-align: left;
-    font-size: 4.2rem;
-    transition: opacity 500ms;
+    font-size: 3.8rem;
+    transition: opacity 800ms;
     z-index: 1;
 }
 
