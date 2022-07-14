@@ -1,13 +1,21 @@
 
 //Index:
+//--Queries--
 //--Loader--
 //--Titles--
 //--Load Func--
 
+let section_state = 'home';
+
+//Back Button
+const back_button = document.querySelector('.back-button');
+
+//Queries
+const _queryTablet = window.matchMedia('(max-width: 780px)');
+const _queryPhone = window.matchMedia('(max-width: 420px)');
 
 //Loader
 const loader = document.querySelector('.loader');
-
 const loader_anim = bodymovin.loadAnimation({
     container: loader,
     renderer: 'svg',
@@ -36,45 +44,40 @@ const title_text_works = document.querySelector('.title-works');
 window.addEventListener('load', () => {
 
     title_text.style.opacity = 0;
-  anime({
-    targets: loader,
-    opacity: [1,0],
-    easing: 'easeInOutQuad',
-    complete: () => {
-      loader.style.display = 'none';
-    }
-  });
+    const intro_timeline = anime.timeline({
+        easing: 'easeOutQuad',
+        loop: false
+    });
 
-  anime({
-    targets: galaxy_element,
-    translateY: [800, 0],
-    easing: 'easeOutQuad',
-    duration: 2000,
-    delay: 300
-  });
-
-  anime({
-    targets: [planet_skills_container, planet_contact_element, planet_works_element],
-    translateY: [-800, 0],
-    easing: 'easeOutQuad',
-    duration: 1600,
-    delay:300,
-    complete: () => {
-        title_frame_anim.play();
-        setTimeout(() => {
+    intro_timeline.add({
+        targets: loader,
+        opacity: [1,0],
+        easing: 'easeInOutQuad',
+        complete: () => {
+        loader.style.display = 'none';
+        }
+    }, 0).add({
+        targets: galaxy_element,
+        translateY: [800, 0],
+        scale: [1,1.2],
+        easing: 'easeOutQuad',
+        duration: 2000,
+        delay: 300
+    }, 0).add({
+        targets: [planet_skills_container, planet_contact_element, planet_works_element],
+        translateY: [-800, 0],
+        easing: 'easeOutQuad',
+        duration: 1600,
+        delay:300,
+        complete: () => {
+            title_frame_anim.play();
+            setTimeout(() => {
             title_text.style.opacity = 1;
-        }, 1200);
-    }
-  })
+            }, 1200);
+        }
+    }, 0)
+    intro_timeline.play();
 });
-
-//Queries
-const _queryTablet = window.matchMedia('(max-width: 780px)');
-const _queryPhone = window.matchMedia('(max-width: 420px)');
-
-
-//Bg planet works
-const planet_bg_works_element = document.querySelector(".planet-work-base");
 
 //Galaxy
 const galaxy_element = document.getElementById('galaxy');
@@ -90,10 +93,10 @@ galaxy_anim.setSpeed(0.65);
 //Work-UI
 const work_section_element = document.querySelector('.UI-group');
 
-//Back button
-const back_button = document.querySelector('.back-button');
+//Deactivate anim 
+let can_animate = true;
 
-//-----PLANET WORKS-----//
+//PLANET WORKS//
 
 //Container planet element
 const planet_works_element = document.getElementById("home-planet-works");
@@ -135,10 +138,12 @@ works_frame_anim.setSpeed(2.5)
 
 // PLAY IN
 planet_works_frame.addEventListener('mouseenter', () => {
-    works_frame_anim.setDirection(1)
-    works_frame_anim.play()
-    works_frame_float.style.opacity = 1;
-    works_frame_anim.play()
+    if (can_animate) {
+        works_frame_anim.setDirection(1)
+        works_frame_anim.play()
+        works_frame_float.style.opacity = 1;
+        section_state = 'works';
+    }; 
 })
 
 //Queries
@@ -161,7 +166,7 @@ planet_works_frame.addEventListener('mouseleave', () => {
 
 
 
-//-----PLANET SKILLS-----//
+//PLANET SKILLS//
 
 // Container frame element
 const planet_skills_frame = document.getElementById("planet-skills-frame");
@@ -203,6 +208,7 @@ planet_skills_frame.addEventListener('mouseenter', (e) => {
     skills_frame_anim.setDirection(1);
     window_skills.style.opacity = 1;
     window_skills_anim.play()
+    section_state = 'skills';
 })
 
 // Reduces anim speed
@@ -225,7 +231,7 @@ planet_skills_frame.addEventListener('mouseleave', (e) => {
 
 
 
-//-----PLANET HIRE-----//
+//PLANET HIRE//
 
 const planet_contact_element = document.getElementById("home-planet-contact");
 
@@ -259,6 +265,7 @@ contact_element.addEventListener('mouseenter', (e) => {
     frame_contact.setDirection(1);
     window_hire.style.opacity = 1;
     window_hire_anim.play()
+    section_state = 'contact';
 })
 
 // Floating window animation
@@ -287,18 +294,43 @@ contact_element.addEventListener('mouseleave', (e) => {
     window_hire.style.opacity = 0;
 })
 
-//-------------------------------------------------Buttons----------------------------------------------------------//
+
+
+
+
+
+//Buttons//
 
 planet_works_frame.addEventListener('click', () => {
     home_to_works()
+    can_animate = false;
+    planet_works_element.style.pointerEvents = 'none';
+    back_button.classList.toggle('noDisplay');
 })
 
 back_button.addEventListener('click', () => {
-    works_to_home()
+    switch (section_state) {
+        case 'works':
+            works_to_home();
+            can_animate = true;
+            planet_works_element.style.pointerEvents = 'all';
+            back_button.classList.toggle('noDisplay');
+            break;
+        case 'skills':
+            skills_to_home();
+            can_animate = true;
+            planet_skills_container.style.pointerEvents = 'all';
+            back_button.classList.toggle('noDisplay');
+        default:
+            break;
+    }
 })
 
 planet_skills_frame.addEventListener('click', () => {
     home_to_skills()
+    can_animate = false;
+    planet_skills_container.style.pointerEvents = 'none';
+    back_button.classList.toggle('noDisplay');
 })
 
 contact_element.addEventListener('click', (e) => {
@@ -545,16 +577,6 @@ var moon3_unknown = bodymovin.loadAnimation({
 
 const lock_img = document.querySelector('[data-lock]')
 
-
-//-- Background Planet --//
-
-var backgroundCover = bodymovin.loadAnimation({
-    container: planet_bg_works_element,
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    path: '/anims/works_halfPlanet.json'
-})
 
 //Arrow buttons
 const buttons = document.querySelectorAll("[data-carousel-button]");
@@ -1512,7 +1534,7 @@ tabTitles.forEach(title => {
 
 
 
-//-----------------------------------------------Functions-----------------------------------------------------------//
+//Functions//
 
 function open_text_avatar(avatar, anim) {
     switch (avatar.querySelector('.skill-text').textContent) {
@@ -1766,24 +1788,24 @@ function home_to_skills() {
     document.querySelector('.description').style.opacity = 0;
     document.querySelector('.subHeader-frame').style.opacity = 0;
 
-    var transition_works_timeline = anime.timeline({
+    var transition_skills_timeline = anime.timeline({
         easing: 'easeInOutQuad',
         duration: 1200
     })
-    transition_works_timeline.add({
+    transition_skills_timeline.add({
         targets: planet_skills_container,
         translateX: [0, -1400],
         translateY: [0, 800],
         scale: [1, 4],
     }, 0).add({
         targets: planet_contact_element,
-        translateX: [0, -1400],
+        translateX: [0, -1200],
         translateY: [0, 1200],
         scale: [1, 1.5],
         complete: () => {planet_contact_element.classList.toggle('noDisplay')}
     }, 0).add({
         targets: planet_works_element,
-        translateX: [0, -1400],
+        translateX: [0, -1200],
         translateY: [0, 800],
         scale: [1, 1.5],
         complete: () => {planet_contact_element.classList.toggle('noDisplay')}
@@ -1794,7 +1816,43 @@ function home_to_skills() {
         scale: [1, 1.4],
     }, 0)
 
-    transition_works_timeline.play();
+    transition_skills_timeline.play();
+}
+
+function skills_to_home() {
+    title_element.style.opacity = 1;
+    document.querySelector('.description').style.opacity = 1;
+    document.querySelector('.subHeader-frame').style.opacity = 1;
+
+    var transition_skills_timeline = anime.timeline({
+        easing: 'easeInOutQuad',
+        duration: 1200
+    })
+    transition_skills_timeline.add({
+        targets: planet_skills_container,
+        translateX: [-1400, 0],
+        translateY: [800, 0],
+        scale: [4, 1],
+    }, 0).add({
+        targets: planet_contact_element,
+        translateX: [-1200, 0],
+        translateY: [1200, 0],
+        scale: [1.5, 1],
+        complete: () => {planet_contact_element.classList.toggle('noDisplay')}
+    }, 0).add({
+        targets: planet_works_element,
+        translateX: [-1400, 0],
+        translateY: [800, 0],
+        scale: [1.5, 1],
+        complete: () => {planet_contact_element.classList.toggle('noDisplay')}
+    }, 0).add({
+        targets: galaxy_element,
+        translateX: [-400, 0],
+        translateY: [400, 0],
+        scale: [1.4, 1],
+    }, 0)
+
+    transition_skills_timeline.play();
 }
 
     
