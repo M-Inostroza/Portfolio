@@ -59,7 +59,7 @@ window.addEventListener('load', () => {
     }, 0).add({
         targets: galaxy_element,
         translateY: [800, 0],
-        scale: [1,1.2],
+        scale: [0.6,1.2],
         easing: 'easeOutQuad',
         duration: 2000,
         delay: 300
@@ -208,7 +208,6 @@ planet_skills_frame.addEventListener('mouseenter', (e) => {
     skills_frame_anim.setDirection(1);
     window_skills.style.opacity = 1;
     window_skills_anim.play()
-    section_state = 'skills';
 })
 
 // Reduces anim speed
@@ -297,10 +296,9 @@ contact_element.addEventListener('mouseleave', (e) => {
 
 
 
-
-
 //Buttons//
 
+//Works
 planet_works_frame.addEventListener('click', () => {
     home_to_works()
     can_animate = false;
@@ -308,6 +306,15 @@ planet_works_frame.addEventListener('click', () => {
     back_button.classList.toggle('noDisplay');
 })
 
+//Skills
+planet_skills_frame.addEventListener('click', () => {
+    home_to_skills()
+    can_animate = false;
+    planet_skills_container.style.pointerEvents = 'none';
+    back_button.classList.toggle('noDisplay');
+})
+
+//Back
 back_button.addEventListener('click', () => {
     switch (section_state) {
         case 'works':
@@ -321,22 +328,17 @@ back_button.addEventListener('click', () => {
             can_animate = true;
             planet_skills_container.style.pointerEvents = 'all';
             back_button.classList.toggle('noDisplay');
+            break;
         default:
             break;
     }
 })
 
-planet_skills_frame.addEventListener('click', () => {
-    home_to_skills()
-    can_animate = false;
-    planet_skills_container.style.pointerEvents = 'none';
-    back_button.classList.toggle('noDisplay');
-})
+
 
 contact_element.addEventListener('click', (e) => {
 })
 
-//-----------------------------------//
 
 
 //-----Shifting text-----//
@@ -502,9 +504,9 @@ detailTimeline.add({
 
 
 
-//----------Works----------//
 
-//------------------------------------------------Works section------------------------------------------------------//
+
+//-Works section-//
 
 const works_container = document.querySelector('.works-section')
 
@@ -1281,253 +1283,20 @@ observerWorks.observe(title_element_works)
 
 
 
-//--------------------------------------------Skills----------------------------------------------------------------//
+//-Skills section-//
 
 
 //--Title Intro--//
-const title_element_skills = document.querySelector('.title-skills-container');
-const title_text_skills = document.querySelector('.title-skills')
-
-//Opening and title display
-const observerSkills = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting){
-            anime({
-                targets: title_element_skills,
-                scaleX: [0,1],
-                opacity: [0,1],
-                easing: 'easeInOutQuad',
-                duration: 250,
-                delay: 350,
-                complete: ()=>{
-                    anime({
-                        targets: title_text_skills,
-                        opacity: [0,1],
-                        easing: 'easeInOutQuad',
-                        duration: 250,
-                        delay: 150
-                    })
-                }
-            })
-        } else {
-            title_element_skills.style.opacity = 0;
-            title_text_skills.style.opacity = 0;
-        }
-    });
-});
-
-observerSkills.observe(title_element_skills)
-
-
-
-
-
-//Variables
-const [...faders] = document.querySelectorAll('.skill-fader');
-const [...tabTitles] = document.querySelectorAll("[data-title]");
-let [...skillAvatars] = document.querySelectorAll('.skill-avatar');
-let [...skillText] = document.querySelectorAll('.skill-text');
-const frameElement = document.querySelector('.skill-frame-container');
-
-//Queries
-const _querySizeTablet = window.matchMedia('(max-width: 780px)');
-const _querySizePhone = window.matchMedia('(max-width: 420px)');
-
-//tabs
-const designTab = document.querySelector('[data-design]')
-const codeTab = document.querySelector('[data-code]')
-const webTab = document.querySelector('[data-web]')
-
-const planet_bg_skills_container = document.getElementById("planet-skills-BG");
-
-//Background planet
-var planet_BG = bodymovin.loadAnimation({
-    container: planet_bg_skills_container,
+const skill_section = document.querySelector('.UI-skills');
+const title_element_skills = document.getElementById('title-skills-container');
+const title_frame_skills_anim = bodymovin.loadAnimation({
+    container: title_element_skills,
     renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: '/anims/skills_planet_BG.json'
-})
-
-//Expands the avatar frame
-skillAvatars.forEach(avatar => {
-    let openFrame = bodymovin.loadAnimation({
-        container: avatar,
-        renderer: 'svg',
-        loop: false,
-        autoplay: false,
-        path: '/anims/skill_avatar_open.json'
-    })
-
-    avatar.addEventListener('mouseover', () => {
-        open_text_avatar(avatar, openFrame)
-    })
-    
-    avatar.addEventListener('mouseleave', () => { 
-        close_text_avatar(avatar, openFrame)
-    })
-
-    //Let the avatar open when element is in viewport
-    if(_querySizeTablet.matches || _querySizePhone.matches) {
-        const avatarObserver = new IntersectionObserver(entries=>{
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    open_text_avatar(entry.target, openFrame)
-                } else {
-                    close_text_avatar(entry.target, openFrame)
-                }
-            })
-        })
-
-        avatarObserver.observe(avatar)
-    }
-})
-
-
-//Controls faders 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        let translateX_value;
-        let translateY_value;
-        switch (entry.target.dataset.name) {
-            case 'ps':
-                translateX_value = 600
-                if (_querySizeTablet.matches) {translateX_value = 400}
-                if (_querySizePhone.matches) {
-                    translateY_value = -170
-                    translateX_value = 0
-                }
-                break;
-            case 'ai':
-                translateX_value = 500
-                if (_querySizeTablet.matches) {translateX_value = 340}
-                if (_querySizePhone.matches) {
-                    translateY_value = -50
-                    translateX_value = 0
-                }
-                break;
-            case 'ae':
-                translateX_value = 650
-                if (_querySizeTablet.matches) {translateX_value = 440}
-                if (_querySizePhone.matches) {
-                    translateY_value = -130
-                    translateX_value = 0
-                }
-                break;
-            case 'fi':
-                translateX_value = 700
-                if (_querySizeTablet.matches) {translateX_value = 480}
-                if (_querySizePhone.matches) {
-                    translateY_value = -190
-                    translateX_value = 0
-                }
-                break;
-            case 'js':
-                translateX_value = 550
-                if (_querySizeTablet.matches) {translateX_value = 400}
-                if (_querySizePhone.matches) {
-                    translateY_value = -100
-                    translateX_value = 0
-                }
-                break;
-            case 'C#':
-                translateX_value = 450
-                if (_querySizeTablet.matches) {translateX_value = 260}
-                if (_querySizePhone.matches) {
-                    translateY_value = 60
-                    translateX_value = 0
-                }
-                break;
-            case 'Php':
-                translateX_value = 350
-                if (_querySizeTablet.matches) {translateX_value = 180}
-                if (_querySizePhone.matches) {
-                    translateY_value = 100
-                    translateX_value = 0
-                }
-                break;
-            case 'html':
-                translateX_value = 800
-                if (_querySizeTablet.matches) {translateX_value = 540}
-                if (_querySizePhone.matches) {
-                    translateY_value = -190
-                    translateX_value = 0
-                }
-                break;
-            case 'css':
-                translateX_value = 750
-                if (_querySizeTablet.matches) {translateX_value = 500}
-                if (_querySizePhone.matches) {
-                    translateY_value = -180
-                    translateX_value = 0
-                }
-                break;
-            case 'wp':
-                translateX_value = 300
-                if (_querySizeTablet.matches) {translateX_value = 190}
-                if (_querySizePhone.matches) {
-                    translateY_value = -60
-                    translateX_value = 0
-                }
-                break;
-        }
-        anime({
-            targets: entry.target,
-            translateX: [0, translateX_value],
-            translateY: [0, translateY_value],
-            easing: 'easeInOutQuad',
-            duration: 850,
-            opacity: [0,1],
-            delay: 200
-        })
-    })
+    loop: false,
+    autoplay: false,
+    path: '/anims/new_frame_titel.json'
 });
-
-faders.forEach(fader => {
-    observer.observe(fader)
-});
-
-//Tabs mechanic
-tabTitles.forEach(title => {
-    title.addEventListener('click', () => {
-        switch (title.dataset.title) {
-            case 'design':
-                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_1_svg.svg)";
-                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_1_svg.svg)";}
-                delete title.dataset.back
-                title.dataset.main = true;
-                tabTitles[1].dataset.back = true;
-                tabTitles[2].dataset.back = true;
-                webTab.classList.add('noDisplay')
-                codeTab.classList.add('noDisplay')
-                designTab.classList.remove('noDisplay')
-                break;
-            case 'code':
-                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_2_svg.svg)";
-                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_2_svg.svg)";}
-                delete title.dataset.back
-                title.dataset.main = true;
-                tabTitles[0].dataset.back = true;
-                tabTitles[2].dataset.back = true;
-                codeTab.classList.remove('noDisplay')
-                designTab.classList.add('noDisplay')
-                webTab.classList.add('noDisplay')
-                break;
-            case 'web':
-                frameElement.style.backgroundImage = "url(/images/skill_frame_UI_tab_3_svg.svg)";
-                if (_querySizePhone.matches) {frameElement.style.backgroundImage = "url(/images/vertical_frame_3_svg.svg)";}
-                delete title.dataset.back
-                title.dataset.main = true;
-                tabTitles[0].dataset.back = true;
-                tabTitles[1].dataset.back = true;
-                codeTab.classList.add('noDisplay')
-                designTab.classList.add('noDisplay')
-                webTab.classList.remove('noDisplay')
-                break;
-        }
-    })
-})
-
+const title_text_skills = document.querySelector('.title-skills')
 
 
 
@@ -1784,6 +1553,7 @@ function works_to_home() {
 } 
 
 function home_to_skills() {
+    section_state = 'skills';
     title_element.style.opacity = 0;
     document.querySelector('.description').style.opacity = 0;
     document.querySelector('.subHeader-frame').style.opacity = 0;
@@ -1811,16 +1581,34 @@ function home_to_skills() {
         complete: () => {planet_contact_element.classList.toggle('noDisplay')}
     }, 0).add({
         targets: galaxy_element,
-        translateX: [0, -400],
-        translateY: [0, 400],
+        translateX: [0, -300],
+        translateY: [0, 300],
         scale: [1, 1.4],
+    }, 0).add({
+        begin: ()=> {skill_section.classList.toggle('noDisplay')},
+        targets: skill_section,
+        opacity: [0, 1],
+        complete: ()=> {
+            title_frame_skills_anim.setDirection(1);
+            title_frame_skills_anim.setSpeed(2)
+            title_frame_skills_anim.play();
+            setTimeout(() => {
+                title_text_skills.style.opacity = 1;
+            }, 600);
+        }
     }, 0)
 
     transition_skills_timeline.play();
 }
 
 function skills_to_home() {
-    title_element.style.opacity = 1;
+    
+    //Closes title
+    title_frame_skills_anim.setDirection(-1);
+    title_frame_skills_anim.setSpeed(2)
+    title_frame_skills_anim.play();
+    title_text_skills.style.opacity = 0;
+
     document.querySelector('.description').style.opacity = 1;
     document.querySelector('.subHeader-frame').style.opacity = 1;
 
@@ -1844,15 +1632,29 @@ function skills_to_home() {
         translateX: [-1400, 0],
         translateY: [800, 0],
         scale: [1.5, 1],
-        complete: () => {planet_contact_element.classList.toggle('noDisplay')}
+        complete: () => {
+            planet_contact_element.classList.toggle('noDisplay')
+        }
     }, 0).add({
         targets: galaxy_element,
-        translateX: [-400, 0],
-        translateY: [400, 0],
+        translateX: [-300, 0],
+        translateY: [300, 0],
         scale: [1.4, 1],
-    }, 0)
+        complete: () => {
+            
+        }
+    }, 0).add({
+        targets: skill_section,
+        opacity: [1,0],
+        duration: 1000,
+        complete: ()=> {
+            skill_section.classList.toggle('noDisplay');
+            title_element.style.opacity = 1;
+        }
+    }, 0);
 
     transition_skills_timeline.play();
+    
 }
 
     

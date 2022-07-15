@@ -619,6 +619,7 @@ main {
     top: 5%;
     right: 10%;
     cursor: pointer;
+    z-index: 1;
 }
 
 .frame-container {
@@ -1016,36 +1017,29 @@ ul {
 .UI-skills {
     position: relative;
     display: flex;
-    background-image: url(/images/skills_BG.webp);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     width: 100%;
     height: 100rem;
     align-items: center;
     justify-content: center;
 }
 
-.title-skills-container {
-    background-image: url(/images/skills_title_container.png);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    width: 22rem;
-    height: 6rem;
+#title-skills-container {
+    width: 40rem;
+    height: 8rem;
     position: absolute;
-    left: 6%;
-    top: 4%;
+    left: 10%;
+    top: 10%;
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
 }
 
 .title-skills {
+    position: absolute;
     text-align: center;
     font-size: 4rem;
+    transition: opacity 500ms;
     opacity: 0;
 }
 
