@@ -37,7 +37,15 @@ const title_frame_anim = bodymovin.loadAnimation({
 const title_text = document.querySelector('.home-title');
 
 //--Title Works--//
-const title_element_works = document.querySelector('.title-works-container');
+const title_element_works = document.getElementById('title-works-container');
+const title_element_works_anim = bodymovin.loadAnimation({
+    container: title_element_works,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: '/anims/new_frame_titel.json'
+});
+
 const title_text_works = document.querySelector('.title-works');
 
 //Waits until content is loaded before showing site
@@ -91,7 +99,7 @@ var galaxy_anim = bodymovin.loadAnimation({
 galaxy_anim.setSpeed(0.65);
 
 //Work-UI
-const work_section_element = document.querySelector('.UI-group');
+const work_section_element = document.querySelector('.UI-works');
 
 //Deactivate anim 
 let can_animate = true;
@@ -1245,44 +1253,6 @@ buttons.forEach(button => {
 
 
 
-
-//Opening and title display
-const observerWorks = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting){
-            anime({
-                targets: title_element_works,
-                scaleX: [0,1],
-                opacity: [0,1],
-                easing: 'easeInOutQuad',
-                duration: 250,
-                delay: 350,
-                complete: ()=>{
-                    anime({
-                        targets: title_text_works,
-                        opacity: [0,1],
-                        easing: 'easeInOutQuad',
-                        duration: 250,
-                        delay: 150
-                    })
-                }
-            })
-        } else {
-            title_element_works.style.opacity = 0;
-            title_text_works.style.opacity = 0;
-        }
-    });
-});
-
-observerWorks.observe(title_element_works)
-
-
-
-
-
-
-
-
 //-Skills section-//
 
 
@@ -1454,6 +1424,7 @@ function close_text_avatar(avatar, anim) {
 }
 
 function home_to_works() {
+
     work_section_element.classList.toggle('noDisplay');
     title_element.style.opacity = 0;
     document.querySelector('.description').style.opacity = 0;
@@ -1489,20 +1460,34 @@ function home_to_works() {
             planet_works_element.style.top = '100%';
         },
         scale: [1, 3.4],
-        complete: () => {
-            title_element_works.style.opacity = 1;
-            title_element_works.classList.toggle('noDisplay');
-        }
     }, 0).add({
+        targets: title_element_works,
+        opacity: [0,1],
+    }, 0).add({
+        targets: title_text_works,
+        opacity: [0,1],
+    }, 800).add({
         targets: work_section_element,
         opacity: [0,1],
-        delay: 100
-    }, 600)
+    }, 0)
 
-    transition_works_timeline.play()
+    
+    title_element_works.classList.toggle('noDisplay');
+
+    transition_works_timeline.play();
+    title_element_works_anim.setDirection(1);
+    title_element_works_anim.setSpeed(1);
+    title_element_works_anim.play();
 }
 
 function works_to_home() {
+
+    title_element_works_anim.setDirection(-1);
+    title_element_works_anim.setSpeed(2);
+    title_element_works_anim.play();
+
+    title_text_works.style.opacity = 0;
+
     document.querySelector('.description').style.opacity = 1;
     document.querySelector('.subHeader-frame').style.opacity = 1;
 
@@ -1530,24 +1515,28 @@ function works_to_home() {
         }, 0).add({
             targets: planet_works_element,
             begin: () => { 
-
                 planet_works_element.style.left = '20%';
                 planet_works_element.style.top = '32%';
-    
-                title_element_works.style.opacity = 0;
-                title_element_works.classList.toggle('noDisplay');
-                
             },
             scale: [3.4, 1],
         }, 0).add({
+            targets: title_element_works,
+            opacity: [1,0],
+            duration: 200,
+            complete:() => {
+                title_element.style.opacity = 1;
+                title_element_works.classList.toggle('noDisplay');
+            }
+        }, 600).add({
             targets: work_section_element,
             opacity: [1,0],
             duration: 500,
             complete:() => {
                 title_element.style.opacity = 1;
-                work_section_element.classList.toggle('noDisplay')
+                title_element_works.classList.toggle('noDisplay');
+                work_section_element.classList.toggle('noDisplay');
             }
-        }, 0)
+        }, 600)
     
         transition_home_timeline.play()
 } 
