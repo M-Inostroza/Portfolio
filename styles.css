@@ -61,7 +61,7 @@ body { font-size: 1.4rem;} /* =14px */
 
 
 
-/*------------------------ Main ------------------------*/
+/* Home */
 
 main {
     position: relative;
@@ -104,8 +104,8 @@ main {
     position: absolute;
     text-align: left;
     font-size: 3.8rem;
-    transition: opacity 800ms;
     z-index: 1;
+    opacity: 0;
 }
 
 .code-text {
@@ -590,7 +590,6 @@ main {
     text-align: center;
     font-size: 4rem;
     opacity: 0;
-    transition: opacity 350ms;
 }
 
 .back-button {
