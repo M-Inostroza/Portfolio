@@ -97,6 +97,9 @@ galaxy_anim.setSpeed(0.65);
 //Work-UI
 const work_section_element = document.querySelector('.UI-works');
 
+//Contact-UI
+const contact_section_element = document.querySelector('.UI-contact');
+
 //Deactivate anim 
 let can_animate = true;
 
@@ -323,24 +326,23 @@ contact_element.addEventListener('click', () => {
     home_to_contact();
     can_animate = false;
     contact_element.style.pointerEvents = 'none';
+    back_button.classList.toggle('noDisplay');
 })
 
 //Back
 back_button.addEventListener('click', () => {
+    can_animate = true;
+    back_button.classList.toggle('noDisplay');
     switch (section_state) {
         case 'works':
             works_to_home();
-            can_animate = true;
-            planet_works_element.style.pointerEvents = 'all';
-            back_button.classList.toggle('noDisplay');
             break;
         case 'skills':
             skills_to_home();
-            can_animate = true;
-            planet_skills_container.style.pointerEvents = 'all';
-            back_button.classList.toggle('noDisplay');
             break;
-        default:
+        case 'contact':
+            contact_to_home();
+            contact_element.style.pointerEvents = 'all';
             break;
     }
 })
@@ -1252,9 +1254,6 @@ buttons.forEach(button => {
 
 
 //-Skills section-//
-
-
-//--Title Intro--//
 const skill_section = document.querySelector('.UI-skills');
 const title_element_skills = document.getElementById('title-skills-container');
 const title_frame_skills_anim = bodymovin.loadAnimation({
@@ -1269,7 +1268,15 @@ const title_text_skills = document.querySelector('.title-skills')
 
 
 //-Contact section-//
-
+const title_element_contact = document.getElementById('title-contact-container');
+const title_frame_contact_anim = bodymovin.loadAnimation({
+    container: title_element_contact,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: '/anims/new_frame_titel.json'
+});
+const title_text_contact = document.querySelector('.title-contact');
 
 //Variables
 const submit_button = document.querySelector('.submit-button');
@@ -1313,48 +1320,6 @@ form.addEventListener('submit', (e)=>{
     }
 })
 
-var planet_anim = bodymovin.loadAnimation({
-    container: document.getElementById("contact-planet"),
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: '/anims/contact_halfPlanet.json'
-})
-
-
-const title_element_contact = document.querySelector('.title-contact-container');
-const title_text_contact = document.querySelector('.title-contact')
-
-
-//Opening and title display
-const observerContact = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting){
-            anime({
-                targets: title_element_contact,
-                scaleX: [0,1],
-                opacity: [0,1],
-                easing: 'easeInOutQuad',
-                duration: 250,
-                delay: 350,
-                complete: ()=>{
-                    anime({
-                        targets: title_text_contact,
-                        opacity: [0,1],
-                        easing: 'easeInOutQuad',
-                        duration: 250,
-                        delay: 150
-                    })
-                }
-            })
-        } else {
-            title_element_contact.style.opacity = 0;
-            title_text_contact.style.opacity = 0;
-        }
-    });
-});
-
-observerContact.observe(title_element_contact);
 
 lock_data.addEventListener('click', ()=> {
     
@@ -1371,154 +1336,7 @@ lock_data.addEventListener('click', ()=> {
 
 //Functions//
 
-function open_text_avatar(avatar, anim) {
-        switch (avatar.querySelector('.skill-text').textContent) {
-            case 'Ps':
-                skillText[0].textContent = 'Photoshop'
-                anime({
-                    targets: skillText[0],
-                    opacity: [0,1],
-                    scale: 0.6,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-    
-            case 'Ai':
-                skillText[1].textContent = 'Illustrator'
-                anime({
-                    targets: skillText[1],
-                    opacity: [0,1],
-                    scale: 0.55,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-            case 'Ae':
-                skillText[2].textContent = 'After Effects'
-                anime({
-                    targets: skillText[2],
-                    opacity: [0,1],
-                    scale: 0.6,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-            case 'Fi':
-                skillText[3].textContent = 'Figma'
-                anime({
-                    targets: skillText[3],
-                    opacity: [0,1],
-                    scale: 0.7,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-            case 'Js':
-                skillText[4].textContent = 'Javascript'
-                anime({
-                    targets: skillText[4],
-                    opacity: [0,1],
-                    scale: 0.6,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-            case 'Wp':
-                skillText[9].textContent = 'Wordpress'
-                anime({
-                    targets: skillText[9],
-                    opacity: [0,1],
-                    scale: 0.6,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-        }
-        anim.setDirection(1)
-        anim.play()
-}
-
-function close_text_avatar(avatar, anim) {
-        switch (avatar.querySelector('.skill-text').textContent) {
-            case 'Photoshop':
-                anime({
-                    begin: ()=> {
-                        skillText[0].textContent = 'Ps'
-                    },
-                    targets: skillText[0],
-                    opacity: [0,1],
-                    scale: 1,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-            case 'Illustrator':
-                anime({
-                    begin: ()=> {
-                        skillText[1].textContent = 'Ai'
-                    },
-                    targets: skillText[1],
-                    opacity: [0,1],
-                    scale: 1,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-            case 'After Effects':
-                anime({
-                    begin: ()=> {
-                        skillText[2].textContent = 'Ae'
-                    },
-                    targets: skillText[2],
-                    opacity: [0,1],
-                    scale: 1,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-            case 'Figma':
-                anime({
-                    begin: ()=> {
-                        skillText[3].textContent = 'Fi'
-                    },
-                    targets: skillText[3],
-                    opacity: [0,1],
-                    scale: 1,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-            case 'Javascript':
-                anime({
-                    begin: ()=> {
-                        skillText[4].textContent = 'Js'
-                    },
-                    targets: skillText[4],
-                    opacity: [0,1],
-                    scale: 1,
-                    duration: 200,
-                    easing: 'easeInQuad'
-                })
-                break;
-            case 'Wordpress':
-                    anime({
-                        begin: ()=> {
-                            skillText[9].textContent = 'Wp'
-                        },
-                        targets: skillText[9],
-                        opacity: [0,1],
-                        scale: 1,
-                        duration: 200,
-                        easing: 'easeInQuad'
-                    })
-                    break;
-        
-        }
-        anim.setDirection(-1)
-        anim.play()
-}
-
+//Works section
 function home_to_works() {
     
         title_frame_anim.setDirection(-1);
@@ -1586,9 +1404,9 @@ function home_to_works() {
         title_element_works_anim.setSpeed(1);
         title_element_works_anim.play();
 }
-
 function works_to_home() {
-    
+        planet_works_element.style.pointerEvents = 'all';
+
         title_element_works_anim.setDirection(-1);
         title_element_works_anim.setSpeed(3);
         title_element_works_anim.play();
@@ -1660,7 +1478,7 @@ function works_to_home() {
             transition_home_timeline.play()
 } 
 
-
+//Skills section
 function home_to_skills() {
         section_state = 'skills';
         
@@ -1693,10 +1511,11 @@ function home_to_skills() {
             scale: [1, 1.5],
             complete: () => {planet_contact_element.classList.toggle('noDisplay')}
         }, 0).add({
+            //Galaxy
             targets: galaxy_element,
             translateX: [0, -300],
             translateY: [0, 300],
-            scale: [1, 1.4],
+            scale: [1.2, 1.4],
         }, 0).add({
             begin: ()=> {skill_section.classList.toggle('noDisplay')},
             targets: skill_section,
@@ -1723,9 +1542,9 @@ function home_to_skills() {
     
         transition_skills_timeline.play();
 }
-
 function skills_to_home() {
         
+        planet_skills_container.style.pointerEvents = 'all';
         //Closes title
         title_frame_skills_anim.setDirection(-1);
         title_frame_skills_anim.setSpeed(2)
@@ -1766,7 +1585,7 @@ function skills_to_home() {
             targets: galaxy_element,
             translateX: [-300, 0],
             translateY: [300, 0],
-            scale: [1.4, 1],
+            scale: [1.4, 1.2],
         }, 0).add({
             //Skill Section
             targets: skill_section,
@@ -1794,6 +1613,7 @@ function skills_to_home() {
         
 }
 
+//Contact section
 function home_to_contact() {
 
     section_state = 'contact';
@@ -1804,6 +1624,8 @@ function home_to_contact() {
     title_frame_anim.setDirection(-1);
     title_frame_anim.setSpeed(2.6);
     title_frame_anim.play();
+
+    contact_section_element.classList.toggle('noDisplay');
 
     const transition_contact_timeline = anime.timeline({
         easing: 'easeInOutQuad',
@@ -1821,12 +1643,18 @@ function home_to_contact() {
     }, 0).add({
         targets: title_element,
         opacity: [1,0],
-        duration: 100
+        duration: 100,
+        complete: () => {
+            title_frame_contact_anim.setDirection(1);
+            title_frame_contact_anim.setSpeed(1);
+            title_frame_contact_anim.play();
+        }
     }, 300).add({
         targets: title_text,
         opacity: [1,0],
         duration: 200,
     }, 100).add({
+        //Galaxy
         targets: galaxy_element,
         translateY: -300,
         translateX: -300,
@@ -1838,6 +1666,66 @@ function home_to_contact() {
         translateY: [0, -250],
         translateX: [0, 100],
         duration: 800
+    }, 0).add({
+        targets: title_text_contact,
+        opacity: [0,1]
+    }, 700)
+
+    transition_contact_timeline.play();
+}
+function contact_to_home() {
+
+    section_state = 'home';
+
+    document.querySelector('.description').style.opacity = 1;
+    document.querySelector('.subHeader-frame').style.opacity = 1;
+
+    title_frame_contact_anim.setDirection(-1);
+    title_frame_contact_anim.setSpeed(3);
+    title_frame_contact_anim.play();
+
+    planet_works_element.classList.toggle('noDisplay');
+    planet_skills_container.classList.toggle('noDisplay');
+
+    const transition_contact_timeline = anime.timeline({
+        easing: 'easeInOutQuad',
+        duration: 1000
+    })
+
+    transition_contact_timeline.add({
+        targets: [planet_works_element, planet_skills_container],
+        translateY: [-700, 0],
+        duration: [800,0],
+    }, 0).add({
+        targets: title_element,
+        opacity: [0,1],
+        duration: 100,
+        complete: () => {
+            title_frame_anim.setDirection(1);
+            title_frame_anim.setSpeed(1);
+            title_frame_anim.play();
+            contact_section_element.classList.toggle('noDisplay');
+        }
+    }, 800).add({
+        targets: title_text,
+        opacity: [0,1],
+        duration: 200,
+    }, 1500).add({
+        //Galaxy
+        targets: galaxy_element,
+        translateY: [-300, 0],
+        translateX: [-300, 0],
+        scale: [1.6,1.2],
+        duration: 1500,
+    }, 0).add({
+        targets: planet_contact_element,
+        scale: [2.4,1],
+        translateY: [-250,0],
+        translateX: [100,0],
+        duration: 800
+    }, 0).add({
+        targets: title_text_contact,
+        opacity: [1,0]
     }, 0)
 
     transition_contact_timeline.play();
