@@ -1338,25 +1338,27 @@ lock_data.addEventListener('click', ()=> {
 
 //Works section
 function home_to_works() {
+
+        let speedOpen = 1;
+        let speedClose = 2;
     
         title_frame_anim.setDirection(-1);
-        title_frame_anim.setSpeed(2.6);
+        title_frame_anim.setSpeed(speedClose);
         title_frame_anim.play();
     
         work_section_element.classList.toggle('noDisplay');
         document.querySelector('.description').style.opacity = 0;
         document.querySelector('.subHeader-frame').style.opacity = 0;
     
-        var transition_works_timeline = anime.timeline({
+        let transition_works_timeline = anime.timeline({
             easing: 'easeOutQuad',
-            duration: 1000
         })
     
         transition_works_timeline.add({
             targets: title_element,
             opacity: [1,0],
-            duration: 300
-        }, 0).add({
+            duration: 50
+        }, 300).add({
             targets: planet_skills_container,
             translateX: [0, 800],
             scale: [1, 1.5],
@@ -1386,23 +1388,30 @@ function home_to_works() {
             opacity: [1,0],
             duration: 200
         }, 0).add({
+            begin: () => {
+                title_element_works.classList.toggle('noDisplay');
+            },
             targets: title_element_works,
             opacity: [0,1],
-        }, 400).add({
+            duration: 100,
+            complete: () => {
+            //Open title anim
+            title_element_works_anim.setDirection(1);
+            title_element_works_anim.setSpeed(speedOpen);
+            title_element_works_anim.play();
+            }
+        }, 500).add({
             targets: title_text_works,
             opacity: [0,1],
-        }, 400).add({
+        }, 1900).add({
             targets: work_section_element,
             opacity: [0,1],
-        }, 600)
+        }, 400)
     
-        
-        title_element_works.classList.toggle('noDisplay');
-    
+        //Plays timeline
         transition_works_timeline.play();
-        title_element_works_anim.setDirection(1);
-        title_element_works_anim.setSpeed(1);
-        title_element_works_anim.play();
+
+        
 }
 function works_to_home() {
         planet_works_element.style.pointerEvents = 'all';

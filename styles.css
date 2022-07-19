@@ -129,7 +129,7 @@ main {
     margin-left: -14.5rem;
     width: 29rem;
     height: 30rem;
-    transition: left 1s, top 1s, scale 1s;
+    transition: left 1s, top 1s;
 }
 
 #planet-works-frame {
