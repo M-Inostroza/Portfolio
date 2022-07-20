@@ -63,6 +63,7 @@ window.addEventListener('load', () => {
         loader.style.display = 'none';
         }
     }, 0).add({
+        //Galaxy
         targets: galaxy_element,
         translateY: [800, 0],
         scale: [0.6,1.2],
@@ -1372,10 +1373,11 @@ function home_to_works() {
             scale: [1, 1.5],
             complete: () => {planet_contact_element.classList.toggle('noDisplay')}
         }, 0).add({
+            //Galaxy
             targets: galaxy_element,
-            translateX: [0, 400],
+            translateX: [0, 200],
             translateY: [0, 200],
-            scale: [1, 1.4],
+            scale: [1.2, 1.6],
         }, 0).add({
             targets: planet_works_element,
             begin: () => { 
@@ -1450,9 +1452,9 @@ function works_to_home() {
             }, 0).add({
                 //Galaxy
                 targets: galaxy_element,
-                translateX: [400, 0],
+                translateX: [200, 0],
                 translateY: [200, 0],
-                scale: [1.4, 1],
+                scale: [1.6, 1.2],
             }, 0).add({
                 //Planet Works
                 targets: planet_works_element,
