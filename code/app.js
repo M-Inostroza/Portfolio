@@ -1290,7 +1290,6 @@ const message_input = document.getElementById('message');
 const lock_data = document.querySelector('.lock');
 const privacy_data = document.querySelector('.data-container');
 
-const form_container = document.querySelector('.form-container')
 const form = document.querySelector('.grid-form')
 
 let can_submit;
@@ -1627,6 +1626,8 @@ function skills_to_home() {
 //Contact section
 function home_to_contact() {
 
+    const form_element = document.querySelector('.contact-wrap');
+
     section_state = 'contact';
 
     document.querySelector('.description').style.opacity = 0;
@@ -1678,6 +1679,10 @@ function home_to_contact() {
         translateX: [0, 100],
         duration: 800
     }, 0).add({
+        targets: form_element,
+        translateY: [500, 0],
+        opacity: [0,1]
+    }, 200).add({
         targets: title_text_contact,
         opacity: [0,1]
     }, 700)

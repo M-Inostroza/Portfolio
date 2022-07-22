@@ -1384,7 +1384,7 @@ h3[data-title]:nth-child(2) {
 #title-contact-container {
     position: absolute;
     top: 10%;
-    left: 18%;
+    left: 6%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1410,7 +1410,7 @@ h3[data-title]:nth-child(2) {
     width: 50rem;
     height: 70rem;
     margin: 0 auto;
-    margin-top: 22rem;
+    margin-top: 14rem;
     display: flex;
     justify-content: center;
     align-items: center;
