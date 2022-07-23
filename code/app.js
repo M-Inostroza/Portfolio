@@ -100,6 +100,7 @@ const work_section_element = document.querySelector('.UI-works');
 
 //Contact-UI
 const contact_section_element = document.querySelector('.UI-contact');
+const form_element = document.querySelector('.contact-wrap');
 
 //Deactivate anim 
 let can_animate = true;
@@ -1626,8 +1627,6 @@ function skills_to_home() {
 //Contact section
 function home_to_contact() {
 
-    const form_element = document.querySelector('.contact-wrap');
-
     section_state = 'contact';
 
     document.querySelector('.description').style.opacity = 0;
@@ -1674,7 +1673,7 @@ function home_to_contact() {
         duration: 1500
     }, 0).add({
         targets: planet_contact_element,
-        scale: [1, 2.4],
+        scale: [1, 2],
         translateY: [0, -250],
         translateX: [0, 100],
         duration: 800
@@ -1682,7 +1681,7 @@ function home_to_contact() {
         targets: form_element,
         translateY: [500, 0],
         opacity: [0,1]
-    }, 200).add({
+    }, 0).add({
         targets: title_text_contact,
         opacity: [0,1]
     }, 700)
@@ -1735,12 +1734,16 @@ function contact_to_home() {
         duration: 1500,
     }, 0).add({
         targets: planet_contact_element,
-        scale: [2.4,1],
+        scale: [2,1],
         translateY: [-250,0],
         translateX: [100,0],
         duration: 800
     }, 0).add({
         targets: title_text_contact,
+        opacity: [1,0]
+    }, 0).add({
+        targets: form_element,
+        translateY: [0, 500],
         opacity: [1,0]
     }, 0)
 
