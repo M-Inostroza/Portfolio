@@ -1675,7 +1675,7 @@ function home_to_contact() {
         targets: planet_contact_element,
         scale: [1, 2],
         translateY: [0, -250],
-        translateX: [0, 100],
+        translateX: [0, 120],
         duration: 800
     }, 0).add({
         targets: form_element,
