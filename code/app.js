@@ -353,166 +353,6 @@ back_button.addEventListener('click', () => {
 
 //-----Shifting text-----//
 
-const stay_duration = 1200;
-const fade_duration = 800;
-
-const jumpWords = ["make", "design", "prototype", "build", "imagine"];
-
-const textElement = document.querySelector('.description-jumper')
-
-let textIndex = 0;
-
-const textTimeline = anime.timeline({
-  easing: 'easeOutQuad',
-  targets: textElement,
-  loop: true
-});
-
-textTimeline.add({
-  //Make
-  translateY: [
-    {value: [40,0], duration: fade_duration},
-    {value: 0, duration: stay_duration},
-    {value: [0,-40], duration: fade_duration}],
-  opacity: [
-    {value: [0,1], duration: fade_duration},
-    {value: 1, duration: stay_duration},
-    {value: [1,0], duration: fade_duration}],
-  color: '#EAC1D8',
-  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
-
-}).add({
-  //Design
-  translateY: [
-    {value: [40,0], duration: fade_duration},
-    {value: 0, duration: stay_duration},
-    {value: [0,-40], duration: fade_duration}],
-  opacity: [
-    {value: [0,1], duration: fade_duration},
-    {value: 1, duration: stay_duration},
-    {value: [1,0], duration: fade_duration}],
-  color: '#CAAFDC',
-  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
-
-}).add({
-  //Prototype
-  translateY: [
-    {value: [40,0], duration: fade_duration},
-    {value: 0, duration: stay_duration},
-    {value: [0,-40], duration: fade_duration}],
-  opacity: [
-    {value: [0,1], duration: fade_duration},
-    {value: 1, duration: stay_duration},
-    {value: [1,0], duration: fade_duration}],
-  color: '#B5ACCC',
-  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
-
-}).add({
-  //Build
-  translateY: [
-    {value: [40,0], duration: fade_duration},
-    {value: 0, duration: stay_duration},
-    {value: [0,-40], duration: fade_duration}],
-  opacity: [
-    {value: [0,1], duration: fade_duration},
-    {value: 1, duration: stay_duration},
-    {value: [1,0], duration: fade_duration}],
-  color: '#B1B1BC',
-  complete: function() {textIndex++ , textElement.innerText = jumpWords[textIndex]}
-
-}).add({
-  //Imagine
-  translateY: [
-    {value: [40,0], duration: fade_duration},
-    {value: 0, duration: stay_duration},
-    {value: [0,-40], duration: fade_duration}],
-  opacity: [
-    {value: [0,1], duration: fade_duration},
-    {value: 1, duration: stay_duration},
-    {value: [1,0], duration: fade_duration}],
-  color: '#fff',
-  complete: function() {
-    textIndex = 0
-    textElement.innerText = jumpWords[textIndex]
-    textTimeline.restart()
-  }
-});
-
-
-
-
-
-//-----Changing Text-----//
-
-const detailWords = ["Web", "User interface", "User experience", "Games"];
-
-const textDetail = document.querySelector(".detail");
-
-let detailIndex = 0;
-
-const detailTimeline = anime.timeline({
-  easing: 'easeOutQuad',
-  targets: textDetail,
-  loop: true
-});
-
-detailTimeline.add({
-  //Web
-  translateX: [
-    {value: [130,0], duration: fade_duration},
-    {value: 0, duration: stay_duration},
-    {value: [0,-130], duration: fade_duration}],
-  opacity: [
-    {value: [0,1], duration: fade_duration},
-    {value: 1, duration: stay_duration},
-    {value: [1,0], duration: fade_duration}],
-  complete: function() {detailIndex++ , textDetail.innerText = detailWords[detailIndex]}
-  //Index 1
-})
-.add({
-  //User interface
-  translateX: [
-    {value: [130,0], duration: fade_duration},
-    {value: 0, duration: stay_duration},
-    {value: [0,-130], duration: fade_duration}],
-  opacity: [
-    {value: [0,1], duration: fade_duration},
-    {value: 1, duration: stay_duration},
-    {value: [1,0], duration: fade_duration}],
-  complete: function() {detailIndex++ , textDetail.innerText = detailWords[detailIndex]}
-  //Index 2
-})
-.add({
-  //User experience
-  translateX: [
-    {value: [130,0], duration: fade_duration},
-    {value: 0, duration: stay_duration},
-    {value: [0,-130], duration: fade_duration}],
-  opacity: [
-    {value: [0,1], duration: fade_duration},
-    {value: 1, duration: stay_duration},
-    {value: [1,0], duration: fade_duration}],
-  complete: function() {detailIndex++ , textDetail.innerText = detailWords[detailIndex]}
-  //Index 3
-})
-.add({
-  //games
-  translateX: [
-    {value: [130,0], duration: fade_duration},
-    {value: 0, duration: stay_duration},
-    {value: [0,-130], duration: fade_duration}],
-  opacity: [
-    {value: [0,1], duration: fade_duration},
-    {value: 1, duration: stay_duration},
-    {value: [1,0], duration: fade_duration}],
-  complete: function() {
-    detailIndex = 0;
-    textDetail.innerText = detailWords[detailIndex]
-    detailTimeline.restart()
-  }})
-
-
-
 
 
 
@@ -1348,8 +1188,6 @@ function home_to_works() {
         title_frame_anim.play();
     
         work_section_element.classList.toggle('noDisplay');
-        document.querySelector('.description').style.opacity = 0;
-        document.querySelector('.subHeader-frame').style.opacity = 0;
     
         let transition_works_timeline = anime.timeline({
             easing: 'easeOutQuad',
@@ -1428,9 +1266,6 @@ function works_to_home() {
     
         title_text_works.style.opacity = 0;
     
-        document.querySelector('.description').style.opacity = 1;
-        document.querySelector('.subHeader-frame').style.opacity = 1;
-    
         var transition_home_timeline = anime.timeline({
             easing: 'easeOutQuad',
             duration: 1000
@@ -1492,9 +1327,6 @@ function works_to_home() {
 //Skills section
 function home_to_skills() {
         section_state = 'skills';
-        
-        document.querySelector('.description').style.opacity = 0;
-        document.querySelector('.subHeader-frame').style.opacity = 0;
     
         title_frame_anim.setDirection(-1);
         title_frame_anim.setSpeed(2.6);
@@ -1562,9 +1394,6 @@ function skills_to_home() {
         title_frame_skills_anim.play();
         title_text_skills.style.opacity = 0;
     
-        document.querySelector('.description').style.opacity = 1;
-        document.querySelector('.subHeader-frame').style.opacity = 1;
-    
         var transition_skills_timeline = anime.timeline({
             easing: 'easeInOutQuad',
             duration: 1200
@@ -1629,9 +1458,6 @@ function home_to_contact() {
 
     section_state = 'contact';
 
-    document.querySelector('.description').style.opacity = 0;
-    document.querySelector('.subHeader-frame').style.opacity = 0;
-
     title_frame_anim.setDirection(-1);
     title_frame_anim.setSpeed(2.6);
     title_frame_anim.play();
@@ -1691,9 +1517,6 @@ function home_to_contact() {
 function contact_to_home() {
 
     section_state = 'home';
-
-    document.querySelector('.description').style.opacity = 1;
-    document.querySelector('.subHeader-frame').style.opacity = 1;
 
     title_frame_contact_anim.setDirection(-1);
     title_frame_contact_anim.setSpeed(3);
