@@ -408,8 +408,9 @@ var moon_ssnf = bodymovin.loadAnimation({
 //--Moon Moxy--//
 
 // Moon animation
-var moon2_moxy = bodymovin.loadAnimation({
-    container: document.getElementById("moon2_moxy"),
+const moon_moxy = document.getElementById('moon2_moxy');
+const moon2_moxy = bodymovin.loadAnimation({
+    container: moon_moxy,
     renderer: 'svg',
     loop: true,
     autoplay: true,
@@ -419,7 +420,7 @@ var moon2_moxy = bodymovin.loadAnimation({
 //-Moon Unknown-//
 
 //Moon animation
-var moon3_unknown = bodymovin.loadAnimation({
+const moon3_unknown = bodymovin.loadAnimation({
     container: document.getElementById("moon3_unknown"),
     renderer: "svg",
     loop: true,
@@ -1246,8 +1247,10 @@ function home_to_works() {
         }, 1900).add({
             targets: work_section_element,
             opacity: [0,1],
-        }, 400)
-    
+        }, 400).add({
+           targets: moon_moxy,
+           translateX: [-800, 0], 
+        }, 200);
         //Plays timeline
         transition_works_timeline.play();
 
