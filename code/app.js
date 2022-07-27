@@ -408,9 +408,8 @@ var moon_ssnf = bodymovin.loadAnimation({
 //--Moon Moxy--//
 
 // Moon animation
-const moon_moxy = document.getElementById('moon2_moxy');
 const moon2_moxy = bodymovin.loadAnimation({
-    container: moon_moxy,
+    container: document.getElementById('moon2_moxy'),
     renderer: 'svg',
     loop: true,
     autoplay: true,
@@ -1189,6 +1188,9 @@ function home_to_works() {
         title_frame_anim.play();
     
         work_section_element.classList.toggle('noDisplay');
+        const moon_left = document.querySelector('[data-left]');
+        const moon_right = document.querySelector('[data-right]');
+        const moon_center = document.querySelector('[data-active]');
     
         let transition_works_timeline = anime.timeline({
             easing: 'easeOutQuad',
@@ -1248,9 +1250,20 @@ function home_to_works() {
             targets: work_section_element,
             opacity: [0,1],
         }, 400).add({
-           targets: moon_moxy,
-           translateX: [-800, 0], 
-        }, 200);
+           targets: moon_left,
+           translateY: [400, 0],
+           translateX: [200, 0],
+           scale: [0.2, 1],
+        }, 400).add({
+            targets: moon_right,
+            translateY: [400, 0],
+            translateX: [-200, 0],
+            scale: [0.2, 1],
+         }, 400).add({
+            targets: moon_center,
+            translateY: [400, 0],
+            scale: [0.2, 1],
+         }, 400);
         //Plays timeline
         transition_works_timeline.play();
 

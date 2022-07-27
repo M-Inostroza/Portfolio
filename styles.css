@@ -130,6 +130,7 @@ main {
     width: 29rem;
     height: 30rem;
     transition: left 1s, top 1s;
+    z-index: 1;
 }
 
 #planet-works-frame {
@@ -643,6 +644,7 @@ main {
     position: absolute;
     left: -80%;
     bottom: -20%;
+    z-index: -1;
 }
 .moon[data-right]{
     position: absolute;
