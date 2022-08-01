@@ -1108,6 +1108,44 @@ const title_frame_skills_anim = bodymovin.loadAnimation({
 const title_text_skills = document.querySelector('.title-skills')
 
 
+//Circle anim
+let frameOpen = false;
+
+const skill_selector = document.getElementById('skill-selector-design');
+const skill_selector_anim = bodymovin.loadAnimation({
+    container: skill_selector,
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    path: '/anims/skill_selector.json'
+});
+
+skill_selector_anim.goToAndPlay(96, true);
+skill_selector_anim.playSegments([0, 96]);
+
+skill_selector.addEventListener('mouseenter', ()=>{
+    if(!frameOpen){
+        skill_selector_anim.playSegments([96, 120], true);
+        skill_selector_anim.loop = false;
+    }
+});
+
+skill_selector.addEventListener('mouseleave', ()=> {
+    if(!frameOpen) {
+        skill_selector_anim.playSegments([120, 96], true);
+        skill_selector_anim.playSegments([96, 0]), true;
+        skill_selector_anim.loop = true;
+    }
+});
+
+skill_selector.addEventListener('click', ()=> {
+    frameOpen = true;
+    skill_selector_anim.playSegments([120, 133], true);
+    skill_selector.style.top = '50%';
+    skill_selector.style.left = '50%';
+});
+
+const skill_title = document.querySelector('.skill-title');
 
 //-Contact section-//
 const title_element_contact = document.getElementById('title-contact-container');

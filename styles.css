@@ -960,10 +960,6 @@ ul {
 
 
 
-
-
-
-
 /* Skills */
 
 .section-skills-container {
@@ -999,127 +995,33 @@ ul {
     opacity: 0;
 }
 
-.skill-frame-container {
-    background-image: url(/images/skill_frame_UI_tab_1_svg.svg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size:auto;
-    height: 75rem;
-    width: 120rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    z-index: 2;
-}
-
-.description-container {
-    margin-top: 4rem;
-    height: 15rem;
-    width: 105rem;
-}
-
-.titles {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.titles h3 {
+#skill-selector-design {
+    position: absolute;
+    width: 28rem;
+    height: 28rem;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, -50%);
     cursor: pointer;
-    opacity: 0.3;
-    font-size: 2.6rem;
-    margin-right: 2.6rem;
+    z-index: 1;
+    transition: top 0.6s, left 0.6s;
 }
 
-h3[data-main] {
-    opacity: 1;
-}
-
-h3[data-back] {
-    opacity: 0.3;
-}
-
-h3[data-title]:nth-child(1) {
-    margin-right: 5rem;
-}
-
-h3[data-title]:nth-child(2) {
-    margin-right: 7.2rem;
-}
-
-.levels {
-    display: flex;
-    margin: 5.2rem 0 1rem 0;
-    justify-content: space-between;
-}
-
-.rookie {
-    padding-left: 4rem;
-}
-
-.pro {
-    padding-right: 4rem;
-}
-
-.progress-bar {
-    background-image: url(/images/progress_bar.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    width: 98rem;
-    height: 1.5rem;
+.skill-title{
+    font-size: 2rem;
+    position: absolute;
     z-index: 2;
-    margin: 0 auto;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
 }
 
-.bar-container {
+.img-icon-skill{
+    width: 5rem;
     position: absolute;
-    width: 100rem;
-    height: 50rem;
-    top: 30%;
-    display: grid;
-    align-items: center;
-    justify-content: left;
-}
-
-.skill-avatar {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 11rem;
-    width: 17rem;
-    cursor: pointer;
-}
-
-.skill-text {
-    position: absolute;
-    font-family: 'Spline Sans Mono', monospace;
-    font-size: 4rem;
-    z-index: 5;
-}
-
-.skill-bar {
-    background-image: url(/images/skill_bar.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    z-index: -2;
-    position: absolute;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    left: 45%;
-    width: 92rem;
-    height: 4rem;
-}
-
-.skill-fader {
-    background-image: url(/images/skill_fader.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 4rem;
-    width: 2.4rem;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
 }
 
 #planet-skills-BG {
