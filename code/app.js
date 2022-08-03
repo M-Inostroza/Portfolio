@@ -1110,6 +1110,7 @@ const title_text_skills = document.querySelector('.title-skills')
 
 //Circle anim
 let frameOpen = false;
+let canHoover = true;
 
 const skill_selector = document.getElementById('skill-selector-design');
 const skill_selector_anim = bodymovin.loadAnimation({
@@ -1124,25 +1125,34 @@ skill_selector_anim.goToAndPlay(96, true);
 skill_selector_anim.playSegments([0, 96]);
 
 skill_selector.addEventListener('mouseenter', ()=>{
-    if(!frameOpen){
+    if(!frameOpen && canHoover){
         skill_selector_anim.playSegments([96, 120], true);
         skill_selector_anim.loop = false;
     }
 });
 
 skill_selector.addEventListener('mouseleave', ()=> {
-    if(!frameOpen) {
+    if(!frameOpen && canHoover) {
         skill_selector_anim.playSegments([120, 96], true);
-        skill_selector_anim.playSegments([96, 0]), true;
+        skill_selector_anim.playSegments([0, 96]);
         skill_selector_anim.loop = true;
     }
 });
 
 skill_selector.addEventListener('click', ()=> {
-    frameOpen = true;
-    skill_selector_anim.playSegments([120, 133], true);
-    skill_selector.style.top = '50%';
-    skill_selector.style.left = '50%';
+    if (!frameOpen) {
+        canHoover = false;
+        frameOpen = true;
+        skill_selector_anim.playSegments([120, 134], true);
+        skill_selector.style.top = '50%';
+        skill_selector.style.left = '50%';
+    } else if (frameOpen) {
+        frameOpen = false;
+        skill_selector_anim.playSegments([134, 120], true);
+        skill_selector.style.top = '75%';
+        skill_selector_anim.playSegments([0, 96]);
+    }
+    
 });
 
 const skill_title = document.querySelector('.skill-title');
