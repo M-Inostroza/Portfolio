@@ -1107,53 +1107,19 @@ const title_frame_skills_anim = bodymovin.loadAnimation({
 });
 const title_text_skills = document.querySelector('.title-skills')
 
-
 //Circle anim
 let frameOpen = false;
 let canHoover = true;
 
-const skill_selector = document.getElementById('skill-selector-design');
-const skill_selector_anim = bodymovin.loadAnimation({
-    container: skill_selector,
-    renderer: 'svg',
-    loop: true,
-    autoplay: false,
-    path: '/anims/skill_selector.json'
-});
+const skill_selector_design = document.getElementById('skill-selector-design');
+const skill_selector_code = document.getElementById('skill-selector-code');
+const skill_selector_web = document.getElementById('skill-selector-web');
 
-skill_selector_anim.goToAndPlay(96, true);
-skill_selector_anim.playSegments([0, 96]);
+animate_skill(skill_selector_design);
+animate_skill(skill_selector_code);
+animate_skill(skill_selector_web);
 
-skill_selector.addEventListener('mouseenter', ()=>{
-    if(!frameOpen && canHoover){
-        skill_selector_anim.playSegments([96, 120], true);
-        skill_selector_anim.loop = false;
-    }
-});
 
-skill_selector.addEventListener('mouseleave', ()=> {
-    if(!frameOpen && canHoover) {
-        skill_selector_anim.playSegments([120, 96], true);
-        skill_selector_anim.playSegments([0, 96]);
-        skill_selector_anim.loop = true;
-    }
-});
-
-skill_selector.addEventListener('click', ()=> {
-    if (!frameOpen) {
-        canHoover = false;
-        frameOpen = true;
-        skill_selector_anim.playSegments([120, 134], true);
-        skill_selector.style.top = '50%';
-        skill_selector.style.left = '50%';
-    } else if (frameOpen) {
-        frameOpen = false;
-        skill_selector_anim.playSegments([134, 120], true);
-        skill_selector.style.top = '75%';
-        skill_selector_anim.playSegments([0, 96]);
-    }
-    
-});
 
 const skill_title = document.querySelector('.skill-title');
 
@@ -1224,6 +1190,57 @@ lock_data.addEventListener('click', ()=> {
 
 
 //Functions//
+
+//Skill anims
+function animate_skill(container) {
+    let container_anim = bodymovin.loadAnimation({
+        container: container, 
+        renderer: 'svg',
+        loop: true,
+        autoplay: false,
+        path: '/anims/skill_selector.json'
+    });
+    
+    container_anim.setSpeed(0.5);
+    
+    container_anim.goToAndPlay(96, true);
+    container_anim.playSegments([0, 96]);
+    
+    container.addEventListener('mouseenter', ()=>{
+        if(!frameOpen && canHoover){
+            container_anim.setSpeed(1.5);
+        }
+    });
+    
+    container.addEventListener('mouseleave', ()=> {
+        if(!frameOpen && canHoover) {
+            container_anim.setSpeed(0.5);
+        }
+    });
+    
+    container.addEventListener('click', ()=> {
+        if (!frameOpen) {
+            canHoover = false;
+            frameOpen = true;
+            container_anim.playSegments([96, 115], true);
+            container.style.top = '50%';
+            container.style.left = '50%';
+            container_anim.loop = false;
+        } else if (frameOpen) {
+            frameOpen = false;
+            container_anim.playSegments([115, 96], true);
+            container.style.top = '75%';
+            container_anim.playSegments([0, 96]);
+            container_anim.loop = true;
+            
+            setTimeout(() => {
+                canHoover = true;
+                container.setSpeed(0.5);
+            }, 500);
+        }
+        
+    });
+}
 
 //Works section
 function home_to_works() {
