@@ -1119,8 +1119,6 @@ animate_skill(skill_selector_design);
 animate_skill(skill_selector_code);
 animate_skill(skill_selector_web);
 
-
-
 const skill_title = document.querySelector('.skill-title');
 
 //-Contact section-//
@@ -1134,7 +1132,7 @@ const title_frame_contact_anim = bodymovin.loadAnimation({
 });
 const title_text_contact = document.querySelector('.title-contact');
 
-//Variables
+//Contact Variables
 const submit_button = document.querySelector('.submit-button');
 
 const name_input = document.getElementById('name');
@@ -1220,22 +1218,45 @@ function animate_skill(container) {
     
     container.addEventListener('click', ()=> {
         if (!frameOpen) {
+
             canHoover = false;
             frameOpen = true;
+
             container_anim.playSegments([96, 115], true);
+
             container.style.top = '50%';
             container.style.left = '50%';
             container_anim.loop = false;
+
         } else if (frameOpen) {
+
             frameOpen = false;
             container_anim.playSegments([115, 96], true);
-            container.style.top = '75%';
+
+            switch (container.dataset.skill) {
+                case 'design':
+                    container.style.top = '75%';
+                    container.style.left = '60%';
+                    console.log('design');
+                    break;
+                case 'code':
+                    container.style.top = '30%';
+                    container.style.left = '80%';
+                    console.log('code');
+                    break;
+                case 'web':
+                    container.style.top = '40%';
+                    container.style.left = '40%';
+                    console.log('web');
+                    break;  
+            }
+            
             container_anim.playSegments([0, 96]);
             container_anim.loop = true;
             
             setTimeout(() => {
                 canHoover = true;
-                container.setSpeed(0.5);
+                container_anim.setSpeed(0.5);
             }, 500);
         }
         
