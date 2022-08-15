@@ -179,12 +179,14 @@ planet_works_frame.addEventListener('mouseleave', () => {
 
 // Container frame element
 const planet_skills_frame = document.getElementById("planet-skills-frame");
+
 // Floating window element
 const window_skills = document.getElementById("skills-frame-float");
 
+// Main element
 const planet_skills_container = document.getElementById("home-planet-skills");
 
-// Planet animation
+// Planet rotating animation
 var planet_skills = bodymovin.loadAnimation({
     container: planet_skills_container,
     renderer: 'svg',
@@ -193,7 +195,7 @@ var planet_skills = bodymovin.loadAnimation({
     path: '/anims/home_planet_skills.json'
 })
 
-// Frame animation
+// Hover window animation
 const skills_frame_anim = bodymovin.loadAnimation({
   container: planet_skills_frame,
   renderer: 'svg',
@@ -202,7 +204,7 @@ const skills_frame_anim = bodymovin.loadAnimation({
   path: '/anims/home_frame_skills.json'
 });
 
-// Floating window animation
+// Floating box animation
 var window_skills_anim = bodymovin.loadAnimation({
     container: window_skills,
     renderer: 'svg',
@@ -1093,10 +1095,14 @@ buttons.forEach(button => {
     })
 })
 
-
+//------------------------------------------------------------------------------------------------------------------//
 
 //-Skills section-//
+
+// Entire section element
 const skill_section = document.querySelector('.UI-skills');
+
+// Title & frame
 const title_element_skills = document.getElementById('title-skills-container');
 const title_frame_skills_anim = bodymovin.loadAnimation({
     container: title_element_skills,
@@ -1107,19 +1113,23 @@ const title_frame_skills_anim = bodymovin.loadAnimation({
 });
 const title_text_skills = document.querySelector('.title-skills')
 
-//Circle anim
+// Anim controllers
 let frameOpen = false;
 let canHoover = true;
 
+// 1-Tier Skills 
 const skill_selector_design = document.getElementById('skill-selector-design');
 const skill_selector_code = document.getElementById('skill-selector-code');
 const skill_selector_web = document.getElementById('skill-selector-web');
 
+// Animate Skills
 animate_skill(skill_selector_design);
 animate_skill(skill_selector_code);
 animate_skill(skill_selector_web);
 
-const skill_title = document.querySelector('.skill-title');
+//------------------------------------------------------------------------------------------------------------------//
+
+
 
 //-Contact section-//
 const title_element_contact = document.getElementById('title-contact-container');
@@ -1222,8 +1232,46 @@ function animate_skill(container) {
             canHoover = false;
             frameOpen = true;
 
-            container_anim.playSegments([96, 115], true);
+            switch (container.dataset.skill) {
+                case 'design':
+                    anime({
+                        targets: [skill_selector_code, skill_selector_web],
+                        opacity: [1,0],
+                        easing: 'easeInOutQuad',
+                        duration: 150,
+                        complete: () => {
+                            skill_selector_code.classList.toggle('noDisplay');
+                            skill_selector_web.classList.toggle('noDisplay');
+                        }
+                    });
+                    break;
+                case 'code':
+                    anime({
+                        targets: [skill_selector_design, skill_selector_web],
+                        opacity: [1,0],
+                        easing: 'easeInOutQuad',
+                        duration: 150,
+                        complete: () => {
+                            skill_selector_design.classList.toggle('noDisplay');
+                            skill_selector_web.classList.toggle('noDisplay');
+                        }
+                    });
+                    break;
+                case 'web':
+                    anime({
+                        targets: [skill_selector_code, skill_selector_design],
+                        opacity: [1,0],
+                        easing: 'easeInOutQuad',
+                        duration: 150,
+                        complete: () => {
+                            skill_selector_code.classList.toggle('noDisplay');
+                            skill_selector_design.classList.toggle('noDisplay');
+                        }
+                    });
+                    break;  
+            }
 
+            container_anim.playSegments([96, 115], true);
             container.style.top = '50%';
             container.style.left = '50%';
             container_anim.loop = false;
@@ -1235,19 +1283,53 @@ function animate_skill(container) {
 
             switch (container.dataset.skill) {
                 case 'design':
+                    //Returns the container to starting position / fades in -out
+
                     container.style.top = '75%';
                     container.style.left = '60%';
-                    console.log('design');
+
+                    anime({
+                        begin: () => {
+                            skill_selector_code.classList.toggle('noDisplay');
+                            skill_selector_web.classList.toggle('noDisplay');
+                        },
+                        targets: [skill_selector_code, skill_selector_web],
+                        opacity: [0,1],
+                        easing: 'easeInOutQuad',
+                        duration: 150,
+                    });
                     break;
+
                 case 'code':
                     container.style.top = '30%';
                     container.style.left = '80%';
-                    console.log('code');
+
+                    anime({
+                        begin: () => {
+                            skill_selector_design.classList.toggle('noDisplay');
+                            skill_selector_web.classList.toggle('noDisplay');
+                        },
+                        targets: [skill_selector_design, skill_selector_web],
+                        opacity: [0,1],
+                        easing: 'easeInOutQuad',
+                        duration: 150,
+                    });
+                    
                     break;
                 case 'web':
                     container.style.top = '40%';
                     container.style.left = '40%';
-                    console.log('web');
+
+                    anime({
+                        begin: () => {
+                            skill_selector_design.classList.toggle('noDisplay');
+                            skill_selector_code.classList.toggle('noDisplay');
+                        },
+                        targets: [skill_selector_design, skill_selector_code],
+                        opacity: [0,1],
+                        easing: 'easeInOutQuad',
+                        duration: 150,
+                    });
                     break;  
             }
             
