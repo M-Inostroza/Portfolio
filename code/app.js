@@ -1122,8 +1122,26 @@ const skill_selector_design = document.getElementById('skill-selector-design');
 const skill_selector_code = document.getElementById('skill-selector-code');
 const skill_selector_web = document.getElementById('skill-selector-web');
 
+// Skill set anims
+
+// Design
+const skillSet_design = document.getElementById('skillSet_design');
+const skillSet_design_anim = bodymovin.loadAnimation({
+    container: skillSet_design,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: '/anims/SkillSellector_design.json'
+});
+
+// Code
+
+// Web
+
 // Animate Skills
 animate_skill(skill_selector_design);
+
+
 animate_skill(skill_selector_code);
 animate_skill(skill_selector_web);
 
@@ -1242,6 +1260,8 @@ function animate_skill(container) {
                         complete: () => {
                             skill_selector_code.classList.toggle('noDisplay');
                             skill_selector_web.classList.toggle('noDisplay');
+                            skillSet_design.classList.toggle('noDisplay');
+                            skillSet_design_anim.play();
                         }
                     });
                     break;
@@ -1292,6 +1312,8 @@ function animate_skill(container) {
                         begin: () => {
                             skill_selector_code.classList.toggle('noDisplay');
                             skill_selector_web.classList.toggle('noDisplay');
+                            skillSet_design.classList.toggle('noDisplay');
+                            skillSet_design_anim.stop();
                         },
                         targets: [skill_selector_code, skill_selector_web],
                         opacity: [0,1],
@@ -1522,7 +1544,7 @@ function home_to_skills() {
         })
         transition_skills_timeline.add({
             targets: planet_skills_container,
-            translateX: [0, -1400],
+            translateX: [0, -1600],
             translateY: [0, 800],
             scale: [1, 4],
         }, 0).add({
@@ -1585,7 +1607,7 @@ function skills_to_home() {
         transition_skills_timeline.add({
             //Planet Skills
             targets: planet_skills_container,
-            translateX: [-1400, 0],
+            translateX: [-1600, 0],
             translateY: [800, 0],
             scale: [4, 1],
         }, 0).add({

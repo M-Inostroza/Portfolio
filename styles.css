@@ -980,7 +980,7 @@ ul {
     height: 8rem;
     position: absolute;
     left: 10%;
-    top: 10%;
+    top: 8%;
     z-index: 1;
     display: flex;
     justify-content: center;
@@ -1029,6 +1029,15 @@ ul {
     cursor: pointer;
     z-index: 1;
     transition: top 0.6s, left 0.6s;
+}
+
+#skillSet_design{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 122rem;
+    height: 68.6rem;
+    transform: translate(-50%, -50%);
 }
 
 .skill-title{
