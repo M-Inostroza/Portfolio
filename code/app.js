@@ -383,7 +383,7 @@ const querySizeTablet = window.matchMedia('(max-width: 780px)');
 const querySizePhone = window.matchMedia('(max-width: 420px)');
 
 //Click invitation
-const click_container = document.getElementById('frame-click')
+const click_container = document.getElementById('frame-click');
 
 const click_anim = bodymovin.loadAnimation({
     container: click_container,
@@ -391,7 +391,7 @@ const click_anim = bodymovin.loadAnimation({
     loop: true,
     autoplay: true,
     path: '/anims/click.json'
-})
+});
 
 
 //------------MOONS------------//
@@ -428,8 +428,6 @@ const moon3_unknown = bodymovin.loadAnimation({
     autoplay: true,
     path: '/anims/Moon 3 Unknown.json'
 })
-
-const lock_img = document.querySelector('[data-lock]')
 
 
 //Arrow buttons
@@ -472,9 +470,9 @@ var textFrame = bodymovin.loadAnimation({
 //Animates the active element on click
 activeElement.addEventListener('click', ()=> {
 
-    let centerElement = activeElement.querySelector('[data-active]')
-    let leftElement = activeElement.querySelector('[data-left]')
-    let rightElement = activeElement.querySelector('[data-right]')
+    let centerElement = activeElement.querySelector('[data-active]');
+    let leftElement = activeElement.querySelector('[data-left]');
+    let rightElement = activeElement.querySelector('[data-right]');
     
     if(!isActive && canClick){
         //Moves the text when element selected
@@ -566,7 +564,6 @@ activeElement.addEventListener('click', ()=> {
             }
         } else if (centerElement.dataset.name == "unknown") {
             console.log('working on it...')
-            lock_img.classList.remove('noDisplay')
         }
 
         //Shows the bulletpoints & video container
@@ -730,7 +727,6 @@ activeElement.addEventListener('click', ()=> {
                 });
                 leftElement.classList.toggle('noDisplay')
                 rightElement.classList.toggle('noDisplay')
-                lock_img.classList.add('noDisplay')
             },
             targets: [outElements, leftElement, rightElement],
             delay: 100,
@@ -1135,13 +1131,27 @@ const skillSet_design_anim = bodymovin.loadAnimation({
 });
 
 // Code
+const skillSet_code = document.getElementById('skillSet_code');
+const skillSet_code_anim = bodymovin.loadAnimation({
+    container: skillSet_code,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: '/anims/code_anim_set.json'
+});
 
 // Web
+const skillSet_web = document.getElementById('skillSet_web');
+const skillSet_web_anim = bodymovin.loadAnimation({
+    container: skillSet_web,
+    renderer: 'svg',
+    loop: false,
+    autoplay: false,
+    path: '/anims/web_anim_set.json'
+});
 
 // Animate Skills
 animate_skill(skill_selector_design);
-
-
 animate_skill(skill_selector_code);
 animate_skill(skill_selector_web);
 
@@ -1274,6 +1284,8 @@ function animate_skill(container) {
                         complete: () => {
                             skill_selector_design.classList.toggle('noDisplay');
                             skill_selector_web.classList.toggle('noDisplay');
+                            skillSet_code.classList.toggle('noDisplay');
+                            skillSet_code_anim.play();
                         }
                     });
                     break;
@@ -1286,6 +1298,8 @@ function animate_skill(container) {
                         complete: () => {
                             skill_selector_code.classList.toggle('noDisplay');
                             skill_selector_design.classList.toggle('noDisplay');
+                            skillSet_web.classList.toggle('noDisplay');
+                            skillSet_web_anim.play();
                         }
                     });
                     break;  
@@ -1330,6 +1344,8 @@ function animate_skill(container) {
                         begin: () => {
                             skill_selector_design.classList.toggle('noDisplay');
                             skill_selector_web.classList.toggle('noDisplay');
+                            skillSet_code.classList.toggle('noDisplay');
+                            skillSet_code_anim.stop();
                         },
                         targets: [skill_selector_design, skill_selector_web],
                         opacity: [0,1],
@@ -1346,6 +1362,8 @@ function animate_skill(container) {
                         begin: () => {
                             skill_selector_design.classList.toggle('noDisplay');
                             skill_selector_code.classList.toggle('noDisplay');
+                            skillSet_web.classList.toggle('noDisplay');
+                            skillSet_web_anim.stop();
                         },
                         targets: [skill_selector_design, skill_selector_code],
                         opacity: [0,1],
